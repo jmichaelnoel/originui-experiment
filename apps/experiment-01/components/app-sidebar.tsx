@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { SearchForm } from "@/components/search-form"
-import { VersionSwitcher } from "@/components/version-switcher"
+import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -15,136 +15,82 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { RiLogoutBoxLine } from "@remixicon/react"
+import { RiScanLine, RiBardLine, RiUserFollowLine, RiCodeSSlashLine, RiLoginCircleLine, RiLayoutLeftLine, RiVoiceAiLine, RiSettings3Line, RiLeafLine, RiLogoutBoxLine } from "@remixicon/react"
 
 // This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
-  navMain: [
+  teams: [
     {
-      title: "Getting Started",
-      url: "#",
-      items: [
-        {
-          title: "Installation",
-          url: "#",
-        },
-        {
-          title: "Project Structure",
-          url: "#",
-        },
-      ],
+      name: "InnovaCraft",
+      logo: "/logo-01.png",
     },
     {
-      title: "Building Your Application",
+      name: "Acme Corp.",
+      logo: "/logo-01.png",
+    },
+    {
+      name: "Evil Corp.",
+      logo: "/logo-01.png",
+    },
+  ],
+  navMain: [
+    {
+      title: "Sections",
       url: "#",
       items: [
         {
-          title: "Routing",
+          title: "Dashboard",
           url: "#",
+          icon: RiScanLine,
         },
         {
-          title: "Data Fetching",
+          title: "Insights",
           url: "#",
+          icon: RiBardLine,
+        },
+        {
+          title: "Contacts",
+          url: "#",
+          icon: RiUserFollowLine,
           isActive: true,
         },
         {
-          title: "Rendering",
+          title: "Tools",
           url: "#",
+          icon: RiCodeSSlashLine,
         },
         {
-          title: "Caching",
+          title: "Integration",
           url: "#",
+          icon: RiLoginCircleLine,
         },
         {
-          title: "Styling",
+          title: "Layouts",
           url: "#",
+          icon: RiLayoutLeftLine,
         },
         {
-          title: "Optimizing",
+          title: "Reports",
           url: "#",
+          icon: RiLeafLine,
         },
-        {
-          title: "Configuring",
-          url: "#",
-        },
-        {
-          title: "Testing",
-          url: "#",
-        },
-        {
-          title: "Authentication",
-          url: "#",
-        },
-        {
-          title: "Deploying",
-          url: "#",
-        },
-        {
-          title: "Upgrading",
-          url: "#",
-        },
-        {
-          title: "Examples",
-          url: "#",
-        },
-      ],
+      ]
     },
     {
-      title: "API Reference",
+      title: "Other",
       url: "#",
       items: [
         {
-          title: "Components",
+          title: "Settings",
           url: "#",
+          icon: RiSettings3Line,
         },
         {
-          title: "File Conventions",
+          title: "Help Center",
           url: "#",
+          icon: RiLeafLine,
         },
-        {
-          title: "Functions",
-          url: "#",
-        },
-        {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Architecture",
-      url: "#",
-      items: [
-        {
-          title: "Accessibility",
-          url: "#",
-        },
-        {
-          title: "Fast Refresh",
-          url: "#",
-        },
-        {
-          title: "Next.js Compiler",
-          url: "#",
-        },
-        {
-          title: "Supported Browsers",
-          url: "#",
-        },
-        {
-          title: "Turbopack",
-          url: "#",
-        },
-      ],
+      ]
     },
   ],
 }
@@ -153,10 +99,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
+        <TeamSwitcher teams={data.teams} />
         <SearchForm />
       </SidebarHeader>
       <SidebarContent>
@@ -168,8 +111,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={item.isActive}>
-                      <a href={item.url}>{item.title}</a>
+                    <SidebarMenuButton asChild className="font-medium gap-3" isActive={item.isActive}>
+                      <a href={item.url}>
+                        {item.icon && <item.icon size={22} aria-hidden="true" />}
+                        <span>{item.title}</span>
+                      </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
