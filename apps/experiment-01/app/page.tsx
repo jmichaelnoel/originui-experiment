@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button"
 import UserDropdown from "@/components/user-dropdown"
 import FeedbackDialog from "@/components/feedback-dialog"
+import ContactsTable from "@/components/contacts-table"
 import { RiScanLine, RiArrowRightUpLine, RiArrowRightDownLine } from "@remixicon/react"
 
 export default function Page() {
@@ -136,12 +137,9 @@ export default function Page() {
             </div>
           </div>
           {/* Table */}
-          <div className="grid auto-rows-min gap-4 lg:gap-6 md:grid-cols-3">
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
-            <div className="aspect-video rounded-xl bg-muted/50" />
+          <div className="min-h-[100vh] flex-1 md:min-h-min">
+            <ContactsTable />
           </div>
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />
         </div>
       </SidebarInset>
     </SidebarProvider>
