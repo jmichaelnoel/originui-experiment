@@ -27,8 +27,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+} from "@/components/ui/pagination";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Table,
   TableBody,
@@ -53,8 +61,28 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { RiArrowDownSLine, RiArrowUpSLine, RiErrorWarningLine, RiCloseCircleLine, RiDeleteBinLine, RiBardLine, RiFilter3Line, RiSearch2Line, RiVerifiedBadgeFill, RiCheckLine, RiSubtractLine, RiMoreLine } from "@remixicon/react";
-import { useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
+import {
+  RiArrowDownSLine,
+  RiArrowUpSLine,
+  RiErrorWarningLine,
+  RiCloseCircleLine,
+  RiDeleteBinLine,
+  RiBardLine,
+  RiFilter3Line,
+  RiSearch2Line,
+  RiVerifiedBadgeFill,
+  RiCheckLine,
+  RiSubtractLine,
+  RiMoreLine,
+} from "@remixicon/react";
+import {
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -77,7 +105,11 @@ type Item = {
   joinDate: string;
 };
 
-const statusFilterFn: FilterFn<Item> = (row, columnId, filterValue: string[]) => {
+const statusFilterFn: FilterFn<Item> = (
+  row,
+  columnId,
+  filterValue: string[],
+) => {
   if (!filterValue?.length) return true;
   const status = row.getValue(columnId) as string;
   return filterValue.includes(status);
@@ -94,7 +126,8 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -114,16 +147,18 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
   {
     header: "Name",
     accessorKey: "name",
-    cell: ({ row }) => <div className="flex items-center gap-3">
-      <img
-        className="rounded-full"
-        src={row.original.image}
-        width={32}
-        height={32}
-        alt={row.getValue("name")}
-      />
-      <div className="font-medium">{row.getValue("name")}</div>
-    </div>,
+    cell: ({ row }) => (
+      <div className="flex items-center gap-3">
+        <img
+          className="rounded-full"
+          src={row.original.image}
+          width={32}
+          height={32}
+          alt={row.getValue("name")}
+        />
+        <div className="font-medium">{row.getValue("name")}</div>
+      </div>
+    ),
     size: 180,
     enableHiding: false,
   },
@@ -139,12 +174,21 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
     header: "Status",
     accessorKey: "status",
     cell: ({ row }) => (
-      <Badge variant="outline" className={cn(
-        "gap-1",
-        row.original.status === "Inactive" ? "text-muted-foreground" : "text-primary-foreground",
-      )}>
+      <Badge
+        variant="outline"
+        className={cn(
+          "gap-1",
+          row.original.status === "Inactive"
+            ? "text-muted-foreground"
+            : "text-primary-foreground",
+        )}
+      >
         {row.original.status === "Active" && (
-          <RiCheckLine className="text-emerald-500" size={14} aria-hidden="true" />
+          <RiCheckLine
+            className="text-emerald-500"
+            size={14}
+            aria-hidden="true"
+          />
         )}
         {row.original.status === "Inactive" && (
           <RiSubtractLine size={14} aria-hidden="true" />
@@ -154,43 +198,53 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
     ),
     size: 110,
     filterFn: statusFilterFn,
-  },  
+  },
   {
     header: "Location",
     accessorKey: "location",
     cell: ({ row }) => (
       <span className="text-muted-foreground">{row.getValue("location")}</span>
-    ),    
+    ),
     size: 140,
   },
   {
     header: "Verified",
     accessorKey: "verified",
-    cell: ({ row }) => <div>
-        <span className="sr-only">{row.original.verified ? "Verified" : "Not Verified"}</span>
+    cell: ({ row }) => (
+      <div>
+        <span className="sr-only">
+          {row.original.verified ? "Verified" : "Not Verified"}
+        </span>
         <RiVerifiedBadgeFill
           size={20}
           className={cn(
-            row.original.verified ? "fill-emerald-600" : "fill-muted-foreground/50",
+            row.original.verified
+              ? "fill-emerald-600"
+              : "fill-muted-foreground/50",
           )}
           aria-hidden="true"
         />
-      </div>,    
+      </div>
+    ),
     size: 90,
   },
   {
     header: "Referral",
     accessorKey: "referral",
-    cell: ({ row }) => <div className="flex items-center gap-3">
-    <img
-      className="rounded-full"
-      src={row.original.referral.image}
-      width={20}
-      height={20}
-      alt={row.original.referral.name}
-    />
-    <div className="text-muted-foreground">{row.original.referral.name}</div>
-  </div>,
+    cell: ({ row }) => (
+      <div className="flex items-center gap-3">
+        <img
+          className="rounded-full"
+          src={row.original.referral.image}
+          width={20}
+          height={20}
+          alt={row.original.referral.name}
+        />
+        <div className="text-muted-foreground">
+          {row.original.referral.name}
+        </div>
+      </div>
+    ),
     size: 140,
   },
   {
@@ -218,7 +272,9 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
   {
     id: "actions",
     header: () => <span className="sr-only">Actions</span>,
-    cell: ({ row }) => <RowActions row={row} setData={setData} data={data} item={row.original} />,
+    cell: ({ row }) => (
+      <RowActions row={row} setData={setData} data={data} item={row.original} />
+    ),
     size: 60,
     enableHiding: false,
   },
@@ -244,10 +300,7 @@ export default function ContactsTable() {
   const [data, setData] = useState<Item[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const columns = useMemo(
-    () => getColumns({ data, setData }),
-    [data]
-  );
+  const columns = useMemo(() => getColumns({ data, setData }), [data]);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -258,7 +311,7 @@ export default function ContactsTable() {
         const data = await res.json();
         setData(data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
@@ -332,7 +385,9 @@ export default function ContactsTable() {
       }
     }
 
-    table.getColumn("status")?.setFilterValue(newFilterValue.length ? newFilterValue : undefined);
+    table
+      .getColumn("status")
+      ?.setFilterValue(newFilterValue.length ? newFilterValue : undefined);
   };
 
   return (
@@ -350,8 +405,12 @@ export default function ContactsTable() {
                 "peer min-w-60 ps-9 bg-gradient-to-br from-accent/60 to-accent",
                 Boolean(table.getColumn("name")?.getFilterValue()) && "pe-9",
               )}
-              value={(table.getColumn("name")?.getFilterValue() ?? "") as string}
-              onChange={(e) => table.getColumn("name")?.setFilterValue(e.target.value)}
+              value={
+                (table.getColumn("name")?.getFilterValue() ?? "") as string
+              }
+              onChange={(e) =>
+                table.getColumn("name")?.setFilterValue(e.target.value)
+              }
               placeholder="Search by name"
               type="text"
               aria-label="Search by name"
@@ -402,17 +461,24 @@ export default function ContactsTable() {
                     <RiErrorWarningLine className="opacity-80" size={16} />
                   </div>
                   <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogTitle>
+                      Are you absolutely sure?
+                    </AlertDialogTitle>
                     <AlertDialogDescription>
                       This action cannot be undone. This will permanently delete{" "}
                       {table.getSelectedRowModel().rows.length} selected{" "}
-                      {table.getSelectedRowModel().rows.length === 1 ? "row" : "rows"}.
+                      {table.getSelectedRowModel().rows.length === 1
+                        ? "row"
+                        : "rows"}
+                      .
                     </AlertDialogDescription>
                   </AlertDialogHeader>
                 </div>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleDeleteRows}>Delete</AlertDialogAction>
+                  <AlertDialogAction onClick={handleDeleteRows}>
+                    Delete
+                  </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
             </AlertDialog>
@@ -436,14 +502,18 @@ export default function ContactsTable() {
             </PopoverTrigger>
             <PopoverContent className="min-w-36 p-3" align="end">
               <div className="space-y-3">
-                <div className="text-xs font-medium uppercase text-muted-foreground/60">Status</div>
+                <div className="text-xs font-medium uppercase text-muted-foreground/60">
+                  Status
+                </div>
                 <div className="space-y-3">
                   {uniqueStatusValues.map((value, i) => (
                     <div key={value} className="flex items-center gap-2">
                       <Checkbox
                         id={`${id}-${i}`}
                         checked={selectedStatuses.includes(value)}
-                        onCheckedChange={(checked: boolean) => handleStatusChange(checked, value)}
+                        onCheckedChange={(checked: boolean) =>
+                          handleStatusChange(checked, value)
+                        }
                       />
                       <Label
                         htmlFor={`${id}-${i}`}
@@ -459,10 +529,14 @@ export default function ContactsTable() {
                 </div>
               </div>
             </PopoverContent>
-          </Popover>          
+          </Popover>
           {/* New filter button */}
           <Button variant="outline">
-            <RiBardLine className="-ms-1.5 me-2 text-muted-foreground/60" size={18} aria-hidden="true" />
+            <RiBardLine
+              className="-ms-1.5 me-2 text-muted-foreground/60"
+              size={18}
+              aria-hidden="true"
+            />
             New Filter
           </Button>
         </div>
@@ -499,7 +573,10 @@ export default function ContactsTable() {
                         }}
                         tabIndex={header.column.getCanSort() ? 0 : undefined}
                       >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                         {{
                           asc: (
                             <RiArrowUpSLine
@@ -518,7 +595,10 @@ export default function ContactsTable() {
                         }[header.column.getIsSorted() as string] ?? null}
                       </div>
                     ) : (
-                      flexRender(header.column.columnDef.header, header.getContext())
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )
                     )}
                   </TableHead>
                 );
@@ -536,7 +616,11 @@ export default function ContactsTable() {
             </TableRow>
           ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="border-0 [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg h-px">
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && "selected"}
+                className="border-0 [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg h-px"
+              >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id} className="last:py-0 h-[inherit]">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -558,8 +642,14 @@ export default function ContactsTable() {
       {/* Pagination */}
       {table.getRowModel().rows.length > 0 && (
         <div className="flex items-center justify-between gap-3">
-          <p className="flex-1 whitespace-nowrap text-sm text-muted-foreground" aria-live="polite">
-            Page <span className="text-foreground">{table.getState().pagination.pageIndex + 1}</span>{" "}
+          <p
+            className="flex-1 whitespace-nowrap text-sm text-muted-foreground"
+            aria-live="polite"
+          >
+            Page{" "}
+            <span className="text-foreground">
+              {table.getState().pagination.pageIndex + 1}
+            </span>{" "}
             of <span className="text-foreground">{table.getPageCount()}</span>
           </p>
           <Pagination className="w-auto">
@@ -584,17 +674,27 @@ export default function ContactsTable() {
                   aria-label="Go to next page"
                 >
                   Next
-                </Button>             
+                </Button>
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-      </div>
-        )}
+        </div>
+      )}
     </div>
   );
 }
 
-function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: React.Dispatch<React.SetStateAction<Item[]>>; data: Item[]; item: Item }) {
+function RowActions({
+  row,
+  setData,
+  data,
+  item,
+}: {
+  row: Row<Item>;
+  setData: React.Dispatch<React.SetStateAction<Item[]>>;
+  data: Item[];
+  item: Item;
+}) {
   const [isUpdatePending, startUpdateTransition] = useTransition();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -641,20 +741,27 @@ function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: Rea
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="flex justify-end">
-            <Button size="icon" variant="ghost" className="shadow-none text-muted-foreground/60" aria-label="Edit item">
+            <Button
+              size="icon"
+              variant="ghost"
+              className="shadow-none text-muted-foreground/60"
+              aria-label="Edit item"
+            >
               <RiMoreLine size={20} aria-hidden="true" />
             </Button>
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuGroup>
-            <DropdownMenuItem 
+            <DropdownMenuItem
               onClick={handleStatusToggle}
               disabled={isUpdatePending}
             >
-              {item.status === "Active" ? "Deactivate contact" : "Activate contact"}
+              {item.status === "Active"
+                ? "Deactivate contact"
+                : "Activate contact"}
             </DropdownMenuItem>
-            <DropdownMenuItem 
+            <DropdownMenuItem
               onClick={handleVerifiedToggle}
               disabled={isUpdatePending}
             >
@@ -662,10 +769,12 @@ function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: Rea
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-          <DropdownMenuItem 
+          <DropdownMenuItem
             onClick={() => setShowDeleteDialog(true)}
             className="text-destructive focus:text-destructive"
-          >Delete</DropdownMenuItem>
+          >
+            Delete
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 
@@ -674,12 +783,15 @@ function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: Rea
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete this contact.
+              This action cannot be undone. This will permanently delete this
+              contact.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel disabled={isUpdatePending}>Cancel</AlertDialogCancel>
-            <AlertDialogAction 
+            <AlertDialogCancel disabled={isUpdatePending}>
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
               onClick={handleDelete}
               disabled={isUpdatePending}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"

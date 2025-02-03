@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from "react";
 
-import { SearchForm } from "@/components/search-form"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { SearchForm } from "@/components/search-form";
+import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
@@ -14,8 +14,19 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
-import { RiScanLine, RiBardLine, RiUserFollowLine, RiCodeSSlashLine, RiLoginCircleLine, RiLayoutLeftLine, RiVoiceAiLine, RiSettings3Line, RiLeafLine, RiLogoutBoxLine } from "@remixicon/react"
+} from "@/components/ui/sidebar";
+import {
+  RiScanLine,
+  RiBardLine,
+  RiUserFollowLine,
+  RiCodeSSlashLine,
+  RiLoginCircleLine,
+  RiLayoutLeftLine,
+  RiVoiceAiLine,
+  RiSettings3Line,
+  RiLeafLine,
+  RiLogoutBoxLine,
+} from "@remixicon/react";
 
 // This is sample data.
 const data = {
@@ -74,7 +85,7 @@ const data = {
           url: "#",
           icon: RiLeafLine,
         },
-      ]
+      ],
     },
     {
       title: "Other",
@@ -90,10 +101,10 @@ const data = {
           url: "#",
           icon: RiLeafLine,
         },
-      ]
+      ],
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -107,14 +118,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         {/* We create a SidebarGroup for each parent. */}
         {data.navMain.map((item) => (
           <SidebarGroup key={item.title}>
-            <SidebarGroupLabel className="uppercase text-muted-foreground/60">{item.title}</SidebarGroupLabel>
+            <SidebarGroupLabel className="uppercase text-muted-foreground/60">
+              {item.title}
+            </SidebarGroupLabel>
             <SidebarGroupContent className="px-2">
               <SidebarMenu>
                 {item.items.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild className="group/menu-button font-medium gap-3 h-9 rounded-lg bg-gradient-to-r hover:bg-transparent hover:from-sidebar-accent hover:to-sidebar-accent/40 data-[active=true]:from-primary/20 data-[active=true]:to-primary/5 [&>svg]:size-auto" isActive={item.isActive}>
+                    <SidebarMenuButton
+                      asChild
+                      className="group/menu-button font-medium gap-3 h-9 rounded-lg bg-gradient-to-r hover:bg-transparent hover:from-sidebar-accent hover:to-sidebar-accent/40 data-[active=true]:from-primary/20 data-[active=true]:to-primary/5 [&>svg]:size-auto"
+                      isActive={item.isActive}
+                    >
                       <a href={item.url}>
-                        {item.icon && <item.icon className="text-muted-foreground/60 group-data-[active=true]/menu-button:text-primary" size={22} aria-hidden="true" />}
+                        {item.icon && (
+                          <item.icon
+                            className="text-muted-foreground/60 group-data-[active=true]/menu-button:text-primary"
+                            size={22}
+                            aria-hidden="true"
+                          />
+                        )}
                         <span>{item.title}</span>
                       </a>
                     </SidebarMenuButton>
@@ -130,13 +153,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton className="font-medium gap-3 h-9 rounded-lg bg-gradient-to-r hover:bg-transparent hover:from-sidebar-accent hover:to-sidebar-accent/40 data-[active=true]:from-primary/20 data-[active=true]:to-primary/5 [&>svg]:size-auto">
-              <RiLogoutBoxLine className="text-muted-foreground/60 group-data-[active=true]/menu-button:text-primary" size={22} aria-hidden="true" />
+              <RiLogoutBoxLine
+                className="text-muted-foreground/60 group-data-[active=true]/menu-button:text-primary"
+                size={22}
+                aria-hidden="true"
+              />
               <span>Sign Out</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>      
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

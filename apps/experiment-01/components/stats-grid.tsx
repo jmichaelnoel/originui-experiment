@@ -20,27 +20,32 @@ export function StatsCard({ title, value, change, icon }: StatsCardProps) {
     <div className="relative p-4 lg:p-5 group before:absolute before:inset-y-8 before:right-0 before:w-px before:bg-gradient-to-b before:from-input/30 before:via-input before:to-input/30 last:before:hidden">
       <div className="relative flex items-center gap-4">
         {/* Arrow ↗|↘ */}
-        <Arrow 
+        <Arrow
           className={cn(
             "absolute right-0 top-0 opacity-0 group-has-[a:hover]:opacity-100 transition-opacity",
-            trendColor
-          )} 
-          size={20} 
-          aria-hidden="true" 
+            trendColor,
+          )}
+          size={20}
+          aria-hidden="true"
         />
         {/* Icon */}
         <div className="max-[480px]:hidden size-10 shrink-0 rounded-full bg-emerald-600/25 border border-emerald-600/50 flex items-center justify-center text-emerald-500">
           {icon}
-        </div>  
+        </div>
         {/* Content */}
         <div>
-          <a href="#" className="font-medium tracking-widest text-xs uppercase text-muted-foreground/60 before:absolute before:inset-0">{title}</a>
+          <a
+            href="#"
+            className="font-medium tracking-widest text-xs uppercase text-muted-foreground/60 before:absolute before:inset-0"
+          >
+            {title}
+          </a>
           <div className="text-2xl font-semibold mb-2">{value}</div>
           <div className="text-xs text-muted-foreground/60">
             <span className={cn("font-medium", trendColor)}>
               {isPositive ? "↗" : "↘"} {change.value}
-            </span> 
-            {" "}vs last week
+            </span>{" "}
+            vs last week
           </div>
         </div>
       </div>
