@@ -22,7 +22,6 @@ import {
   RiCodeSSlashLine,
   RiLoginCircleLine,
   RiLayoutLeftLine,
-  RiVoiceAiLine,
   RiSettings3Line,
   RiLeafLine,
   RiLogoutBoxLine,

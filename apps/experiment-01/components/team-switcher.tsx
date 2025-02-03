@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { ChevronsUpDown, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -29,10 +29,10 @@ export function TeamSwitcher({
     logo: string;
   }[];
 }) {
-  if (!teams[0]) return null;
-
   const { isMobile } = useSidebar();
-  const [activeTeam, setActiveTeam] = React.useState(teams[0]);
+  const [activeTeam, setActiveTeam] = React.useState(teams[0] ?? null);
+
+  if (!teams.length) return null;
 
   return (
     <SidebarMenu>
@@ -44,15 +44,19 @@ export function TeamSwitcher({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground gap-3 [&>svg]:size-auto"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg overflow-hidden bg-sidebar-primary text-sidebar-primary-foreground">
-                <Image
-                  src={activeTeam.logo}
-                  width={36}
-                  height={36}
-                  alt={activeTeam.name}
-                />
+                {activeTeam && (
+                  <Image
+                    src={activeTeam.logo}
+                    width={36}
+                    height={36}
+                    alt={activeTeam.name}
+                  />
+                )}
               </div>
               <div className="grid flex-1 text-left text-base leading-tight">
-                <span className="truncate font-medium">{activeTeam.name}</span>
+                <span className="truncate font-medium">
+                  {activeTeam?.name ?? "Select a Team"}
+                </span>
               </div>
               <RiExpandUpDownLine
                 className="ms-auto text-muted-foreground/60"
@@ -77,12 +81,7 @@ export function TeamSwitcher({
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md overflow-hidden border">
-                  <Image
-                    src={activeTeam.logo}
-                    width={36}
-                    height={36}
-                    alt={activeTeam.name}
-                  />
+                  <Image src={team.logo} width={36} height={36} alt={team.name} />
                 </div>
                 {team.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>

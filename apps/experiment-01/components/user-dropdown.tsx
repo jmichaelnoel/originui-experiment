@@ -13,7 +13,6 @@ import {
 import {
   Bolt,
   BookOpen,
-  ChevronDown,
   Layers2,
   LogOut,
   Pin,
