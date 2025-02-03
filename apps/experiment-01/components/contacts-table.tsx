@@ -55,6 +55,12 @@ import {
 } from "@tanstack/react-table";
 import { RiArrowDownSLine, RiArrowUpSLine, RiErrorWarningLine, RiCloseCircleLine, RiDeleteBinLine, RiBardLine, RiFilter3Line, RiSearch2Line, RiVerifiedBadgeFill, RiCheckLine, RiSubtractLine, RiMoreLine } from "@remixicon/react";
 import { useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type Item = {
   id: string;
@@ -165,7 +171,7 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
         <RiVerifiedBadgeFill
           size={20}
           className={cn(
-            row.original.verified ? "fill-emerald-600" : "fill-muted-foreground opacity-60",
+            row.original.verified ? "fill-emerald-600" : "fill-muted-foreground/50",
           )}
           aria-hidden="true"
         />
@@ -190,7 +196,23 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
   {
     header: "Value",
     accessorKey: "value",
-    cell: ({ row }) => <Progress className="h-1 max-w-14" value={row.getValue("value")} />,
+    cell: ({ row }) => {
+      const value = row.getValue("value") as number;
+      return (
+        <TooltipProvider delayDuration={0}>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="flex h-full w-full items-center">
+                <Progress className="h-1 max-w-14" value={value} />
+              </div>
+            </TooltipTrigger>
+            <TooltipContent align="start" sideOffset={-8}>
+              <p>{value}%</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      );
+    },
     size: 80,
   },
   {
@@ -325,7 +347,7 @@ export default function ContactsTable() {
               id={`${id}-input`}
               ref={inputRef}
               className={cn(
-                "peer min-w-60 ps-9",
+                "peer min-w-60 ps-9 bg-gradient-to-br from-accent/60 to-accent",
                 Boolean(table.getColumn("name")?.getFilterValue()) && "pe-9",
               )}
               value={(table.getColumn("name")?.getFilterValue() ?? "") as string}
@@ -334,12 +356,12 @@ export default function ContactsTable() {
               type="text"
               aria-label="Search by name"
             />
-            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
-              <RiSearch2Line size={16} aria-hidden="true" />
+            <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-2 text-muted-foreground/60 peer-disabled:opacity-50">
+              <RiSearch2Line size={20} aria-hidden="true" />
             </div>
             {Boolean(table.getColumn("name")?.getFilterValue()) && (
               <button
-                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/80 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/60 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Clear filter"
                 onClick={() => {
                   table.getColumn("name")?.setFilterValue("");
@@ -400,8 +422,8 @@ export default function ContactsTable() {
             <PopoverTrigger asChild>
               <Button variant="outline">
                 <RiFilter3Line
-                  className="-ms-1 me-2 opacity-60"
-                  size={16}
+                  className="-ms-1.5 me-2 text-muted-foreground/60"
+                  size={20}
                   aria-hidden="true"
                 />
                 Filter
@@ -414,7 +436,7 @@ export default function ContactsTable() {
             </PopoverTrigger>
             <PopoverContent className="min-w-36 p-3" align="end">
               <div className="space-y-3">
-                <div className="text-xs font-medium text-muted-foreground">Status</div>
+                <div className="text-xs font-medium uppercase text-muted-foreground/60">Status</div>
                 <div className="space-y-3">
                   {uniqueStatusValues.map((value, i) => (
                     <div key={value} className="flex items-center gap-2">
@@ -440,7 +462,7 @@ export default function ContactsTable() {
           </Popover>          
           {/* New filter button */}
           <Button variant="outline">
-            <RiBardLine className="-ms-1 me-2 opacity-60" size={16} aria-hidden="true" />
+            <RiBardLine className="-ms-1.5 me-2 text-muted-foreground/60" size={18} aria-hidden="true" />
             New Filter
           </Button>
         </div>
@@ -456,7 +478,7 @@ export default function ContactsTable() {
                   <TableHead
                     key={header.id}
                     style={{ width: `${header.getSize()}px` }}
-                    className="relative h-9 select-none bg-muted/50 border-y border-border first:border-l first:rounded-l-lg last:border-r last:rounded-r-lg"
+                    className="relative h-9 select-none bg-sidebar border-y border-border first:border-l first:rounded-l-lg last:border-r last:rounded-r-lg"
                   >
                     {header.isPlaceholder ? null : header.column.getCanSort() ? (
                       <div
@@ -514,9 +536,9 @@ export default function ContactsTable() {
             </TableRow>
           ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="border-0 [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
+              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="border-0 [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg h-px">
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="last:py-0">
+                  <TableCell key={cell.id} className="last:py-0 h-[inherit]">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -619,7 +641,7 @@ function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: Rea
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="flex justify-end">
-            <Button size="icon" variant="ghost" className="shadow-none" aria-label="Edit item">
+            <Button size="icon" variant="ghost" className="shadow-none text-muted-foreground/60" aria-label="Edit item">
               <RiMoreLine size={20} aria-hidden="true" />
             </Button>
           </div>
