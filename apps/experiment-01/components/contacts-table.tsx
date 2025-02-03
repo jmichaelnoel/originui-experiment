@@ -15,13 +15,12 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Progress } from "@/components/ui/progress";
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
@@ -34,13 +33,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   Table,
   TableBody,
@@ -66,38 +58,26 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
-  ChevronDown,
-  ChevronFirst,
-  ChevronLast,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  CircleAlert,
-  CircleX,
   Columns3,
   Ellipsis,
   Filter,
-  ListFilter,
-  Plus,
-  Trash,
 } from "lucide-react";
+import { RiArrowDownSLine, RiArrowUpSLine, RiErrorWarningLine, RiCloseCircleLine, RiDeleteBinLine, RiBardLine, RiFilter3Line, RiSearch2Line, RiVerifiedBadgeFill, RiCheckLine, RiSubtractLine } from "@remixicon/react";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 type Item = {
   id: string;
+  image: string;
   name: string;
-  email: string;
+  status: string;
   location: string;
-  flag: string;
-  status: "Active" | "Inactive" | "Pending";
-  balance: number;
-};
-
-// Custom filter function for multi-column searching
-const multiColumnFilterFn: FilterFn<Item> = (row, columnId, filterValue) => {
-  const searchableRowContent = `${row.original.name} ${row.original.email}`.toLowerCase();
-  const searchTerm = (filterValue ?? "").toLowerCase();
-  return searchableRowContent.includes(searchTerm);
+  verified: boolean;
+  referral: {
+    name: string;
+    image: string;
+  };
+  value: number;
+  joinDate: string;
 };
 
 const statusFilterFn: FilterFn<Item> = (row, columnId, filterValue: string[]) => {
@@ -132,57 +112,90 @@ const columns: ColumnDef<Item>[] = [
   {
     header: "Name",
     accessorKey: "name",
-    cell: ({ row }) => <div className="font-medium">{row.getValue("name")}</div>,
+    cell: ({ row }) => <div className="flex items-center gap-3">
+      <img
+        className="rounded-full"
+        src={row.original.image}
+        width={32}
+        height={32}
+        alt={row.getValue("name")}
+      />
+      <div className="font-medium">{row.getValue("name")}</div>
+    </div>,
     size: 180,
-    filterFn: multiColumnFilterFn,
     enableHiding: false,
   },
   {
-    header: "Email",
-    accessorKey: "email",
-    size: 220,
-  },
-  {
-    header: "Location",
-    accessorKey: "location",
+    header: "ID",
+    accessorKey: "id",
     cell: ({ row }) => (
-      <div>
-        <span className="text-lg leading-none">{row.original.flag}</span> {row.getValue("location")}
-      </div>
+      <span className="text-muted-foreground">{row.getValue("id")}</span>
     ),
-    size: 180,
+    size: 110,
   },
   {
     header: "Status",
     accessorKey: "status",
     cell: ({ row }) => (
-      <Badge
-        className={cn(
-          row.getValue("status") === "Inactive" && "bg-muted-foreground/60 text-primary-foreground",
+      <Badge variant="outline" className={cn(
+        "gap-1",
+        row.original.status === "Inactive" ? "text-muted-foreground" : "text-primary-foreground",
+      )}>
+        {row.original.status === "Active" && (
+          <RiCheckLine className="text-emerald-500" size={14} aria-hidden="true" />
         )}
-      >
-        {row.getValue("status")}
+        {row.original.status === "Inactive" && (
+          <RiSubtractLine size={14} aria-hidden="true" />
+        )}
+        {row.original.status}
       </Badge>
     ),
-    size: 100,
+    size: 110,
     filterFn: statusFilterFn,
+  },  
+  {
+    header: "Location",
+    accessorKey: "location",
+    cell: ({ row }) => (
+      <span className="text-muted-foreground">{row.getValue("location")}</span>
+    ),    
+    size: 140,
   },
   {
-    header: "Performance",
-    accessorKey: "performance",
+    header: "Verified",
+    accessorKey: "verified",
+    cell: ({ row }) => <div>
+        <span className="sr-only">{row.original.verified ? "Verified" : "Not Verified"}</span>
+        <RiVerifiedBadgeFill
+          size={20}
+          className={cn(
+            row.original.verified ? "fill-emerald-600" : "fill-muted-foreground opacity-60",
+          )}
+          aria-hidden="true"
+        />
+      </div>,    
+    size: 90,
   },
   {
-    header: "Balance",
-    accessorKey: "balance",
-    cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("balance"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
-      return formatted;
-    },
-    size: 120,
+    header: "Referral",
+    accessorKey: "referral",
+    cell: ({ row }) => <div className="flex items-center gap-3">
+    <img
+      className="rounded-full"
+      src={row.original.referral.image}
+      width={20}
+      height={20}
+      alt={row.original.referral.name}
+    />
+    <div className="text-muted-foreground">{row.original.referral.name}</div>
+  </div>,
+    size: 140,
+  },
+  {
+    header: "Value",
+    accessorKey: "value",
+    cell: ({ row }) => <Progress className="h-1 max-w-14" value={row.getValue("value")} />,
+    size: 80,
   },
   {
     id: "actions",
@@ -214,7 +227,7 @@ export default function ContactsTable() {
   useEffect(() => {
     async function fetchPosts() {
       const res = await fetch(
-        "https://res.cloudinary.com/dlzlfasou/raw/upload/users-01_fertyx.json",
+        "https://res.cloudinary.com/dlzlfasou/raw/upload/users-02_mohkpe.json",
       );
       const data = await res.json();
       setData(data);
@@ -293,10 +306,11 @@ export default function ContactsTable() {
 
   return (
     <div className="space-y-4">
-      {/* Filters */}
+      {/* Actions */}
       <div className="flex flex-wrap items-center justify-between gap-3">
+        {/* Left side */}
         <div className="flex items-center gap-3">
-          {/* Filter by name or email */}
+          {/* Filter by name */}
           <div className="relative">
             <Input
               id={`${id}-input`}
@@ -307,12 +321,12 @@ export default function ContactsTable() {
               )}
               value={(table.getColumn("name")?.getFilterValue() ?? "") as string}
               onChange={(e) => table.getColumn("name")?.setFilterValue(e.target.value)}
-              placeholder="Filter by name or email..."
+              placeholder="Search by name"
               type="text"
-              aria-label="Filter by name or email"
+              aria-label="Search by name"
             />
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
-              <ListFilter size={16} strokeWidth={2} aria-hidden="true" />
+              <RiSearch2Line size={16} aria-hidden="true" />
             </div>
             {Boolean(table.getColumn("name")?.getFilterValue()) && (
               <button
@@ -325,21 +339,63 @@ export default function ContactsTable() {
                   }
                 }}
               >
-                <CircleX size={16} strokeWidth={2} aria-hidden="true" />
+                <RiCloseCircleLine size={16} aria-hidden="true" />
               </button>
             )}
           </div>
+        </div>
+        {/* Right side */}
+        <div className="flex items-center gap-3">
+          {/* Delete button */}
+          {table.getSelectedRowModel().rows.length > 0 && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button className="ml-auto" variant="outline">
+                  <RiDeleteBinLine
+                    className="-ms-1 me-2 opacity-60"
+                    size={16}
+                    aria-hidden="true"
+                  />
+                  Delete
+                  <span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70">
+                    {table.getSelectedRowModel().rows.length}
+                  </span>
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <div className="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
+                  <div
+                    className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border"
+                    aria-hidden="true"
+                  >
+                    <RiErrorWarningLine className="opacity-80" size={16} />
+                  </div>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete{" "}
+                      {table.getSelectedRowModel().rows.length} selected{" "}
+                      {table.getSelectedRowModel().rows.length === 1 ? "row" : "rows"}.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                </div>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction onClick={handleDeleteRows}>Delete</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
           {/* Filter by status */}
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline">
-                <Filter
+                <RiFilter3Line
                   className="-ms-1 me-2 opacity-60"
                   size={16}
-                  strokeWidth={2}
                   aria-hidden="true"
                 />
-                Status
+                Filter
                 {selectedStatuses.length > 0 && (
                   <span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70">
                     {selectedStatuses.length}
@@ -347,9 +403,9 @@ export default function ContactsTable() {
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="min-w-36 p-3" align="start">
+            <PopoverContent className="min-w-36 p-3" align="end">
               <div className="space-y-3">
-                <div className="text-xs font-medium text-muted-foreground">Filters</div>
+                <div className="text-xs font-medium text-muted-foreground">Status</div>
                 <div className="space-y-3">
                   {uniqueStatusValues.map((value, i) => (
                     <div key={value} className="flex items-center gap-2">
@@ -372,87 +428,11 @@ export default function ContactsTable() {
                 </div>
               </div>
             </PopoverContent>
-          </Popover>
-          {/* Toggle columns visibility */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                <Columns3
-                  className="-ms-1 me-2 opacity-60"
-                  size={16}
-                  strokeWidth={2}
-                  aria-hidden="true"
-                />
-                View
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      className="capitalize"
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                      onSelect={(event) => event.preventDefault()}
-                    >
-                      {column.id}
-                    </DropdownMenuCheckboxItem>
-                  );
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-        <div className="flex items-center gap-3">
-          {/* Delete button */}
-          {table.getSelectedRowModel().rows.length > 0 && (
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button className="ml-auto" variant="outline">
-                  <Trash
-                    className="-ms-1 me-2 opacity-60"
-                    size={16}
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  />
-                  Delete
-                  <span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70">
-                    {table.getSelectedRowModel().rows.length}
-                  </span>
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <div className="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
-                  <div
-                    className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border"
-                    aria-hidden="true"
-                  >
-                    <CircleAlert className="opacity-80" size={16} strokeWidth={2} />
-                  </div>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete{" "}
-                      {table.getSelectedRowModel().rows.length} selected{" "}
-                      {table.getSelectedRowModel().rows.length === 1 ? "row" : "rows"}.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                </div>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction onClick={handleDeleteRows}>Delete</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          )}
-          {/* Add user button */}
-          <Button className="ml-auto" variant="outline">
-            <Plus className="-ms-1 me-2 opacity-60" size={16} strokeWidth={2} aria-hidden="true" />
-            Add user
+          </Popover>          
+          {/* New filter button */}
+          <Button variant="outline">
+            <RiBardLine className="-ms-1 me-2 opacity-60" size={16} aria-hidden="true" />
+            New Filter
           </Button>
         </div>
       </div>
@@ -473,7 +453,7 @@ export default function ContactsTable() {
                       <div
                         className={cn(
                           header.column.getCanSort() &&
-                            "flex h-full cursor-pointer select-none items-center justify-between gap-2",
+                            "flex h-full cursor-pointer select-none items-center gap-2",
                         )}
                         onClick={header.column.getToggleSortingHandler()}
                         onKeyDown={(e) => {
@@ -491,18 +471,16 @@ export default function ContactsTable() {
                         {flexRender(header.column.columnDef.header, header.getContext())}
                         {{
                           asc: (
-                            <ChevronUp
+                            <RiArrowUpSLine
                               className="shrink-0 opacity-60"
                               size={16}
-                              strokeWidth={2}
                               aria-hidden="true"
                             />
                           ),
                           desc: (
-                            <ChevronDown
+                            <RiArrowDownSLine
                               className="shrink-0 opacity-60"
                               size={16}
-                              strokeWidth={2}
                               aria-hidden="true"
                             />
                           ),
@@ -521,7 +499,7 @@ export default function ContactsTable() {
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="[&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
+              <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="border-0 [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id} className="last:py-0">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -530,7 +508,7 @@ export default function ContactsTable() {
               </TableRow>
             ))
           ) : (
-            <TableRow>
+            <TableRow className="hover:bg-transparent [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
               <TableCell colSpan={columns.length} className="h-24 text-center">
                 No results.
               </TableCell>
@@ -541,108 +519,40 @@ export default function ContactsTable() {
       </Table>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between gap-8">
-        {/* Results per page */}
-        <div className="flex items-center gap-3">
-          <Label htmlFor={id} className="max-sm:sr-only">
-            Rows per page
-          </Label>
-          <Select
-            value={table.getState().pagination.pageSize.toString()}
-            onValueChange={(value) => {
-              table.setPageSize(Number(value));
-            }}
-          >
-            <SelectTrigger id={id} className="w-fit whitespace-nowrap">
-              <SelectValue placeholder="Select number of results" />
-            </SelectTrigger>
-            <SelectContent className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
-              {[5, 10, 25, 50].map((pageSize) => (
-                <SelectItem key={pageSize} value={pageSize.toString()}>
-                  {pageSize}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        {/* Page number information */}
-        <div className="flex grow justify-end whitespace-nowrap text-sm text-muted-foreground">
-          <p className="whitespace-nowrap text-sm text-muted-foreground" aria-live="polite">
-            <span className="text-foreground">
-              {table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1}-
-              {Math.min(
-                Math.max(
-                  table.getState().pagination.pageIndex * table.getState().pagination.pageSize +
-                    table.getState().pagination.pageSize,
-                  0,
-                ),
-                table.getRowCount(),
-              )}
-            </span>{" "}
-            of <span className="text-foreground">{table.getRowCount().toString()}</span>
+      {table.getRowModel().rows.length > 0 && (
+        <div className="flex items-center justify-between gap-3">
+          <p className="flex-1 whitespace-nowrap text-sm text-muted-foreground" aria-live="polite">
+            Page <span className="text-foreground">{table.getState().pagination.pageIndex + 1}</span>{" "}
+            of <span className="text-foreground">{table.getPageCount()}</span>
           </p>
-        </div>
-
-        {/* Pagination buttons */}
-        <div>
-          <Pagination>
-            <PaginationContent>
-              {/* First page button */}
+          <Pagination className="w-auto">
+            <PaginationContent className="gap-3">
               <PaginationItem>
                 <Button
-                  size="icon"
                   variant="outline"
-                  className="disabled:pointer-events-none disabled:opacity-50"
-                  onClick={() => table.firstPage()}
-                  disabled={!table.getCanPreviousPage()}
-                  aria-label="Go to first page"
-                >
-                  <ChevronFirst size={16} strokeWidth={2} aria-hidden="true" />
-                </Button>
-              </PaginationItem>
-              {/* Previous page button */}
-              <PaginationItem>
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="disabled:pointer-events-none disabled:opacity-50"
+                  className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
                   onClick={() => table.previousPage()}
                   disabled={!table.getCanPreviousPage()}
                   aria-label="Go to previous page"
                 >
-                  <ChevronLeft size={16} strokeWidth={2} aria-hidden="true" />
+                  Previous
                 </Button>
               </PaginationItem>
-              {/* Next page button */}
               <PaginationItem>
                 <Button
-                  size="icon"
                   variant="outline"
-                  className="disabled:pointer-events-none disabled:opacity-50"
+                  className="aria-disabled:pointer-events-none aria-disabled:opacity-50"
                   onClick={() => table.nextPage()}
                   disabled={!table.getCanNextPage()}
                   aria-label="Go to next page"
                 >
-                  <ChevronRight size={16} strokeWidth={2} aria-hidden="true" />
-                </Button>
-              </PaginationItem>
-              {/* Last page button */}
-              <PaginationItem>
-                <Button
-                  size="icon"
-                  variant="outline"
-                  className="disabled:pointer-events-none disabled:opacity-50"
-                  onClick={() => table.lastPage()}
-                  disabled={!table.getCanNextPage()}
-                  aria-label="Go to last page"
-                >
-                  <ChevronLast size={16} strokeWidth={2} aria-hidden="true" />
-                </Button>
+                  Next
+                </Button>             
               </PaginationItem>
             </PaginationContent>
           </Pagination>
-        </div>
       </div>
+        )}
     </div>
   );
 }
@@ -653,7 +563,7 @@ function RowActions({ row }: { row: Row<Item> }) {
       <DropdownMenuTrigger asChild>
         <div className="flex justify-end">
           <Button size="icon" variant="ghost" className="shadow-none" aria-label="Edit item">
-            <Ellipsis size={16} strokeWidth={2} aria-hidden="true" />
+            <Ellipsis size={16} aria-hidden="true" />
           </Button>
         </div>
       </DropdownMenuTrigger>
