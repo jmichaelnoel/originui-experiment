@@ -54,7 +54,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { RiArrowDownSLine, RiArrowUpSLine, RiErrorWarningLine, RiCloseCircleLine, RiDeleteBinLine, RiBardLine, RiFilter3Line, RiSearch2Line, RiVerifiedBadgeFill, RiCheckLine, RiSubtractLine, RiMoreLine } from "@remixicon/react";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState, useTransition } from "react";
 
 type Item = {
   id: string;
@@ -77,7 +77,12 @@ const statusFilterFn: FilterFn<Item> = (row, columnId, filterValue: string[]) =>
   return filterValue.includes(status);
 };
 
-const columns: ColumnDef<Item>[] = [
+interface GetColumnsProps {
+  data: Item[];
+  setData: React.Dispatch<React.SetStateAction<Item[]>>;
+}
+
+const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -191,7 +196,7 @@ const columns: ColumnDef<Item>[] = [
   {
     id: "actions",
     header: () => <span className="sr-only">Actions</span>,
-    cell: ({ row }) => <RowActions row={row} />,
+    cell: ({ row }) => <RowActions row={row} setData={setData} data={data} item={row.original} />,
     size: 60,
     enableHiding: false,
   },
@@ -216,6 +221,11 @@ export default function ContactsTable() {
 
   const [data, setData] = useState<Item[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const columns = useMemo(
+    () => getColumns({ data, setData }),
+    [data]
+  );
 
   useEffect(() => {
     async function fetchPosts() {
@@ -562,31 +572,101 @@ export default function ContactsTable() {
   );
 }
 
-function RowActions({ row }: { row: Row<Item> }) {
+function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: React.Dispatch<React.SetStateAction<Item[]>>; data: Item[]; item: Item }) {
+  const [isUpdatePending, startUpdateTransition] = useTransition();
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  const handleStatusToggle = () => {
+    startUpdateTransition(() => {
+      const updatedData = data.map((dataItem) => {
+        if (dataItem.id === item.id) {
+          return {
+            ...dataItem,
+            status: item.status === "Active" ? "Inactive" : "Active",
+          };
+        }
+        return dataItem;
+      });
+      setData(updatedData);
+    });
+  };
+
+  const handleVerifiedToggle = () => {
+    startUpdateTransition(() => {
+      const updatedData = data.map((dataItem) => {
+        if (dataItem.id === item.id) {
+          return {
+            ...dataItem,
+            verified: !item.verified,
+          };
+        }
+        return dataItem;
+      });
+      setData(updatedData);
+    });
+  };
+
+  const handleDelete = () => {
+    startUpdateTransition(() => {
+      const updatedData = data.filter((dataItem) => dataItem.id !== item.id);
+      setData(updatedData);
+      setShowDeleteDialog(false);
+    });
+  };
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <div className="flex justify-end">
-          <Button size="icon" variant="ghost" className="shadow-none" aria-label="Edit item">
-            <RiMoreLine size={20} aria-hidden="true" />
-          </Button>
-        </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <span>Edit</span>
-            <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>Set as active</DropdownMenuItem>
-          <DropdownMenuItem>Set as verified</DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem className="text-destructive focus:text-destructive">
-          <span>Delete</span>
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="flex justify-end">
+            <Button size="icon" variant="ghost" className="shadow-none" aria-label="Edit item">
+              <RiMoreLine size={20} aria-hidden="true" />
+            </Button>
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end">
+          <DropdownMenuGroup>
+            <DropdownMenuItem 
+              onClick={handleStatusToggle}
+              disabled={isUpdatePending}
+            >
+              {item.status === "Active" ? "Deactivate user" : "Activate user"}
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              onClick={handleVerifiedToggle}
+              disabled={isUpdatePending}
+            >
+              {item.verified ? "Unverify user" : "Verify user"}
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem 
+            onClick={() => setShowDeleteDialog(true)}
+            className="text-destructive focus:text-destructive"
+          >Delete</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete this contact.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isUpdatePending}>Cancel</AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={handleDelete}
+              disabled={isUpdatePending}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 }
