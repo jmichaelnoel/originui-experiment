@@ -75,7 +75,6 @@ import {
   RiMoreLine,
 } from "@remixicon/react";
 import {
-  useCallback,
   useEffect,
   useId,
   useMemo,
@@ -302,6 +301,32 @@ export default function ContactsTable() {
 
   const columns = useMemo(() => getColumns({ data, setData }), [data]);
 
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const res = await fetch(
+          "https://res.cloudinary.com/dlzlfasou/raw/upload/users-02_mohkpe.json",
+        );
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
+
+  const handleDeleteRows = () => {
+    const selectedRows = table.getSelectedRowModel().rows;
+    const updatedData = data.filter(
+      (item) => !selectedRows.some((row) => row.original.id === item.id),
+    );
+    setData(updatedData);
+    table.resetRowSelection();
+  };
+
   const table = useReactTable({
     data,
     columns,
@@ -323,20 +348,31 @@ export default function ContactsTable() {
     },
   });
 
-  const statusColumn = table.getColumn("status");
+  // Get unique status values
+  const uniqueStatusValues = useMemo(() => {
+    const statusColumn = table.getColumn("status");
 
-  const handleDeleteRows = useCallback(() => {
-    const selectedRows = table.getSelectedRowModel().rows;
-    const updatedData = data.filter(
-      (item) => !selectedRows.some((row) => row.original.id === item.id),
-    );
-    setData(updatedData);
-    table.resetRowSelection();
-  }, [data, table]);
+    if (!statusColumn) return [];
 
-  const handleStatusChange = useCallback((checked: boolean, value: string) => {
-    if (!statusColumn) return;
-    const filterValue = statusColumn.getFilterValue() as string[];
+    const values = Array.from(statusColumn.getFacetedUniqueValues().keys());
+
+    return values.sort();
+  }, [table.getColumn("status")?.getFacetedUniqueValues()]);
+
+  // Get counts for each status
+  const statusCounts = useMemo(() => {
+    const statusColumn = table.getColumn("status");
+    if (!statusColumn) return new Map();
+    return statusColumn.getFacetedUniqueValues();
+  }, [table.getColumn("status")?.getFacetedUniqueValues()]);
+
+  const selectedStatuses = useMemo(() => {
+    const filterValue = table.getColumn("status")?.getFilterValue() as string[];
+    return filterValue ?? [];
+  }, [table.getColumn("status")?.getFilterValue()]);
+
+  const handleStatusChange = (checked: boolean, value: string) => {
+    const filterValue = table.getColumn("status")?.getFilterValue() as string[];
     const newFilterValue = filterValue ? [...filterValue] : [];
 
     if (checked) {
@@ -348,60 +384,10 @@ export default function ContactsTable() {
       }
     }
 
-    statusColumn.setFilterValue(newFilterValue.length ? newFilterValue : undefined);
-  }, [statusColumn]);
-
-  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const nameColumn = table.getColumn("name");
-    if (nameColumn) {
-      nameColumn.setFilterValue(e.target.value);
-    }
-  }, [table]);
-
-  const handleClearSearch = useCallback(() => {
-    const nameColumn = table.getColumn("name");
-    if (nameColumn) {
-      nameColumn.setFilterValue("");
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
-    }
-  }, [table]);
-
-  useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const res = await fetch(
-          "https://res.cloudinary.com/dlzlfasou/raw/upload/users-02_mohkpe.json",
-        );
-        const data = await res.json();
-        setData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchPosts();
-  }, []);
-
-  const statusFacetedValues = statusColumn?.getFacetedUniqueValues();
-
-  const uniqueStatusValues = useMemo(() => {
-    if (!statusColumn) return [];
-    const values = Array.from(statusFacetedValues?.keys() ?? []);
-    return values.sort();
-  }, [statusColumn, statusFacetedValues]);
-
-  const statusCounts = useMemo(() => {
-    if (!statusColumn) return new Map();
-    return statusFacetedValues ?? new Map();
-  }, [statusColumn, statusFacetedValues]);
-
-  const selectedStatuses = useMemo(() => {
-    const filterValue = statusColumn?.getFilterValue() as string[];
-    return filterValue ?? [];
-  }, [statusColumn]);
+    table
+      .getColumn("status")
+      ?.setFilterValue(newFilterValue.length ? newFilterValue : undefined);
+  };
 
   return (
     <div className="space-y-4">
@@ -418,8 +404,12 @@ export default function ContactsTable() {
                 "peer min-w-60 ps-9 bg-gradient-to-br from-accent/60 to-accent",
                 Boolean(table.getColumn("name")?.getFilterValue()) && "pe-9",
               )}
-              value={(table.getColumn("name")?.getFilterValue() ?? "") as string}
-              onChange={handleSearchChange}
+              value={
+                (table.getColumn("name")?.getFilterValue() ?? "") as string
+              }
+              onChange={(e) =>
+                table.getColumn("name")?.setFilterValue(e.target.value)
+              }
               placeholder="Search by name"
               type="text"
               aria-label="Search by name"
@@ -431,7 +421,12 @@ export default function ContactsTable() {
               <button
                 className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/60 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Clear filter"
-                onClick={handleClearSearch}
+                onClick={() => {
+                  table.getColumn("name")?.setFilterValue("");
+                  if (inputRef.current) {
+                    inputRef.current.focus();
+                  }
+                }}
               >
                 <RiCloseCircleLine size={16} aria-hidden="true" />
               </button>
