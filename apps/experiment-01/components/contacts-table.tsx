@@ -348,28 +348,26 @@ export default function ContactsTable() {
     },
   });
 
-  // Get unique status values
+  // Extract complex expressions into separate variables
+  const statusColumn = table.getColumn("status");
+  const statusFacetedValues = statusColumn?.getFacetedUniqueValues();
+  const statusFilterValue = statusColumn?.getFilterValue();
+
+  // Update useMemo hooks with simplified dependencies
   const uniqueStatusValues = useMemo(() => {
-    const statusColumn = table.getColumn("status");
-
     if (!statusColumn) return [];
-
-    const values = Array.from(statusColumn.getFacetedUniqueValues().keys());
-
+    const values = Array.from(statusFacetedValues?.keys() ?? []);
     return values.sort();
-  }, [table.getColumn("status")?.getFacetedUniqueValues()]);
+  }, [statusColumn, statusFacetedValues]);
 
-  // Get counts for each status
   const statusCounts = useMemo(() => {
-    const statusColumn = table.getColumn("status");
     if (!statusColumn) return new Map();
-    return statusColumn.getFacetedUniqueValues();
-  }, [table.getColumn("status")?.getFacetedUniqueValues()]);
+    return statusFacetedValues ?? new Map();
+  }, [statusColumn, statusFacetedValues]);
 
   const selectedStatuses = useMemo(() => {
-    const filterValue = table.getColumn("status")?.getFilterValue() as string[];
-    return filterValue ?? [];
-  }, [table.getColumn("status")?.getFilterValue()]);
+    return (statusFilterValue as string[]) ?? [];
+  }, [statusFilterValue]);
 
   const handleStatusChange = (checked: boolean, value: string) => {
     const filterValue = table.getColumn("status")?.getFilterValue() as string[];
