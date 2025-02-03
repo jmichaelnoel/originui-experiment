@@ -58,11 +58,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
-  Columns3,
   Ellipsis,
-  Filter,
 } from "lucide-react";
-import { RiArrowDownSLine, RiArrowUpSLine, RiErrorWarningLine, RiCloseCircleLine, RiDeleteBinLine, RiBardLine, RiFilter3Line, RiSearch2Line, RiVerifiedBadgeFill, RiCheckLine, RiSubtractLine } from "@remixicon/react";
+import { RiArrowDownSLine, RiArrowUpSLine, RiErrorWarningLine, RiCloseCircleLine, RiDeleteBinLine, RiBardLine, RiFilter3Line, RiSearch2Line, RiVerifiedBadgeFill, RiCheckLine, RiSubtractLine, RiMoreLine } from "@remixicon/react";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 type Item = {
@@ -224,13 +222,21 @@ export default function ContactsTable() {
   ]);
 
   const [data, setData] = useState<Item[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch(
-        "https://res.cloudinary.com/dlzlfasou/raw/upload/users-02_mohkpe.json",
-      );
-      const data = await res.json();
-      setData(data);
+      try {
+        const res = await fetch(
+          "https://res.cloudinary.com/dlzlfasou/raw/upload/users-02_mohkpe.json",
+        );
+        const data = await res.json();
+        setData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchPosts();
   }, []);
@@ -497,7 +503,13 @@ export default function ContactsTable() {
         </TableHeader>
         <tbody aria-hidden="true" className="table-row h-1"></tbody>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
+          {isLoading ? (
+            <TableRow className="hover:bg-transparent [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
+              <TableCell colSpan={columns.length} className="h-24 text-center">
+                Loading...
+              </TableCell>
+            </TableRow>
+          ) : table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id} data-state={row.getIsSelected() && "selected"} className="border-0 [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
                 {row.getVisibleCells().map((cell) => (
@@ -563,7 +575,7 @@ function RowActions({ row }: { row: Row<Item> }) {
       <DropdownMenuTrigger asChild>
         <div className="flex justify-end">
           <Button size="icon" variant="ghost" className="shadow-none" aria-label="Edit item">
-            <Ellipsis size={16} aria-hidden="true" />
+            <RiMoreLine size={20} aria-hidden="true" />
           </Button>
         </div>
       </DropdownMenuTrigger>
@@ -573,33 +585,8 @@ function RowActions({ row }: { row: Row<Item> }) {
             <span>Edit</span>
             <DropdownMenuShortcut>⌘E</DropdownMenuShortcut>
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <span>Duplicate</span>
-            <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <span>Archive</span>
-            <DropdownMenuShortcut>⌘A</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>More</DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem>Move to project</DropdownMenuItem>
-                <DropdownMenuItem>Move to folder</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Advanced options</DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>Share</DropdownMenuItem>
-          <DropdownMenuItem>Add to favorites</DropdownMenuItem>
+          <DropdownMenuItem>Set as active</DropdownMenuItem>
+          <DropdownMenuItem>Set as verified</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-destructive focus:text-destructive">
