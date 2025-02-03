@@ -630,13 +630,13 @@ function RowActions({ row, setData, data, item }: { row: Row<Item>; setData: Rea
               onClick={handleStatusToggle}
               disabled={isUpdatePending}
             >
-              {item.status === "Active" ? "Deactivate user" : "Activate user"}
+              {item.status === "Active" ? "Deactivate contact" : "Activate contact"}
             </DropdownMenuItem>
             <DropdownMenuItem 
               onClick={handleVerifiedToggle}
               disabled={isUpdatePending}
             >
-              {item.verified ? "Unverify user" : "Verify user"}
+              {item.verified ? "Unverify contact" : "Verify contact"}
             </DropdownMenuItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
