@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Plus } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -19,7 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { RiExpandUpDownLine } from "@remixicon/react";
+import { RiExpandUpDownLine, RiAddLine } from "@remixicon/react";
 
 export function TeamSwitcher({
   teams,
@@ -90,7 +89,7 @@ export function TeamSwitcher({
             <DropdownMenuSeparator />
             <DropdownMenuItem className="gap-2 p-2">
               <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                <Plus className="size-4" />
+                <RiAddLine size={16} aria-hidden="true" />
               </div>
               <div className="font-medium text-muted-foreground">Add team</div>
             </DropdownMenuItem>
