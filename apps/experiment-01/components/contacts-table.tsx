@@ -71,7 +71,6 @@ import {
   RiSearch2Line,
   RiVerifiedBadgeFill,
   RiCheckLine,
-  RiSubtractLine,
   RiMoreLine,
 } from "@remixicon/react";
 import {
@@ -173,27 +172,27 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
     header: "Status",
     accessorKey: "status",
     cell: ({ row }) => (
-      <Badge
-        variant="outline"
-        className={cn(
-          "gap-1",
-          row.original.status === "Inactive"
-            ? "text-muted-foreground"
-            : "text-primary-foreground",
-        )}
-      >
-        {row.original.status === "Active" && (
-          <RiCheckLine
-            className="text-emerald-500"
-            size={14}
-            aria-hidden="true"
-          />
-        )}
-        {row.original.status === "Inactive" && (
-          <RiSubtractLine size={14} aria-hidden="true" />
-        )}
-        {row.original.status}
-      </Badge>
+      <div className="flex items-center h-full">
+        <Badge
+          variant="outline"
+          className={cn(
+            "gap-1 py-0.5 px-2 text-sm",
+            row.original.status === "Inactive"
+              ? "text-muted-foreground"
+              : "text-primary-foreground",
+          )}
+        >
+          {row.original.status === "Active" && (
+            <RiCheckLine
+              className="text-emerald-500"
+              size={14}
+              aria-hidden="true"
+            />
+          )}
+          {row.original.status === "Inactive" && "- "}
+          {row.original.status}
+        </Badge>
+      </div>
     ),
     size: 110,
     filterFn: statusFilterFn,
