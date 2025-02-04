@@ -10,7 +10,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Bolt, BookOpen, Layers2, LogOut, Pin, UserPen } from "lucide-react";
+import {
+  RiSettingsLine,
+  RiTeamLine,
+  RiLogoutBoxLine,
+} from "@remixicon/react";
 
 export default function UserDropdown() {
   return (
@@ -40,63 +44,30 @@ export default function UserDropdown() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Bolt
+            <RiSettingsLine
               size={16}
-              strokeWidth={2}
               className="opacity-60"
               aria-hidden="true"
             />
-            <span>Option 1</span>
+            <span>Account settings</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Layers2
+            <RiTeamLine
               size={16}
-              strokeWidth={2}
               className="opacity-60"
               aria-hidden="true"
             />
-            <span>Option 2</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <BookOpen
-              size={16}
-              strokeWidth={2}
-              className="opacity-60"
-              aria-hidden="true"
-            />
-            <span>Option 3</span>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <Pin
-              size={16}
-              strokeWidth={2}
-              className="opacity-60"
-              aria-hidden="true"
-            />
-            <span>Option 4</span>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <UserPen
-              size={16}
-              strokeWidth={2}
-              className="opacity-60"
-              aria-hidden="true"
-            />
-            <span>Option 5</span>
+            <span>Affiliate area</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
-          <LogOut
+          <RiLogoutBoxLine
             size={16}
-            strokeWidth={2}
             className="opacity-60"
             aria-hidden="true"
           />
-          <span>Logout</span>
+          <span>Sign out</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
