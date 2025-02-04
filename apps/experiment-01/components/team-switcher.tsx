@@ -80,7 +80,12 @@ export function TeamSwitcher({
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md overflow-hidden border">
-                  <Image src={team.logo} width={36} height={36} alt={team.name} />
+                  <Image
+                    src={team.logo}
+                    width={36}
+                    height={36}
+                    alt={team.name}
+                  />
                 </div>
                 {team.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>

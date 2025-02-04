@@ -10,14 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import {
-  Bolt,
-  BookOpen,
-  Layers2,
-  LogOut,
-  Pin,
-  UserPen,
-} from "lucide-react";
+import { Bolt, BookOpen, Layers2, LogOut, Pin, UserPen } from "lucide-react";
 
 export default function UserDropdown() {
   return (

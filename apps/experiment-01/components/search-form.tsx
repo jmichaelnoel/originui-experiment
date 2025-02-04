@@ -11,11 +11,7 @@ export function SearchForm({ ...props }: React.ComponentProps<"form">) {
       <SidebarGroup className="py-0">
         <SidebarGroupContent className="relative">
           <div className="relative">
-            <SidebarInput
-              id={id}
-              className="ps-9 pe-9"
-              aria-label="Search"
-            />
+            <SidebarInput id={id} className="ps-9 pe-9" aria-label="Search" />
             <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-2 text-muted-foreground/60 peer-disabled:opacity-50">
               <RiSearch2Line size={20} aria-hidden="true" />
             </div>
