@@ -19,12 +19,8 @@ export function StatsCard({ title, value, change, icon }: StatsCardProps) {
   return (
     <div className="relative p-4 lg:p-5 group before:absolute before:inset-y-8 before:right-0 before:w-px before:bg-gradient-to-b before:from-input/30 before:via-input before:to-input/30 last:before:hidden">
       <div className="relative flex items-center gap-4">
-        {/* Arrow ↗|↘ */}
-        <Arrow
-          className={cn(
-            "absolute right-0 top-0 opacity-0 group-has-[a:hover]:opacity-100 transition-opacity",
-            trendColor,
-          )}
+        <RiArrowRightUpLine
+          className="absolute right-0 top-0 opacity-0 group-has-[a:hover]:opacity-100 transition-opacity text-emerald-500"
           size={20}
           aria-hidden="true"
         />
