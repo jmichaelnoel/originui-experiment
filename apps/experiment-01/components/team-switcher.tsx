@@ -67,10 +67,10 @@ export function TeamSwitcher({
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
             align="start"
-            side={isMobile ? "bottom" : "right"}
+            side="bottom"
             sideOffset={4}
           >
-            <DropdownMenuLabel className="text-xs text-muted-foreground">
+            <DropdownMenuLabel className="uppercase text-muted-foreground/60 text-xs">
               Teams
             </DropdownMenuLabel>
             {teams.map((team, index) => (
@@ -93,10 +93,8 @@ export function TeamSwitcher({
             ))}
             <DropdownMenuSeparator />
             <DropdownMenuItem className="gap-2 p-2">
-              <div className="flex size-6 items-center justify-center rounded-md border bg-background">
-                <RiAddLine size={16} aria-hidden="true" />
-              </div>
-              <div className="font-medium text-muted-foreground">Add team</div>
+              <RiAddLine className="opacity-60" size={16} aria-hidden="true" />
+              <div className="font-medium">Add team</div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
