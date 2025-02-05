@@ -1,3 +1,7 @@
+# UI Experiments
+
+**Demo:** [https://ui-experiments-green.vercel.app/](https://ui-experiments-green.vercel.app/)
+
 # shadcn/ui monorepo template
 
 This template is for creating a monorepo with shadcn/ui.
