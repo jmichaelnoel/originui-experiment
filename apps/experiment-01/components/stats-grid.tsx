@@ -13,7 +13,6 @@ interface StatsCardProps {
 
 export function StatsCard({ title, value, change, icon }: StatsCardProps) {
   const isPositive = change.trend === "up";
-  const Arrow = isPositive ? RiArrowRightUpLine : RiArrowRightDownLine;
   const trendColor = isPositive ? "text-emerald-500" : "text-red-500";
 
   return (
