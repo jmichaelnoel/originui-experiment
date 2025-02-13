@@ -49,7 +49,7 @@ export default function Page() {
           </div>
         </header>
         <SettingsPanelProvider>
-          <div className="flex h-[calc(100svh-4rem)] bg-[hsl(240_5%_92.16%)] md:rounded-s-3xl md:peer-data-[state=collapsed]:group-[]/sidebar-inset:rounded-s-none transition-all ease-in-out duration-300" data-content>
+          <div className="flex h-[calc(100svh-4rem)] bg-[hsl(240_5%_92.16%)] md:rounded-s-3xl md:peer-data-[state=collapsed]:group-[]/sidebar-inset:rounded-s-none transition-all ease-in-out duration-300">
             <Chat />
             <SettingsPanel />
           </div>

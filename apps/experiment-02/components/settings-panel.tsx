@@ -228,21 +228,23 @@ const SettingsPanelTrigger = ({
 }: {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }) => {
-  const { togglePanel } = useSettingsPanel();
+  const { isMobile, togglePanel } = useSettingsPanel();
+
+  if (!isMobile) {
+    return null;
+  }
 
   return (
     <Button
-      data-sidebar="trigger"
       variant="ghost"
-      size="icon"
-      className="text-muted-foreground/60 hover:text-foreground"
+      className="px-2"
       onClick={(event) => {
         onClick?.(event);
         togglePanel();
       }}
     >
-      <RiSettingsLine size={22} aria-hidden="true" />
-      <span className="sr-only">Toggle Sidebar</span>
+      <RiSettingsLine className="sm:me-1.5 sm:text-muted-foreground/60" size={20} aria-hidden="true" />
+      <span className="max-sm:sr-only">Settings</span>
     </Button>
   );
 };
