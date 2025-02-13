@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 
-import "@workspace/ui/globals.css";
+import "./globals.css";
 
 const fontSans = Inter({
   subsets: ["latin"],
