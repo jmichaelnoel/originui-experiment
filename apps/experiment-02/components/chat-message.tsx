@@ -38,8 +38,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
       />
       <div
         className={cn(
-          "space-y-4",
-          isUser && "bg-muted p-4 rounded-xl" 
+          isUser ? "bg-muted p-4 rounded-xl" : "space-y-4"
         )}
       >
         <div className="flex flex-col gap-3">
