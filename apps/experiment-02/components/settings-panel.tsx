@@ -251,8 +251,10 @@ const SettingsPanel = () => {
   }
 
   return (
-    <ScrollArea className="w-[300px] px-4 md:px-6">
-      <SettingsPanelContent />
+    <ScrollArea>
+      <div className="w-[300px] px-4 md:px-6">
+        <SettingsPanelContent />
+      </div>
     </ScrollArea>
   );
 };

@@ -109,12 +109,22 @@ export default function Chat() {
             <ChatMessage isUser>
               <p>All clear, thank you!</p>
             </ChatMessage>
+            <ChatMessage isUser>
+              <p>
+                AI agents are software that perceive their environment and act
+                autonomously to achieve goals, making decisions, learning, and
+                interacting. For example, an AI agent might schedule meetings by
+                resolving conflicts, contacting participants, and finding
+                optimal times—all without constant supervision.
+              </p>
+              <p>Let me know if you&lsquo;d like more details!</p>
+            </ChatMessage>            
             <div ref={messagesEndRef} aria-hidden="true" />
           </div>
         </div>
         {/* Footer */}
         <div className="sticky bottom-0 pt-4 md:pt-8">
-          <div className="max-w-3xl mx-auto bg-background pb-4 md:pb-8">
+          <div className="max-w-3xl mx-auto bg-background rounded-[20px] pb-4 md:pb-8">
             <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:bg-muted/50 focus-within:border-input has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
                 className="flex sm:min-h-[84px] w-full bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"

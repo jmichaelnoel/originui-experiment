@@ -51,6 +51,39 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
   );
 }
 
+// export function ChatMessage({ isUser, children }: ChatMessageProps) {
+//   return (
+//     <article
+//       className={cn(
+//         "flex items-start gap-4 text-sm",
+//         isUser && "justify-end"
+//       )}
+//     >
+//       <Image
+//         className={cn(
+//           "rounded-full",
+//           isUser ? "order-1" : "border border-black/[0.08] shadow-sm"
+//         )}
+//         src={isUser ? "/user-02.png" : "/user-01.png"}
+//         alt={isUser ? "User profile" : "Bart logo"}
+//         width={40}
+//         height={40}
+//       />
+//       <div
+//         className={cn(
+//           isUser ? "min-h-10 flex items-center" : "space-y-4 p-4 relative before:absolute before:inset-0 before:rounded-xl before:bg-muted before:pointer-events-none before:mb-8"
+//         )}
+//       >
+//         <div className="relative flex flex-col gap-3">
+//           <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>
+//           {children}
+//         </div>
+//         {!isUser && <MessageActions />}
+//       </div>
+//     </article>
+//   );
+// }
+
 type ActionButtonProps = {
   icon: React.ReactNode;
   label: string;
@@ -74,7 +107,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
 
 function MessageActions() {
   return (
-    <div className="inline-flex rounded-lg border border-black/[0.08] shadow-sm -space-x-px">
+    <div className="relative inline-flex bg-white rounded-lg border border-black/[0.08] shadow-sm -space-x-px">
       <TooltipProvider delayDuration={0}>
         <ActionButton icon={<RiCodeSSlashLine size={16} />} label="Show code" />
         <ActionButton icon={<RiBookLine size={16} />} label="Bookmark" />
