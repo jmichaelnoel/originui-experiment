@@ -85,7 +85,7 @@ export default function SliderControl({
       </div>
       <div className="flex items-center gap-4">
         <Slider
-          className="grow [&>*:first-child]:bg-zinc-300"
+          className="grow [&>*:first-child]:bg-black/10"
           value={sliderValue}
           onValueChange={handleSliderChange}
           min={minValue}

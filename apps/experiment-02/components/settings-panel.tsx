@@ -69,7 +69,7 @@ const SettingsPanelContent = () => {
   return (
     <>
       {/* Sidebar header */}
-      <div className="py-5 border-b border-zinc-300">
+      <div className="py-5">
         <div className="flex items-center gap-2">
           <RiQuillPenAiLine className="text-muted-foreground/70" size={20} aria-hidden="true" />
           <h2 className="text-sm font-medium">My preferences</h2>
@@ -77,10 +77,10 @@ const SettingsPanelContent = () => {
       </div>
 
       {/* Sidebar content */}
-      <div className="divide-y divide-zinc-300">
+      <div className="-mt-px">
 
         {/* Content group */}
-        <div className="py-5">
+        <div className="py-5 relative before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
           <h3 className="text-xs font-medium uppercase text-muted-foreground/80 mb-4">Chat presets</h3>
           <div className="space-y-3">
 
@@ -155,7 +155,7 @@ const SettingsPanelContent = () => {
         </div>
 
         {/* Content group */}
-        <div className="py-5">
+        <div className="py-5 relative before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
           <h3 className="text-xs font-medium uppercase text-muted-foreground/80 mb-4">Configurations</h3>
           <div className="space-y-3">
 
