@@ -67,7 +67,7 @@ BreadcrumbPage.displayName = "BreadcrumbPage";
 
 const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<"li">) => (
   <li role="presentation" aria-hidden="true" className={className} {...props}>
-    {children ?? <ChevronRight size={16} strokeWidth={2} className="text-muted-foreground/60" />}
+    {children ?? <ChevronRight size={16} strokeWidth={2} className="text-muted-foreground/70" />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";

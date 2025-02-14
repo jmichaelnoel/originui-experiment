@@ -55,7 +55,7 @@ export default function SliderControl({
                   size="icon"
                   variant="ghost"
                   className={cn(
-                    "size-7 transition-all text-muted-foreground/60 hover:text-foreground hover:bg-transparent",
+                    "size-7 transition-all text-muted-foreground/70 hover:text-foreground hover:bg-transparent",
                     showReset ? "opacity-100" : "opacity-0 pointer-events-none"
                   )}
                   aria-label="Reset"
@@ -64,7 +64,7 @@ export default function SliderControl({
                   <RiRefreshLine size={16} aria-hidden="true" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className="px-2 py-1 text-xs">Reset to default</TooltipContent>
+              <TooltipContent className="dark px-2 py-1 text-xs">Reset to default</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <Input

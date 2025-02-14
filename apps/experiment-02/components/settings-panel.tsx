@@ -71,7 +71,7 @@ const SettingsPanelContent = () => {
       {/* Sidebar header */}
       <div className="py-5 border-b border-zinc-300">
         <div className="flex items-center gap-2">
-          <RiQuillPenAiLine className="text-muted-foreground/60" size={20} aria-hidden="true" />
+          <RiQuillPenAiLine className="text-muted-foreground/70" size={20} aria-hidden="true" />
           <h2 className="text-sm font-medium">My preferences</h2>
         </div>
       </div>
@@ -243,7 +243,7 @@ const SettingsPanelTrigger = ({
         togglePanel();
       }}
     >
-      <RiSettingsLine className="sm:me-1.5 sm:text-muted-foreground/60" size={20} aria-hidden="true" />
+      <RiSettingsLine className="sm:me-1.5 sm:text-muted-foreground/70" size={20} aria-hidden="true" />
       <span className="max-sm:sr-only">Settings</span>
     </Button>
   );

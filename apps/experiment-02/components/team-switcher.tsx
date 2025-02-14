@@ -69,7 +69,7 @@ export function TeamSwitcher({
             side="bottom"
             sideOffset={4}
           >
-            <DropdownMenuLabel className="uppercase text-muted-foreground/60 text-xs">
+            <DropdownMenuLabel className="uppercase text-muted-foreground/70 text-xs">
               Teams
             </DropdownMenuLabel>
             {teams.map((team, index) => (
