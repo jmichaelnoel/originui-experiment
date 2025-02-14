@@ -21,7 +21,10 @@ type ChatMessageProps = {
 export function ChatMessage({ isUser, children }: ChatMessageProps) {
   return (
     <article
-      className={`flex items-start ${isUser ? "justify-end" : ""} gap-4 text-sm`}
+      className={cn(
+        "flex items-start gap-4 text-sm",
+        isUser && "justify-end"
+      )}
     >
       <Image
         className={cn(
