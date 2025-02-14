@@ -105,7 +105,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props} className="!border-none">
+    <Sidebar {...props} className="dark !border-none">
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>

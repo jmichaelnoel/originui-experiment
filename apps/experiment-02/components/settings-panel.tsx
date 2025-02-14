@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import SliderControl from "@/components/slider-control";
 import { Sheet, SheetTitle, SheetContent } from "@/components/ui/sheet";
 import * as React from "react";
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 type SettingsPanelContext = {
   openMobile: boolean;
@@ -216,9 +217,9 @@ const SettingsPanel = () => {
   }  
 
   return (
-    <div className="w-72 overflow-auto px-4 md:px-6">
+    <ScrollArea className="w-72 px-4 md:px-6">
       <SettingsPanelContent />
-    </div>
+    </ScrollArea>
   );
 }
 SettingsPanel.displayName = "SettingsPanel";

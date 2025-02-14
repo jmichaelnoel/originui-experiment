@@ -8,12 +8,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { RiCodeSSlashLine, RiShareLine, RiShareCircleLine, RiShining2Line, RiAttachment2, RiMicLine, RiLeafLine } from "@remixicon/react";
 import { ChatMessage } from "@/components/chat-message";
 
 export default function Chat() {
   return (
-    <div className="flex-1 flex flex-col overflow-auto shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background px-4 md:px-6 lg:px-8">
+    <ScrollArea className="flex-1 flex flex-col shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background px-4 md:px-6 lg:px-8">
       {/* Header */}
       <div className="py-5 bg-background sticky top-0 z-10 before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
         <div className="flex items-center justify-between gap-2">
@@ -64,6 +65,36 @@ export default function Chat() {
           <ChatMessage isUser>
             <p>All clear, thank you!</p>
           </ChatMessage>
+          <ChatMessage isUser>
+            <p>Hey Bolt, can you tell me more about AI Agents?</p>
+          </ChatMessage>
+          <ChatMessage>
+            <p>AI agents are software that perceive their environment and act autonomously to achieve goals, making decisions, learning, and interacting. For example, an AI agent might schedule meetings by resolving conflicts, contacting participants, and finding optimal times—all without constant supervision.</p>
+            <p>Let me know if you'd like more details!</p>
+          </ChatMessage>
+          <ChatMessage isUser>
+            <p>All clear, thank you!</p>
+          </ChatMessage>
+          <ChatMessage isUser>
+            <p>Hey Bolt, can you tell me more about AI Agents?</p>
+          </ChatMessage>
+          <ChatMessage>
+            <p>AI agents are software that perceive their environment and act autonomously to achieve goals, making decisions, learning, and interacting. For example, an AI agent might schedule meetings by resolving conflicts, contacting participants, and finding optimal times—all without constant supervision.</p>
+            <p>Let me know if you'd like more details!</p>
+          </ChatMessage>
+          <ChatMessage isUser>
+            <p>All clear, thank you!</p>
+          </ChatMessage>     
+          <ChatMessage isUser>
+            <p>Hey Bolt, can you tell me more about AI Agents?</p>
+          </ChatMessage>
+          <ChatMessage>
+            <p>AI agents are software that perceive their environment and act autonomously to achieve goals, making decisions, learning, and interacting. For example, an AI agent might schedule meetings by resolving conflicts, contacting participants, and finding optimal times—all without constant supervision.</p>
+            <p>Let me know if you'd like more details!</p>
+          </ChatMessage>
+          <ChatMessage isUser>
+            <p>All clear, thank you!</p>
+          </ChatMessage>                         
         </div>
       </div>
       {/* Footer */}
@@ -104,6 +135,6 @@ export default function Chat() {
           </div>
         </div>
       </div>
-    </div>
+    </ScrollArea>
   );
 }
