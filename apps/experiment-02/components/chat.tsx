@@ -117,7 +117,7 @@ export default function Chat() {
           <div className="max-w-3xl mx-auto bg-background pb-4 md:pb-8">
             <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:bg-muted/50 focus-within:border-input has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
-                className="flex min-h-[70px] w-full bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"
+                className="flex sm:min-h-[84px] w-full bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"
                 placeholder="Ask me anything..."
                 aria-label="Enter your prompt"
               />
