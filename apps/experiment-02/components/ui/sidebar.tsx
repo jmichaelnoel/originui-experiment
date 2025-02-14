@@ -17,7 +17,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { RiLayoutLeftLine } from "@remixicon/react";
+import { RiSkipLeftLine, RiSkipRightLine } from "@remixicon/react";
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -275,7 +275,7 @@ const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, open } = useSidebar();
 
   return (
     <Button
@@ -293,7 +293,7 @@ const SidebarTrigger = React.forwardRef<
       }}
       {...props}
     >
-      <RiLayoutLeftLine size={22} aria-hidden="true" />
+      {open ? <RiSkipLeftLine size={22} aria-hidden="true" /> : <RiSkipRightLine size={22} aria-hidden="true" />}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

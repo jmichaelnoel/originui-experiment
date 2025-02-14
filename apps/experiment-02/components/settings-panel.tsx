@@ -243,7 +243,7 @@ const SettingsPanelTrigger = ({
         togglePanel();
       }}
     >
-      <RiSettingsLine className="sm:me-1.5 sm:text-muted-foreground/70" size={20} aria-hidden="true" />
+      <RiSettingsLine className="sm:me-2 text-muted-foreground sm:text-muted-foreground/70" size={20} aria-hidden="true" />
       <span className="max-sm:sr-only">Settings</span>
     </Button>
   );
