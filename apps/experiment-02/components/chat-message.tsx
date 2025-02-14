@@ -1,3 +1,4 @@
+import { cn } from "@workspace/ui/lib/utils";
 import Image from "next/image";
 import {
   TooltipProvider,
@@ -23,16 +24,20 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
       className={`flex items-start ${isUser ? "justify-end" : ""} gap-4 text-sm`}
     >
       <Image
-        className={`rounded-full ${isUser ? "order-1" : "border border-black/[0.08] shadow-sm"}`}
+        className={cn(
+          "rounded-full",
+          isUser ? "order-1" : "border border-black/[0.08] shadow-sm"
+        )}
         src={isUser ? "/user-02.png" : "/user-01.png"}
         alt={isUser ? "User profile" : "Bart logo"}
         width={40}
         height={40}
       />
       <div
-        className={
-          isUser ? "flex flex-col gap-3 bg-muted p-4 rounded-xl" : "space-y-4"
-        }
+        className={cn(
+          "space-y-4",
+          isUser && "bg-muted p-4 rounded-xl" 
+        )}
       >
         <div className="flex flex-col gap-3">
           <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>
