@@ -1,5 +1,4 @@
 import { SettingsPanelTrigger } from "@/components/settings-panel";
-import Image from "next/image";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,13 +8,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { RiCodeSSlashLine, RiShareLine, RiShareCircleLine, RiShining2Line, RiAttachment2, RiMicLine, RiLeafLine, RiBookLine, RiLoopRightFill, RiCheckLine } from "@remixicon/react";
+import { RiCodeSSlashLine, RiShareLine, RiShareCircleLine, RiShining2Line, RiAttachment2, RiMicLine, RiLeafLine } from "@remixicon/react";
+import { ChatMessage } from "@/components/chat-message";
 
 export default function Chat() {
   return (
@@ -60,78 +54,16 @@ export default function Chat() {
           </Button>
         </div>
         <div className="max-w-3xl mx-auto pt-20 space-y-6">
-          <article className="flex items-start justify-end gap-4 text-sm">
-            <Image className="rounded-full order-1" src="/user-02.png" alt="User profile" width={40} height={40} />
-            <div className="flex flex-col gap-3 bg-muted p-4 rounded-xl">
-              <p className="sr-only">You said:</p>
-              <p>Hey Bolt, can you tell me more about AI Agents?</p>
-            </div>
-          </article>
-          <article className="flex items-start gap-4 text-sm">
-            <Image className="rounded-full border border-black/[0.08] shadow-sm" src="/user-01.png" alt="Bart logo" width={40} height={40} />
-            <div className="space-y-4">
-              <div className="flex flex-col justify-center gap-3">
-                <p className="sr-only">Bart said:</p>
-                <p>AI agents are software that perceive their environment and act autonomously to achieve goals, making decisions, learning, and interacting. For example, an AI agent might schedule meetings by resolving conflicts, contacting participants, and finding optimal times—all without constant supervision.</p>
-                <p>Let me know if you'd like more details!</p>
-              </div>
-              <div className="inline-flex rounded-lg border border-black/[0.08] shadow-sm -space-x-px">
-                <TooltipProvider delayDuration={0}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first:rounded-s-lg last:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70">
-                        <RiCodeSSlashLine size={16} aria-hidden="true" />
-                        <span className="sr-only">Show code</span>
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="dark px-2 py-1 text-xs">
-                      <p>Show code</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button className="relative text-muted-foreground/80 hover:text-foreground transition size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first:rounded-s-lg last:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70">
-                    <RiBookLine size={16} aria-hidden="true" />
-                        <span className="sr-only">Bookmark</span>
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="dark px-2 py-1 text-xs">
-                      <p>Bookmark</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first:rounded-s-lg last:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70">
-                    <RiLoopRightFill size={16} aria-hidden="true" />
-                    <span className="sr-only">Refresh</span>
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="dark px-2 py-1 text-xs">
-                      <p>Refresh</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first:rounded-s-lg last:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70">
-                    <RiCheckLine size={16} aria-hidden="true" />
-                    <span className="sr-only">Approve</span>
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom" className="dark px-2 py-1 text-xs">
-                      <p>Approve</p>
-                    </TooltipContent>
-                  </Tooltip>                    
-                </TooltipProvider>
-              </div>
-            </div>
-          </article>
-          <article className="flex items-start justify-end gap-4 text-sm">
-            <Image className="rounded-full order-1" src="/user-02.png" alt="User profile" width={40} height={40} />
-            <div className="flex flex-col gap-3 bg-muted p-4 rounded-xl">
-              <p className="sr-only">You said:</p>
-              <p>All clear, thank you!</p>
-            </div>
-          </article>
+          <ChatMessage isUser>
+            <p>Hey Bolt, can you tell me more about AI Agents?</p>
+          </ChatMessage>
+          <ChatMessage>
+            <p>AI agents are software that perceive their environment and act autonomously to achieve goals, making decisions, learning, and interacting. For example, an AI agent might schedule meetings by resolving conflicts, contacting participants, and finding optimal times—all without constant supervision.</p>
+            <p>Let me know if you'd like more details!</p>
+          </ChatMessage>
+          <ChatMessage isUser>
+            <p>All clear, thank you!</p>
+          </ChatMessage>
         </div>
       </div>
       {/* Footer */}

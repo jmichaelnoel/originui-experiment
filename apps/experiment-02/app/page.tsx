@@ -17,7 +17,7 @@ import UserDropdown from "@/components/user-dropdown";
 import FeedbackDialog from "@/components/feedback-dialog";
 import { RiScanLine } from "@remixicon/react";
 import { SettingsPanelProvider, SettingsPanel } from "@/components/settings-panel";
-import Chat from "@/components/ui/chat";
+import Chat from "@/components/chat";
 
 export default function Page() {
   return (
