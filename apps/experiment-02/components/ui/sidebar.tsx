@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetTitle, SheetContent } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Tooltip,
   TooltipContent,
@@ -210,7 +210,7 @@ const Sidebar = React.forwardRef<
             className={cn(
               "w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden",
               className,
-            )}            
+            )}
             style={
               {
                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -218,7 +218,7 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-            <SheetTitle className="hidden">Menu</SheetTitle>            
+            <SheetTitle className="hidden">Menu</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
@@ -294,7 +294,11 @@ const SidebarTrigger = React.forwardRef<
       }}
       {...props}
     >
-      {open ? <RiSkipLeftLine size={22} aria-hidden="true" /> : <RiSkipRightLine size={22} aria-hidden="true" />}
+      {open ? (
+        <RiSkipLeftLine size={22} aria-hidden="true" />
+      ) : (
+        <RiSkipRightLine size={22} aria-hidden="true" />
+      )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

@@ -1,25 +1,41 @@
 import Image from "next/image";
-import { TooltipProvider, Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { RiCodeSSlashLine, RiBookLine, RiLoopRightFill, RiCheckLine } from "@remixicon/react";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  RiCodeSSlashLine,
+  RiBookLine,
+  RiLoopRightFill,
+  RiCheckLine,
+} from "@remixicon/react";
 
 type ChatMessageProps = {
   isUser?: boolean;
   children: React.ReactNode;
-}
+};
 
 export function ChatMessage({ isUser, children }: ChatMessageProps) {
   return (
-    <article className={`flex items-start ${isUser ? 'justify-end' : ''} gap-4 text-sm`}>
+    <article
+      className={`flex items-start ${isUser ? "justify-end" : ""} gap-4 text-sm`}
+    >
       <Image
-        className={`rounded-full ${isUser ? 'order-1' : 'border border-black/[0.08] shadow-sm'}`}
-        src={isUser ? '/user-02.png' : '/user-01.png'}
+        className={`rounded-full ${isUser ? "order-1" : "border border-black/[0.08] shadow-sm"}`}
+        src={isUser ? "/user-02.png" : "/user-01.png"}
         alt={isUser ? "User profile" : "Bart logo"}
         width={40}
         height={40}
       />
-      <div className={isUser ? 'flex flex-col gap-3 bg-muted p-4 rounded-xl' : 'space-y-4'}>
+      <div
+        className={
+          isUser ? "flex flex-col gap-3 bg-muted p-4 rounded-xl" : "space-y-4"
+        }
+      >
         <div className="flex flex-col gap-3">
-          <p className="sr-only">{isUser ? 'You' : 'Bart'} said:</p>
+          <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>
           {children}
         </div>
         {!isUser && <MessageActions />}
@@ -31,7 +47,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
 type ActionButtonProps = {
   icon: React.ReactNode;
   label: string;
-}
+};
 
 function ActionButton({ icon, label }: ActionButtonProps) {
   return (
@@ -47,8 +63,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
       </TooltipContent>
     </Tooltip>
   );
-} 
-
+}
 
 function MessageActions() {
   return (
@@ -61,4 +76,4 @@ function MessageActions() {
       </TooltipProvider>
     </div>
   );
-} 
+}

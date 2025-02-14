@@ -31,7 +31,7 @@ export default function SliderControl({
   initialValue,
   defaultValue,
   step,
-  label
+  label,
 }: SliderControlProps) {
   const {
     sliderValue,
@@ -56,7 +56,7 @@ export default function SliderControl({
                   variant="ghost"
                   className={cn(
                     "size-7 transition-all text-muted-foreground/70 hover:text-foreground hover:bg-transparent",
-                    showReset ? "opacity-100" : "opacity-0 pointer-events-none"
+                    showReset ? "opacity-100" : "opacity-0 pointer-events-none",
                   )}
                   aria-label="Reset"
                   onClick={resetToDefault}
@@ -64,7 +64,9 @@ export default function SliderControl({
                   <RiRefreshLine size={16} aria-hidden="true" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent className="dark px-2 py-1 text-xs">Reset to default</TooltipContent>
+              <TooltipContent className="dark px-2 py-1 text-xs">
+                Reset to default
+              </TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <Input
@@ -73,10 +75,10 @@ export default function SliderControl({
             inputMode="decimal"
             value={inputValues[0]}
             onChange={(e) => handleInputChange(e, 0)}
-            onBlur={() => validateAndUpdateValue(inputValues[0] ?? '', 0)}
+            onBlur={() => validateAndUpdateValue(inputValues[0] ?? "", 0)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                validateAndUpdateValue(inputValues[0] ?? '', 0);
+                validateAndUpdateValue(inputValues[0] ?? "", 0);
               }
             }}
             aria-label="Enter value"

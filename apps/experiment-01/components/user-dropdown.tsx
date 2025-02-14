@@ -10,11 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import {
-  RiSettingsLine,
-  RiTeamLine,
-  RiLogoutBoxLine,
-} from "@remixicon/react";
+import { RiSettingsLine, RiTeamLine, RiLogoutBoxLine } from "@remixicon/react";
 
 export default function UserDropdown() {
   return (
@@ -52,11 +48,7 @@ export default function UserDropdown() {
             <span>Account settings</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <RiTeamLine
-              size={16}
-              className="opacity-60"
-              aria-hidden="true"
-            />
+            <RiTeamLine size={16} className="opacity-60" aria-hidden="true" />
             <span>Affiliate area</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>

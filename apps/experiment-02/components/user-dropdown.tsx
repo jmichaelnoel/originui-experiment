@@ -80,7 +80,7 @@ export default function UserDropdown() {
             aria-hidden="true"
           />
           <span>Log out</span>
-        </DropdownMenuItem>                
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

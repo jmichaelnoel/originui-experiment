@@ -50,7 +50,7 @@ const data = {
           title: "Chat",
           url: "#",
           icon: RiChat1Line,
-          isActive: true,          
+          isActive: true,
         },
         {
           title: "Real-time",
