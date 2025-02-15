@@ -31,8 +31,8 @@ export default function Chat() {
   }, []);
 
   return (
-    <ScrollArea className="flex-1 [&>div>div]:h-full w-full shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background px-4 md:px-6 lg:px-8">
-      <div className="h-full flex flex-col">
+    <ScrollArea className="flex-1 [&>div>div]:h-full w-full shadow-md md:rounded-s-[inherit] min-[1024px]:rounded-e-3xl bg-background">
+      <div className="h-full flex flex-col px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="py-5 bg-background sticky top-0 z-10 before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gradient-to-r before:from-black/[0.06] before:via-black/10 before:to-black/[0.06]">
           <div className="flex items-center justify-between gap-2">
