@@ -78,21 +78,17 @@ export default function Chat() {
         </div>
         {/* Chat */}
         <div className="relative grow">
-          <div className="sticky top-[5.5rem] h-0">
-            <Button
-              variant="outline"
-              size="sm"
-              className="absolute top-0 left-1/2 -translate-x-1/2 z-10 rounded-full bg-background py-1 h-6.5 text-foreground/80 shadow-black/[0.08] border-black/[0.08]"
-            >
-              <RiShining2Line
-                className="me-1.5 text-muted-foreground/70 -ms-1"
-                size={14}
-                aria-hidden="true"
-              />
-              Today
-            </Button>
-          </div>
-          <div className="max-w-3xl mx-auto pt-20 space-y-6">
+          <div className="max-w-3xl mx-auto mt-6 space-y-6">
+            <div className="text-center my-8">
+              <div className="inline-flex items-center bg-white rounded-full border border-black/[0.08] shadow-sm text-xs font-medium py-1 px-3 text-foreground/80">
+                <RiShining2Line
+                  className="me-1.5 text-muted-foreground/70 -ms-1"
+                  size={14}
+                  aria-hidden="true"
+                />
+                Today          
+              </div>            
+            </div>
             <ChatMessage isUser>
               <p>Hey Bolt, can you tell me more about AI Agents?</p>
             </ChatMessage>
