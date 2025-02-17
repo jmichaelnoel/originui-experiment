@@ -82,7 +82,7 @@ export default function Chat() {
             <Button
               variant="outline"
               size="sm"
-              className="absolute top-0 left-1/2 -translate-x-1/2 z-10 rounded-full bg-background py-1 h-6.5 text-foreground/80"
+              className="absolute top-0 left-1/2 -translate-x-1/2 z-10 rounded-full bg-background py-1 h-6.5 text-foreground/80 shadow-black/[0.08] border-black/[0.08]"
             >
               <RiShining2Line
                 className="me-1.5 text-muted-foreground/70 -ms-1"
@@ -115,9 +115,9 @@ export default function Chat() {
         {/* Footer */}
         <div className="sticky bottom-0 pt-4 md:pt-8">
           <div className="max-w-3xl mx-auto bg-background rounded-[20px] pb-4 md:pb-8">
-            <div className="relative rounded-[20px] border border-border shadow-md shadow-black/[0.04] transition-colors focus-within:border-ring has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
+            <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:bg-muted/50 focus-within:border-input has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
-                className="text-[15px] leading-relaxed flex sm:min-h-[84px] w-full bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"
+                className="flex sm:min-h-[84px] w-full bg-transparent px-4 py-3 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/70 focus-visible:outline-none [resize:none]"
                 placeholder="Ask me anything..."
                 aria-label="Enter your prompt"
               />
@@ -128,7 +128,7 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-border shadow-none"
+                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <RiAttachment2
                       className="text-muted-foreground/70"
@@ -140,7 +140,7 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-border shadow-none"
+                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <RiMicLine
                       className="text-muted-foreground/70"
@@ -152,7 +152,7 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-border shadow-none"
+                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <RiLeafLine
                       className="text-muted-foreground/70"
@@ -167,7 +167,7 @@ export default function Chat() {
                   <Button
                     variant="outline"
                     size="icon"
-                    className="rounded-full size-8 border-border shadow-none"
+                    className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
