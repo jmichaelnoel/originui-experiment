@@ -22,7 +22,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
   return (
     <article
       className={cn(
-        "flex items-start gap-4 text-sm",
+        "flex items-start gap-4 text-[15px] leading-relaxed",
         isUser && "justify-end"
       )}
     >
@@ -38,7 +38,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
       />
       <div
         className={cn(
-          isUser ? "bg-muted p-4 rounded-xl" : "space-y-4"
+          isUser ? "bg-muted px-4 py-3 rounded-xl" : "space-y-4"
         )}
       >
         <div className="flex flex-col gap-3">
@@ -50,39 +50,6 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
     </article>
   );
 }
-
-// export function ChatMessage({ isUser, children }: ChatMessageProps) {
-//   return (
-//     <article
-//       className={cn(
-//         "flex items-start gap-4 text-sm",
-//         isUser && "justify-end"
-//       )}
-//     >
-//       <Image
-//         className={cn(
-//           "rounded-full",
-//           isUser ? "order-1" : "border border-black/[0.08] shadow-sm"
-//         )}
-//         src={isUser ? "/user-02.png" : "/user-01.png"}
-//         alt={isUser ? "User profile" : "Bart logo"}
-//         width={40}
-//         height={40}
-//       />
-//       <div
-//         className={cn(
-//           isUser ? "min-h-10 flex items-center" : "space-y-4 p-4 relative before:absolute before:inset-0 before:rounded-xl before:bg-muted before:pointer-events-none before:mb-8"
-//         )}
-//       >
-//         <div className="relative flex flex-col gap-3">
-//           <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>
-//           {children}
-//         </div>
-//         {!isUser && <MessageActions />}
-//       </div>
-//     </article>
-//   );
-// }
 
 type ActionButtonProps = {
   icon: React.ReactNode;

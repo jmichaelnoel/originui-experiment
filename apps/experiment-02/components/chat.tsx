@@ -108,17 +108,7 @@ export default function Chat() {
             </ChatMessage>
             <ChatMessage isUser>
               <p>All clear, thank you!</p>
-            </ChatMessage>
-            <ChatMessage isUser>
-              <p>
-                AI agents are software that perceive their environment and act
-                autonomously to achieve goals, making decisions, learning, and
-                interacting. For example, an AI agent might schedule meetings by
-                resolving conflicts, contacting participants, and finding
-                optimal times—all without constant supervision.
-              </p>
-              <p>Let me know if you&lsquo;d like more details!</p>
-            </ChatMessage>            
+            </ChatMessage>       
             <div ref={messagesEndRef} aria-hidden="true" />
           </div>
         </div>
