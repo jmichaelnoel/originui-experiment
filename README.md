@@ -1,8 +1,8 @@
 # UI Experiments
 
-**Dark Table Demo:** [https://ui-experiments-green.vercel.app/](https://ui-experiments-green.vercel.app/)
-
 **AI Chat Demo:** [https://ui-experiment-02.vercel.app/](https://ui-experiment-02.vercel.app/)
+
+**Dark Table Demo:** [https://ui-experiments-green.vercel.app/](https://ui-experiments-green.vercel.app/)
 
 # shadcn/ui monorepo template
 
