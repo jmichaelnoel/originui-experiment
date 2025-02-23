@@ -765,7 +765,8 @@ function RowActions({
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => setShowDeleteDialog(true)}
-            className="text-destructive focus:text-destructive"
+            variant="destructive"
+            className="dark:data-[variant=destructive]:focus:bg-destructive/10"
           >
             Delete
           </DropdownMenuItem>
@@ -788,7 +789,7 @@ function RowActions({
             <AlertDialogAction
               onClick={handleDelete}
               disabled={isUpdatePending}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40"
             >
               Delete
             </AlertDialogAction>
