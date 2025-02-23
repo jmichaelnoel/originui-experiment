@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/registry/default/ui/tooltip";
+} from "@/components/ui/tooltip";
 
 function Slider({
   className,
@@ -66,7 +66,7 @@ function Slider({
     const thumb = (
       <SliderPrimitive.Thumb
         data-slot="slider-thumb"
-        className="border-primary bg-background ring-ring/50 block size-4 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] outline-none hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
+        className="bg-background ring-ring/50 block size-4 shrink-0 rounded-full shadow-sm transition-[color,box-shadow] outline-none hover:ring-4 focus-visible:ring-4 disabled:pointer-events-none disabled:opacity-50"
         onPointerDown={handlePointerDown}
       />
     );
@@ -116,8 +116,8 @@ function Slider({
           )}
         />
       </SliderPrimitive.Track>
-      {Array.from({ length: internalValues.length }, (_, index) => (
-        <React.Fragment key={index}>{renderThumb(internalValues[index])}</React.Fragment>
+      {internalValues.map((value, index) => (
+        <React.Fragment key={index}>{renderThumb(value)}</React.Fragment>
       ))}
     </SliderPrimitive.Root>
   );

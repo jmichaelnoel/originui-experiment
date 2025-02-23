@@ -2,6 +2,7 @@
 
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { RiExpandUpDownLine } from "@remixicon/react";
 import * as React from "react";
 
 import { cn } from "@workspace/ui/lib/utils";
@@ -34,9 +35,10 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon
+        <RiExpandUpDownLine
           size={16}
-          className="text-muted-foreground/80 in-aria-invalid:text-destructive/80 shrink-0"
+          strokeWidth={2}
+          className="shrink-0 text-muted-foreground/80"
         />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>

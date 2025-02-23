@@ -221,7 +221,7 @@ function Sidebar({
       >
         <div
           data-sidebar="sidebar"
-          className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm"
+          className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-md group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm"
         >
           {children}
         </div>
@@ -253,9 +253,9 @@ function SidebarTrigger({
       {...props}
     >
       {open ? (
-        <RiSkipLeftLine size={22} aria-hidden="true" />
+        <RiSkipLeftLine className="size-5.5" size={22} aria-hidden="true" />
       ) : (
-        <RiSkipRightLine size={22} aria-hidden="true" />
+        <RiSkipRightLine className="size-5.5" size={22} aria-hidden="true" />
       )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>

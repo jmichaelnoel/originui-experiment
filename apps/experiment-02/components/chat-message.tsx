@@ -74,7 +74,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
 
 function MessageActions() {
   return (
-    <div className="relative inline-flex bg-white rounded-lg border border-black/[0.08] shadow-sm -space-x-px">
+    <div className="relative inline-flex bg-white rounded-md border border-black/[0.08] shadow-sm -space-x-px">
       <TooltipProvider delayDuration={0}>
         <ActionButton icon={<RiCodeSSlashLine size={16} />} label="Show code" />
         <ActionButton icon={<RiBookLine size={16} />} label="Bookmark" />

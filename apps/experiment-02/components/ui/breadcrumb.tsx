@@ -1,5 +1,5 @@
 import { Slot } from "@radix-ui/react-slot";
-import { ChevronRightIcon, MoreHorizontal } from "lucide-react";
+import { ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "@workspace/ui/lib/utils";
@@ -85,7 +85,7 @@ function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<"span"
       className={cn("flex size-5 items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal size={16} />
+      <MoreHorizontalIcon size={16} />
       <span className="sr-only">More</span>
     </span>
   );
