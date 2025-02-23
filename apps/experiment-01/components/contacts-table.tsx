@@ -398,7 +398,7 @@ export default function ContactsTable() {
               id={`${id}-input`}
               ref={inputRef}
               className={cn(
-                "peer min-w-60 ps-9 bg-gradient-to-br from-accent/60 to-accent",
+                "peer min-w-60 ps-9 bg-background bg-gradient-to-br from-accent/60 to-accent",
                 Boolean(table.getColumn("name")?.getFilterValue()) && "pe-9",
               )}
               value={
@@ -416,7 +416,7 @@ export default function ContactsTable() {
             </div>
             {Boolean(table.getColumn("name")?.getFilterValue()) && (
               <button
-                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/60 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-lg text-muted-foreground/60 outline-offset-2 transition-colors hover:text-foreground focus:z-10 focus-visible:outline-2 focus-visible:outline-ring/70 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Clear filter"
                 onClick={() => {
                   table.getColumn("name")?.setFilterValue("");
@@ -438,12 +438,12 @@ export default function ContactsTable() {
               <AlertDialogTrigger asChild>
                 <Button className="ml-auto" variant="outline">
                   <RiDeleteBinLine
-                    className="-ms-1 me-2 opacity-60"
+                    className="-ms-1 opacity-60"
                     size={16}
                     aria-hidden="true"
                   />
                   Delete
-                  <span className="-me-1 ms-3 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70">
+                  <span className="-me-1 ms-1 inline-flex h-5 max-h-full items-center rounded border border-border bg-background px-1 font-[inherit] text-[0.625rem] font-medium text-muted-foreground/70">
                     {table.getSelectedRowModel().rows.length}
                   </span>
                 </Button>
@@ -484,7 +484,7 @@ export default function ContactsTable() {
             <PopoverTrigger asChild>
               <Button variant="outline">
                 <RiFilter3Line
-                  className="-ms-1.5 me-2 text-muted-foreground/60"
+                  className="size-5 -ms-1.5 text-muted-foreground/60"
                   size={20}
                   aria-hidden="true"
                 />
@@ -496,7 +496,7 @@ export default function ContactsTable() {
                 )}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="min-w-36 p-3" align="end">
+            <PopoverContent className="w-auto min-w-36 p-3" align="end">
               <div className="space-y-3">
                 <div className="text-xs font-medium uppercase text-muted-foreground/60">
                   Status
@@ -529,8 +529,8 @@ export default function ContactsTable() {
           {/* New filter button */}
           <Button variant="outline">
             <RiBardLine
-              className="-ms-1.5 me-2 text-muted-foreground/60"
-              size={18}
+              className="size-5 -ms-1.5 text-muted-foreground/60"
+              size={20}
               aria-hidden="true"
             />
             New Filter
@@ -741,11 +741,11 @@ function RowActions({
               className="shadow-none text-muted-foreground/60"
               aria-label="Edit item"
             >
-              <RiMoreLine size={20} aria-hidden="true" />
+              <RiMoreLine className="size-5" size={20} aria-hidden="true" />
             </Button>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="w-auto">
           <DropdownMenuGroup>
             <DropdownMenuItem
               onClick={handleStatusToggle}

@@ -97,7 +97,7 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-model`}
-                  className="w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
                 >
                   <SelectValue placeholder="Select model" />
                 </SelectTrigger>
@@ -124,7 +124,7 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-response-format`}
-                  className="w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
                 >
                   <SelectValue placeholder="Select response format" />
                 </SelectTrigger>
@@ -147,7 +147,7 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-writing-style`}
-                  className="w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
                 >
                   <SelectValue placeholder="Select writing style" />
                 </SelectTrigger>
@@ -172,7 +172,7 @@ const SettingsPanelContent = () => {
               <Select defaultValue="1">
                 <SelectTrigger
                   id={`${id}-mode`}
-                  className="w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
+                  className="bg-background w-auto max-w-full h-7 py-1 px-2 gap-1 [&_svg]:-me-1 border-none"
                 >
                   <SelectValue placeholder="Select mode" />
                 </SelectTrigger>
@@ -281,7 +281,7 @@ const SettingsPanelTrigger = ({
       }}
     >
       <RiSettingsLine
-        className="sm:me-2 text-muted-foreground sm:text-muted-foreground/70"
+        className="text-muted-foreground sm:text-muted-foreground/70 size-5"
         size={20}
         aria-hidden="true"
       />

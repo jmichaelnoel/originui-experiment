@@ -50,7 +50,7 @@ export default function Chat() {
             <div className="flex items-center gap-1 -my-2 -me-2">
               <Button variant="ghost" className="px-2">
                 <RiCodeSSlashLine
-                  className="sm:me-2 text-muted-foreground sm:text-muted-foreground/70"
+                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
                   size={20}
                   aria-hidden="true"
                 />
@@ -58,7 +58,7 @@ export default function Chat() {
               </Button>
               <Button variant="ghost" className="px-2">
                 <RiShareLine
-                  className="sm:me-2 text-muted-foreground sm:text-muted-foreground/70"
+                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
                   size={20}
                   aria-hidden="true"
                 />
@@ -66,7 +66,7 @@ export default function Chat() {
               </Button>
               <Button variant="ghost" className="px-2">
                 <RiShareCircleLine
-                  className="sm:me-2 text-muted-foreground sm:text-muted-foreground/70"
+                  className="text-muted-foreground sm:text-muted-foreground/70 size-5"
                   size={20}
                   aria-hidden="true"
                 />
@@ -80,14 +80,14 @@ export default function Chat() {
         <div className="relative grow">
           <div className="max-w-3xl mx-auto mt-6 space-y-6">
             <div className="text-center my-8">
-              <div className="inline-flex items-center bg-white rounded-full border border-black/[0.08] shadow-sm text-xs font-medium py-1 px-3 text-foreground/80">
+              <div className="inline-flex items-center bg-white rounded-full border border-black/[0.08] shadow-xs text-xs font-medium py-1 px-3 text-foreground/80">
                 <RiShining2Line
                   className="me-1.5 text-muted-foreground/70 -ms-1"
                   size={14}
                   aria-hidden="true"
                 />
-                Today          
-              </div>            
+                Today
+              </div>
             </div>
             <ChatMessage isUser>
               <p>Hey Bolt, can you tell me more about AI Agents?</p>
@@ -104,12 +104,12 @@ export default function Chat() {
             </ChatMessage>
             <ChatMessage isUser>
               <p>All clear, thank you!</p>
-            </ChatMessage>       
+            </ChatMessage>
             <div ref={messagesEndRef} aria-hidden="true" />
           </div>
         </div>
         {/* Footer */}
-        <div className="sticky bottom-0 pt-4 md:pt-8">
+        <div className="sticky bottom-0 pt-4 md:pt-8 z-9999">
           <div className="max-w-3xl mx-auto bg-background rounded-[20px] pb-4 md:pb-8">
             <div className="relative rounded-[20px] border border-transparent bg-muted transition-colors focus-within:bg-muted/50 focus-within:border-input has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 [&:has(input:is(:disabled))_*]:pointer-events-none">
               <textarea
@@ -127,7 +127,7 @@ export default function Chat() {
                     className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <RiAttachment2
-                      className="text-muted-foreground/70"
+                      className="text-muted-foreground/70 size-5"
                       size={20}
                       aria-hidden="true"
                     />
@@ -139,7 +139,7 @@ export default function Chat() {
                     className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <RiMicLine
-                      className="text-muted-foreground/70"
+                      className="text-muted-foreground/70 size-5"
                       size={20}
                       aria-hidden="true"
                     />
@@ -151,7 +151,7 @@ export default function Chat() {
                     className="rounded-full size-8 border-none hover:bg-background hover:shadow-md transition-[box-shadow]"
                   >
                     <RiLeafLine
-                      className="text-muted-foreground/70"
+                      className="text-muted-foreground/70 size-5"
                       size={20}
                       aria-hidden="true"
                     />
