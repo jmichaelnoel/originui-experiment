@@ -23,13 +23,13 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
     <article
       className={cn(
         "flex items-start gap-4 text-[15px] leading-relaxed",
-        isUser && "justify-end"
+        isUser && "justify-end",
       )}
     >
       <Image
         className={cn(
           "rounded-full",
-          isUser ? "order-1" : "border border-black/[0.08] shadow-sm"
+          isUser ? "order-1" : "border border-black/[0.08] shadow-sm",
         )}
         src={isUser ? "/user-02.png" : "/user-01.png"}
         alt={isUser ? "User profile" : "Bart logo"}
@@ -37,9 +37,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
         height={40}
       />
       <div
-        className={cn(
-          isUser ? "bg-muted px-4 py-3 rounded-xl" : "space-y-4"
-        )}
+        className={cn(isUser ? "bg-muted px-4 py-3 rounded-xl" : "space-y-4")}
       >
         <div className="flex flex-col gap-3">
           <p className="sr-only">{isUser ? "You" : "Bart"} said:</p>

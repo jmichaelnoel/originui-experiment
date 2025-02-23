@@ -262,10 +262,7 @@ function SidebarTrigger({
   );
 }
 
-function SidebarRail({
-  className,
-  ...props
-}: React.ComponentProps<"button">) {
+function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
   const { toggleSidebar } = useSidebar();
 
   return (
@@ -289,10 +286,7 @@ function SidebarRail({
   );
 }
 
-function SidebarInset({
-  className,
-  ...props
-}: React.ComponentProps<"main">) {
+function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
   return (
     <main
       className={cn(
@@ -318,10 +312,7 @@ function SidebarInput({
   );
 }
 
-function SidebarHeader({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-sidebar="header"
@@ -331,10 +322,7 @@ function SidebarHeader({
   );
 }
 
-function SidebarFooter({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-sidebar="footer"
@@ -373,10 +361,7 @@ function SidebarContent({
   );
 }
 
-function SidebarGroup({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-sidebar="group"
@@ -440,10 +425,7 @@ function SidebarGroupContent({
   );
 }
 
-function SidebarMenu({
-  className,
-  ...props
-}: React.ComponentProps<"ul">) {
+function SidebarMenu({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-sidebar="menu"
@@ -453,10 +435,7 @@ function SidebarMenu({
   );
 }
 
-function SidebarMenuItem({
-  className,
-  ...props
-}: React.ComponentProps<"li">) {
+function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
       data-sidebar="menu-item"
@@ -624,10 +603,7 @@ function SidebarMenuSkeleton({
   );
 }
 
-function SidebarMenuSub({
-  className,
-  ...props
-}: React.ComponentProps<"ul">) {
+function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
   return (
     <ul
       data-sidebar="menu-sub"

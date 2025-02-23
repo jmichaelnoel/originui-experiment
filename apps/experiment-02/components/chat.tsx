@@ -86,8 +86,8 @@ export default function Chat() {
                   size={14}
                   aria-hidden="true"
                 />
-                Today          
-              </div>            
+                Today
+              </div>
             </div>
             <ChatMessage isUser>
               <p>Hey Bolt, can you tell me more about AI Agents?</p>
@@ -104,7 +104,7 @@ export default function Chat() {
             </ChatMessage>
             <ChatMessage isUser>
               <p>All clear, thank you!</p>
-            </ChatMessage>       
+            </ChatMessage>
             <div ref={messagesEndRef} aria-hidden="true" />
           </div>
         </div>

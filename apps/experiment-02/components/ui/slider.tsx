@@ -25,7 +25,11 @@ function Slider({
   tooltipContent?: (value: number) => React.ReactNode;
 }) {
   const [internalValues, setInternalValues] = React.useState<number[]>(
-    Array.isArray(value) ? value : Array.isArray(defaultValue) ? defaultValue : [min, max],
+    Array.isArray(value)
+      ? value
+      : Array.isArray(defaultValue)
+        ? defaultValue
+        : [min, max],
   );
 
   React.useEffect(() => {
