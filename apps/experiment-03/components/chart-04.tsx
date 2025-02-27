@@ -25,24 +25,24 @@ import { CustomTooltipContent } from "@/components/charts-extra"
 import { Badge } from "@/components/ui/badge";
 // Subscriber data for the last 12 months
 const chartData = [
-  { month: "Jan 2025", actual: 5000, projected: 2000 },
-  { month: "Feb 2025", actual: 10000, projected: 8000 },
-  { month: "Mar 2025", actual: 15000, projected: 22000 },
-  { month: "Apr 2025", actual: 22000, projected: 15000 },
-  { month: "May 2025", actual: 20000, projected: 25000 },
-  { month: "Jun 2025", actual: 35000, projected: 45000 },
-  { month: "Jul 2025", actual: 30000, projected: 25000 },
-  { month: "Aug 2025", actual: 60000, projected: 70000 },
-  { month: "Sep 2025", actual: 65000, projected: 75000 },
-  { month: "Oct 2025", actual: 60000, projected: 80000 },
-  { month: "Nov 2025", actual: 70000, projected: 65000 },
-  { month: "Dec 2025", actual: 78000, projected: 75000 },
+  { month: "Jan 2025", actual: 1000, projected: 500 },
+  { month: "Feb 2025", actual: 3500, projected: 2000 },
+  { month: "Mar 2025", actual: 10000, projected: 3500 },
+  { month: "Apr 2025", actual: 9000, projected: 5000 },
+  { month: "May 2025", actual: 15000, projected: 7000 },
+  { month: "Jun 2025", actual: 17000, projected: 8000 },
+  { month: "Jul 2025", actual: 16000, projected: 10000 },
+  { month: "Aug 2025", actual: 18000, projected: 11000 },
+  { month: "Sep 2025", actual: 9000, projected: 12500 },
+  { month: "Oct 2025", actual: 16000, projected: 8000 },
+  { month: "Nov 2025", actual: 22000, projected: 9000 },
+  { month: "Dec 2025", actual: 15000, projected: 14000 },
 ]
 
 const chartConfig = {
   actual: {
     label: "Actual",
-    color: "var(--chart-1)",
+    color: "var(--chart-4)",
   },
   projected: {
     label: "Projected",
@@ -84,7 +84,7 @@ function CustomCursor(props: any) {
   );
 }
 
-export function Chart02() {
+export function Chart04() {
   const id = useId()
 
   return (
@@ -92,17 +92,17 @@ export function Chart02() {
       <CardHeader>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="space-y-0.5">
-            <CardTitle>Active Subscribers</CardTitle>
+            <CardTitle>Refunds</CardTitle>
             <div className="flex items-start gap-2">
-            <div className="font-semibold text-2xl">142,869</div>
-            <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
-              +24.7%
+            <div className="font-semibold text-2xl">$42,379</div>
+            <Badge className="mt-1.5 bg-rose-500/24 text-rose-500 border-none">
+              +3.9%
             </Badge>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
-            <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-1"></div>
+            <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-4"></div>
             <div className="text-[13px]/3 text-muted-foreground/50">Actual</div>
           </div>
           <div className="flex items-center gap-2">
@@ -113,7 +113,7 @@ export function Chart02() {
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-1)/15 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-ring">
+        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-4)/10 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-ring">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -121,8 +121,8 @@ export function Chart02() {
           >
             <defs>
               <linearGradient id={`${id}-gradient`} x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="var(--chart-2)" />
-                <stop offset="100%" stopColor="var(--chart-1)" />
+                <stop offset="0%" stopColor="var(--chart-5)" />
+                <stop offset="100%" stopColor="var(--chart-4)" />
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--border)" />
@@ -153,14 +153,14 @@ export function Chart02() {
             <ChartTooltip
               content={
                 <CustomTooltipContent 
-                  mainColor="var(--chart-1)" 
+                  mainColor="var(--chart-4)" 
                   secondaryColor="var(--chart-3)" 
                   mainDataKey="actual"
                   mainLabel="Actual"
                   secondaryLabel="Projected"
                 />
               }
-              cursor={<CustomCursor fill="var(--chart-1)" />}
+              cursor={<CustomCursor fill="var(--chart-4)" />}
             />
             <Line
               type="linear"
@@ -168,7 +168,7 @@ export function Chart02() {
               stroke={`url(#${id}-gradient)`}
               strokeWidth={2}
               dot={false}
-              activeDot={{ r: 5, fill: "var(--chart-1)", stroke: "var(--background)", strokeWidth: 2 }}
+              activeDot={{ r: 5, fill: "var(--chart-4)", stroke: "var(--background)", strokeWidth: 2 }}
             />
           </LineChart>
         </ChartContainer>

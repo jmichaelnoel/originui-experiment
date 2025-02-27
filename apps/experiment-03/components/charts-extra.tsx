@@ -1,14 +1,31 @@
 import { TooltipProps } from "recharts";
 
-export function CustomTooltipContent({ active, payload, label }: TooltipProps<number, string>) {
+interface CustomTooltipContentProps extends TooltipProps<number, string> {
+  mainColor?: string;
+  secondaryColor?: string;
+  mainDataKey?: string;
+  mainLabel?: string;
+  secondaryLabel?: string;
+}
+
+export function CustomTooltipContent({ 
+  active, 
+  payload, 
+  label,
+  mainColor = "var(--chart-1)",
+  secondaryColor = "var(--chart-3)",
+  mainDataKey = "actual",
+  mainLabel = "Actual",
+  secondaryLabel = "Projected"
+}: CustomTooltipContentProps) {
   if (!active || !payload || !payload.length) {
     return null;
   }
   
-  // Sort the payload to ensure "actual" comes first
+  // Sort the payload to ensure main data key comes first
   const sortedPayload = [...payload].sort((a, b) => {
-    if (a.dataKey === "actual") return -1;
-    if (b.dataKey === "actual") return 1;
+    if (a.dataKey === mainDataKey) return -1;
+    if (b.dataKey === mainDataKey) return 1;
     return 0;
   });
   
@@ -19,6 +36,7 @@ export function CustomTooltipContent({ active, payload, label }: TooltipProps<nu
         {sortedPayload.map((entry, index) => {
           const name = entry.dataKey as string;
           const value = entry.value as number;
+          const isMainSeries = name === mainDataKey;
           
           return (
             <div key={`item-${index}`} className="flex items-center justify-between gap-3">
@@ -26,11 +44,11 @@ export function CustomTooltipContent({ active, payload, label }: TooltipProps<nu
                 <div 
                   className="size-2 rounded-xs" 
                   style={{ 
-                    backgroundColor: name === "actual" ? "var(--chart-1)" : "var(--chart-3)" 
+                    backgroundColor: isMainSeries ? mainColor : secondaryColor 
                   }}
                 />
                 <span className="text-muted-foreground">
-                  {name === "actual" ? "Actual" : "Projected"}
+                  {isMainSeries ? mainLabel : secondaryLabel}
                 </span>
               </div>
               <span className="text-foreground font-mono font-medium tabular-nums">

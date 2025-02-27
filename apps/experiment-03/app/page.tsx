@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar"
 import { Chart01 } from "@/components/chart-01"
 import { Chart02 } from "@/components/chart-02"
+import { Chart04 } from "@/components/chart-04"
 
 export default function Page() {
   return (
@@ -48,6 +49,7 @@ export default function Page() {
             <div className="grid auto-rows-min gap-4 md:grid-cols-2">
               <Chart01 />
               <Chart02 />
+              <Chart04 />
             </div>
             <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
           </div>
