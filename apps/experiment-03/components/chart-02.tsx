@@ -20,10 +20,9 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/chart"
+import { CustomTooltipContent } from "@/components/charts-extra"
 import { Badge } from "@/components/ui/badge";
-
 // Subscriber data for the last 12 months
 const chartData = [
   { month: "Jan 2025", actual: 5000, projected: 2000 },
@@ -114,11 +113,11 @@ export function Chart02() {
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-48 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-primary/15 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-ring">
+        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-primary/15 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-ring">
           <LineChart
             accessibilityLayer
             data={chartData}
-            margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+            margin={{ left: -12, right: 12, top: 12 }}
           >
             <defs>
               <linearGradient id={`${id}-gradient`} x1="0" y1="0" x2="1" y2="0">
@@ -154,7 +153,7 @@ export function Chart02() {
               activeDot={false}
             />
             <ChartTooltip
-              content={<ChartTooltipContent />}
+              content={<CustomTooltipContent />}
               cursor={<CustomCursor fill="var(--chart-1)" />}
             />
             <Line

@@ -13,8 +13,8 @@ import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-  ChartTooltipContent,
 } from "@/components/ui/chart"
+import { CustomTooltipContent } from "@/components/charts-extra"
 import { Badge } from "@/components/ui/badge";
 
 const chartData = [
@@ -52,21 +52,24 @@ export function Chart01() {
 
   return (
     <Card>
-      <CardHeader className="space-y-0.5">
-        <CardTitle>Monthly Recurring Revenue</CardTitle>
-        <div className="flex items-start gap-2">
-          <div className="font-semibold text-2xl">$1,439,346</div>
-          <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
-            +48.1%
-          </Badge>
+      <CardHeader>
+        <div className="space-y-0.5">
+          <CardTitle>Monthly Recurring Revenue</CardTitle>
+          <div className="flex items-start gap-2">
+            <div className="font-semibold text-2xl">$1,439,346</div>
+            <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
+              +48.1%
+            </Badge>
+          </div>
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-48 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15">
+        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15">
           <BarChart 
             accessibilityLayer 
             data={chartData} 
             maxBarSize={20}
+            margin={{ left: -12, right: 12, top: 12 }}
           >
             <defs>
               <linearGradient id={`${id}-gradient`} x1="0" y1="0" x2="0" y2="1">
@@ -87,7 +90,7 @@ export function Chart01() {
               axisLine={false}
               tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} // Format as $X.XM
             />
-            <ChartTooltip content={<ChartTooltipContent />} />
+            <ChartTooltip content={<CustomTooltipContent />} />
             <Bar
               dataKey="actual"
               fill={`url(#${id}-gradient)`}
