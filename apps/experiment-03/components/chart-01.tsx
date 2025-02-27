@@ -1,87 +1,98 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { useId } from "react"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import {
   ChartConfig,
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Jan 2025", actual: 300000, projected: 120000 },
+  { month: "Feb 2025", actual: 420000, projected: 180000 },
+  { month: "Mar 2025", actual: 500000, projected: 90000 },
+  { month: "Apr 2025", actual: 630000, projected: 110000 },
+  { month: "May 2025", actual: 710000, projected: 120000 },
+  { month: "Jun 2025", actual: 800000, projected: 100000 },
+  { month: "Jul 2025", actual: 900000, projected: 140000 },
+  { month: "Aug 2025", actual: 1010000, projected: 120000 },
+  { month: "Sep 2025", actual: 1090000, projected: 130000 },
+  { month: "Oct 2025", actual: 1180000, projected: 110000 },
+  { month: "Nov 2025", actual: 1280000, projected: 130000 },
+  { month: "Dec 2025", actual: 1380000, projected: 100000 },
 ]
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  actual: {
+    label: "Actual",
     color: "var(--chart-1)",
   },
-  mobile: {
-    label: "Mobile",
-    color: "var(--chart-2)",
+  projected: {
+    label: "Projected",
+    color: "var(--chart-3)",
   },
 } satisfies ChartConfig
 
 export function Chart01() {
+  const id = useId()
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Bar Chart - Stacked + Legend</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle className="text-white">Monthly Recurring Revenue</CardTitle>
+        <div>
+          <div className="font-semibold text-2xl">$1,439,346</div>
+        </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
+        <ChartContainer config={chartConfig} className="aspect-auto h-48 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15">
+          <BarChart 
+            accessibilityLayer 
+            data={chartData} 
+            maxBarSize={20}
+          >
+            <defs>
+              <linearGradient id={`${id}-gradient`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="var(--chart-1)" />
+                <stop offset="100%" stopColor="var(--chart-2)" />
+              </linearGradient>
+            </defs>            
+            <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--border)" />
             <XAxis
               dataKey="month"
               tickLine={false}
-              tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickMargin={12}
+              ticks={["Jan 2025", "Dec 2025"]}
+            />
+            <YAxis 
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} // Format as $X.XM
             />
             <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <ChartLegend content={<ChartLegendContent />} />
             <Bar
-              dataKey="desktop"
+              dataKey="actual"
+              fill={`url(#${id}-gradient)`}
               stackId="a"
-              fill="var(--color-desktop)"
-              radius={[0, 0, 4, 4]}
             />
             <Bar
-              dataKey="mobile"
+              dataKey="projected"
+              fill="var(--color-projected)"
               stackId="a"
-              fill="var(--color-mobile)"
-              radius={[4, 4, 0, 0]}
             />
           </BarChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
-        <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
-        </div>
-      </CardFooter>
     </Card>
   )
 }
