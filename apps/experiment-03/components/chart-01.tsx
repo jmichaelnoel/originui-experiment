@@ -15,6 +15,8 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { Badge } from "@/components/ui/badge";
+
 const chartData = [
   { month: "Jan 2025", actual: 300000, projected: 120000 },
   { month: "Feb 2025", actual: 420000, projected: 180000 },
@@ -50,10 +52,13 @@ export function Chart01() {
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-white">Monthly Recurring Revenue</CardTitle>
-        <div>
+      <CardHeader className="space-y-0.5">
+        <CardTitle>Monthly Recurring Revenue</CardTitle>
+        <div className="flex items-start gap-2">
           <div className="font-semibold text-2xl">$1,439,346</div>
+          <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
+            +48.1%
+          </Badge>
         </div>
       </CardHeader>
       <CardContent>
@@ -73,16 +78,16 @@ export function Chart01() {
             <XAxis
               dataKey="month"
               tickLine={false}
-              axisLine={false}
               tickMargin={12}
               ticks={[firstMonth, lastMonth]}
+              stroke="var(--border)"
             />
             <YAxis 
               tickLine={false}
               axisLine={false}
               tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} // Format as $X.XM
             />
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+            <ChartTooltip content={<ChartTooltipContent />} />
             <Bar
               dataKey="actual"
               fill={`url(#${id}-gradient)`}

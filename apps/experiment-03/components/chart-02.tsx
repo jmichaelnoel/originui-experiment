@@ -22,6 +22,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+import { Badge } from "@/components/ui/badge";
 
 // Subscriber data for the last 12 months
 const chartData = [
@@ -58,55 +59,57 @@ function CustomCursor(props: any) {
   const { x, y } = points[0];
   return (
     <>
-    <Rectangle
-      x={x - 12}
-      y={y}
-      fill={fill}
-      pointerEvents={pointerEvents}
-      width={24}
+      <Rectangle
+        x={x - 12}
+        y={y}
+        fill={fill}
+        pointerEvents={pointerEvents}
+        width={24}
         height={height}
         points={points}
         className={className}
         type="linear"
       />
-    <Rectangle
-      x={x - 1}
-      y={y}
-      fill={fill}
-      pointerEvents={pointerEvents}
-      width={1}
-      height={height}
-      points={points}
-      className="recharts-tooltip-inner-cursor"
+      <Rectangle
+        x={x - 1}
+        y={y}
+        fill={fill}
+        pointerEvents={pointerEvents}
+        width={1}
+        height={height}
+        points={points}
+        className="recharts-tooltip-inner-cursor"
         type="linear"
-      />       
+      />
     </>
   );
 }
 
 export function Chart02() {
   const id = useId()
-  const actualSubscribers = 142869
-  const growthPercentage = 24.7
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Active Subscribers</CardTitle>
-        <div className="flex items-center gap-2">
-          <div className="font-semibold text-2xl">{actualSubscribers.toLocaleString()}</div>
-          <div className="rounded-full bg-emerald-900/60 px-2 py-1 text-xs font-medium text-emerald-400">
-            +{growthPercentage}%
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="space-y-0.5">
+            <CardTitle>Active Subscribers</CardTitle>
+            <div className="flex items-start gap-2">
+            <div className="font-semibold text-2xl">142,869</div>
+            <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
+              +24.7%
+            </Badge>
           </div>
         </div>
-        <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-1.5">
-            <div className="h-3 w-3 rounded-full bg-[var(--chart-1)]"></div>
-            <div className="text-muted-foreground">Actual</div>
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-1"></div>
+            <div className="text-[13px]/3 text-muted-foreground/50">Actual</div>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="h-3 w-3 rounded-full bg-[var(--chart-3)]"></div>
-            <div className="text-muted-foreground">Projected</div>
+          <div className="flex items-center gap-2">
+            <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-3"></div>
+            <div className="text-[13px]/3 text-muted-foreground/50">Projected</div>
+            </div>
           </div>
         </div>
       </CardHeader>
@@ -126,10 +129,10 @@ export function Chart02() {
             <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--border)" />
             <XAxis
               dataKey="month"
-              axisLine={false}
               tickLine={false}
               tickMargin={12}
               tickFormatter={(value) => value.slice(0, 3)}
+              stroke="var(--border)"
             />
             <YAxis
               axisLine={false}
@@ -151,9 +154,9 @@ export function Chart02() {
               activeDot={false}
             />
             <ChartTooltip
-              content={<ChartTooltipContent hideLabel />}
-              cursor={<CustomCursor fill="var(--chart-1)" stroke="var(--chart-1)" />}
-            />            
+              content={<ChartTooltipContent />}
+              cursor={<CustomCursor fill="var(--chart-1)" />}
+            />
             <Line
               type="linear"
               dataKey="actual"
