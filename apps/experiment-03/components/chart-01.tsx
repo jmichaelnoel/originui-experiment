@@ -6,7 +6,6 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -45,6 +44,10 @@ const chartConfig = {
 export function Chart01() {
   const id = useId()
 
+  // Get first and last month with type assertions
+  const firstMonth = chartData[0]?.month as string
+  const lastMonth = chartData[chartData.length - 1]?.month as string  
+
   return (
     <Card>
       <CardHeader>
@@ -72,7 +75,7 @@ export function Chart01() {
               tickLine={false}
               axisLine={false}
               tickMargin={12}
-              ticks={["Jan 2025", "Dec 2025"]}
+              ticks={[firstMonth, lastMonth]}
             />
             <YAxis 
               tickLine={false}
@@ -84,12 +87,12 @@ export function Chart01() {
               dataKey="actual"
               fill={`url(#${id}-gradient)`}
               stackId="a"
-            />
+            />             
             <Bar
               dataKey="projected"
               fill="var(--color-projected)"
               stackId="a"
-            />
+            />           
           </BarChart>
         </ChartContainer>
       </CardContent>
