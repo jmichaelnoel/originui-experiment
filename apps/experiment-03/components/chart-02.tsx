@@ -94,20 +94,20 @@ export function Chart02() {
           <div className="space-y-0.5">
             <CardTitle>Active Subscribers</CardTitle>
             <div className="flex items-start gap-2">
-            <div className="font-semibold text-2xl">142,869</div>
-            <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
-              +24.7%
-            </Badge>
+              <div className="font-semibold text-2xl">142,869</div>
+              <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
+                +24.7%
+              </Badge>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-1"></div>
-            <div className="text-[13px]/3 text-muted-foreground/50">Actual</div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-3"></div>
-            <div className="text-[13px]/3 text-muted-foreground/50">Projected</div>
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-1"></div>
+              <div className="text-[13px]/3 text-muted-foreground/50">Actual</div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-3"></div>
+              <div className="text-[13px]/3 text-muted-foreground/50">Projected</div>
             </div>
           </div>
         </div>
@@ -152,9 +152,9 @@ export function Chart02() {
             />
             <ChartTooltip
               content={
-                <CustomTooltipContent 
-                  mainColor="var(--chart-1)" 
-                  secondaryColor="var(--chart-3)" 
+                <CustomTooltipContent
+                  mainColor="var(--chart-1)"
+                  secondaryColor="var(--chart-3)"
                   mainDataKey="actual"
                   mainLabel="Actual"
                   secondaryLabel="Projected"

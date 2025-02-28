@@ -138,7 +138,7 @@ export function Chart04() {
               tickLine={false}
               tickFormatter={(value) => {
                 if (value === 0) return "$0"
-                return `${value / 1000}k`
+                return `$${value / 1000}k`
               }}
               interval="preserveStartEnd"
             />

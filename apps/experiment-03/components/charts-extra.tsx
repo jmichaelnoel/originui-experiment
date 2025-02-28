@@ -52,7 +52,7 @@ export function CustomTooltipContent({
                 </span>
               </div>
               <span className="text-foreground font-mono font-medium tabular-nums">
-                {value.toLocaleString()}
+                ${value.toLocaleString()}
               </span>
             </div>
           );
