@@ -1,58 +1,69 @@
 import { TooltipProps } from "recharts";
 
 interface CustomTooltipContentProps extends TooltipProps<number, string> {
-  mainColor?: string;
-  secondaryColor?: string;
-  mainDataKey?: string;
-  mainLabel?: string;
-  secondaryLabel?: string;
+  colorMap?: Record<string, string>;
+  labelMap?: Record<string, string>;
+  // Optional array to define display order
+  dataKeys?: string[];
+  // Optional formatter for values
+  valueFormatter?: (value: number) => string;
 }
 
 export function CustomTooltipContent({ 
   active, 
   payload, 
   label,
-  mainColor = "var(--chart-1)",
-  secondaryColor = "var(--chart-3)",
-  mainDataKey = "actual",
-  mainLabel = "Actual",
-  secondaryLabel = "Projected"
+  colorMap = {},
+  labelMap = {},
+  dataKeys, // If provided, will be used to order the items
+  valueFormatter = (value) => `$${value.toLocaleString()}`
 }: CustomTooltipContentProps) {
   if (!active || !payload || !payload.length) {
     return null;
   }
   
-  // Sort the payload to ensure main data key comes first
-  const sortedPayload = [...payload].sort((a, b) => {
-    if (a.dataKey === mainDataKey) return -1;
-    if (b.dataKey === mainDataKey) return 1;
-    return 0;
-  });
+  // Create a map of payload items by dataKey for easy lookup
+  const payloadMap = payload.reduce((acc, item) => {
+    acc[item.dataKey as string] = item;
+    return acc;
+  }, {} as Record<string, typeof payload[0]>);
+  
+  // If dataKeys is provided, use it to order the items
+  // Otherwise, use the original payload order
+  const orderedPayload = dataKeys 
+    ? dataKeys
+        .filter(key => payloadMap[key]) // Only include keys that exist in the payload
+        .map(key => payloadMap[key])
+    : payload;
   
   return (
     <div className="border-border/50 bg-background grid min-w-32 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl">
       <div className="font-medium">{label}</div>
       <div className="grid gap-1.5">
-        {sortedPayload.map((entry, index) => {
+        {orderedPayload.map((entry, index) => {
+          // Skip undefined entries
+          if (!entry) return null;
+          
           const name = entry.dataKey as string;
           const value = entry.value as number;
-          const isMainSeries = name === mainDataKey;
+          
+          // Get color and label from maps, with fallbacks
+          const color = colorMap[name] || "var(--chart-1)";
+          const displayLabel = labelMap[name] || name;
           
           return (
             <div key={`item-${index}`} className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-2">
                 <div 
                   className="size-2 rounded-xs" 
-                  style={{ 
-                    backgroundColor: isMainSeries ? mainColor : secondaryColor 
-                  }}
+                  style={{ backgroundColor: color }}
                 />
                 <span className="text-muted-foreground">
-                  {isMainSeries ? mainLabel : secondaryLabel}
+                  {displayLabel}
                 </span>
               </div>
               <span className="text-foreground font-mono font-medium tabular-nums">
-                ${value.toLocaleString()}
+                {valueFormatter(value)}
               </span>
             </div>
           );

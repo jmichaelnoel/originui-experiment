@@ -153,15 +153,20 @@ export function Chart02() {
             <ChartTooltip
               content={
                 <CustomTooltipContent
-                  mainColor="var(--chart-1)"
-                  secondaryColor="var(--chart-3)"
-                  mainDataKey="actual"
-                  mainLabel="Actual"
-                  secondaryLabel="Projected"
+                  colorMap={{
+                    actual: "var(--chart-1)",
+                    projected: "var(--chart-3)"
+                  }}
+                  labelMap={{
+                    actual: "Actual",
+                    projected: "Projected"
+                  }}
+                  dataKeys={["actual", "projected"]}
+                  valueFormatter={(value) => `$${value.toLocaleString()}`}
                 />
               }
               cursor={<CustomCursor fill="var(--chart-1)" />}
-            />
+            />            
             <Line
               type="linear"
               dataKey="actual"

@@ -88,9 +88,24 @@ export function Chart01() {
             <YAxis 
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} // Format as $X.XM
+              tickFormatter={(value) => value === 0 ? "$0" : `$${(value / 1000000).toFixed(1)}M`}
             />
-            <ChartTooltip content={<CustomTooltipContent />} />
+            <ChartTooltip
+              content={
+                <CustomTooltipContent
+                  colorMap={{
+                    actual: "var(--chart-1)",
+                    projected: "var(--chart-3)"
+                  }}
+                  labelMap={{
+                    actual: "Actual",
+                    projected: "Projected"
+                  }}
+                  dataKeys={["actual", "projected"]}
+                  valueFormatter={(value) => `$${value.toLocaleString()}`}
+                />
+              }
+            />
             <Bar
               dataKey="actual"
               fill={`url(#${id}-gradient)`}

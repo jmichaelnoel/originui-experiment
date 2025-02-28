@@ -17,6 +17,7 @@ import { Chart01 } from "@/components/chart-01"
 import { Chart02 } from "@/components/chart-02"
 import { Chart03 } from "@/components/chart-03"
 import { Chart04 } from "@/components/chart-04"
+import { Chart05 } from "@/components/chart-05"
 
 export default function Page() {
   return (
@@ -52,6 +53,7 @@ export default function Page() {
               <Chart02 />
               <Chart03 />
               <Chart04 />
+              <Chart05 />
             </div>
             <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
           </div>

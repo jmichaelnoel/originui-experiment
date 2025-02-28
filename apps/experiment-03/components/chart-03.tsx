@@ -101,9 +101,24 @@ export function Chart03() {
             <YAxis
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`}
+              tickFormatter={(value) => value === 0 ? "$0" : `$${(value / 1000000).toFixed(1)}M`}
             />
-            <ChartTooltip content={<CustomTooltipContent />} />
+            <ChartTooltip
+              content={
+                <CustomTooltipContent
+                  colorMap={{
+                    revenues: "var(--chart-1)",
+                    churn: "var(--chart-4)"
+                  }}
+                  labelMap={{
+                    revenues: "Revenues",
+                    churn: "Churn"
+                  }}
+                  dataKeys={["revenues", "churn"]}
+                  valueFormatter={(value) => `$${value.toLocaleString()}`}
+                />
+              }
+            />
             <Bar
               dataKey="revenues"
               fill={`url(#${id}-gradient)`}
