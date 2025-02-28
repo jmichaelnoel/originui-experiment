@@ -55,7 +55,7 @@ export function Chart05() {
   const lastMonth = chartData[chartData.length - 1]?.month as string
 
   return (
-    <Card>
+    <Card className="gap-4">
       <CardHeader>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="space-y-0.5">
@@ -88,7 +88,6 @@ export function Chart05() {
           <BarChart
             accessibilityLayer
             data={chartData}
-            stackOffset="none"
             maxBarSize={20}
             margin={{ left: -12, right: 12, top: 12 }}
           >
@@ -103,23 +102,8 @@ export function Chart05() {
               dataKey="month"
               tickLine={false}
               tickMargin={12}
-              ticks={[firstMonth, "Sep 2024", lastMonth]}
+              ticks={[firstMonth, lastMonth]}
               stroke="var(--border)"
-              tick={({ x, y, payload }) => {
-                const isActive = payload.value === "Sep 2024";
-                return (
-                  <text
-                    x={x}
-                    y={y + 12}
-                    textAnchor="middle"
-                    fill={isActive ? "var(--chart-1)" : "var(--muted-foreground)"}
-                    fontSize={12}
-                    fontWeight={isActive ? "600" : "400"}
-                  >
-                    {payload.value}
-                  </text>
-                );
-              }}
             />
             <YAxis
               tickLine={false}

@@ -88,7 +88,7 @@ export function Chart04() {
   const id = useId()
 
   return (
-    <Card>
+    <Card className="gap-4">
       <CardHeader>
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="space-y-0.5">

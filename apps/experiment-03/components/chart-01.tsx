@@ -51,7 +51,7 @@ export function Chart01() {
   const lastMonth = chartData[chartData.length - 1]?.month as string  
 
   return (
-    <Card>
+    <Card className="gap-4">
       <CardHeader>
         <div className="space-y-0.5">
           <CardTitle>Monthly Recurring Revenue</CardTitle>
