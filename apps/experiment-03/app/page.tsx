@@ -53,7 +53,7 @@ export default function Page() {
               <ActionButtons />
             </header>
             <div className="overflow-hidden">
-              <div className="grid auto-rows-min @xl:grid-cols-2 *:-ms-px *:-mt-px -m-px">
+              <div className="grid auto-rows-min @2xl:grid-cols-2 *:-ms-px *:-mt-px -m-px">
                 <Chart01 />
                 <Chart02 />
                 <Chart03 />

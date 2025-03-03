@@ -66,23 +66,19 @@ export function Chart01() {
   return (
     <Card className="gap-4">
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <div className="space-y-0.5">
-            <CardTitle>Monthly Recurring Revenue</CardTitle>
+            <CardTitle>Recurring Revenue</CardTitle>
             <div className="flex items-start gap-2">
               <div className="font-semibold text-2xl">
-                {selectedValue === "off"
-                  ? "$1,439,346"
-                  : "$17,272,152"}
+                {selectedValue === "off" ? "$1,439,346" : "$8,272,152"}
               </div>
               <Badge className="mt-1.5 bg-emerald-500/24 text-emerald-500 border-none">
-                {selectedValue === "off"
-                  ? "+48.1%"
-                  : "+52.7%"}
+                {selectedValue === "off" ? "+48.1%" : "+52.7%"}
               </Badge>
             </div>
           </div>
-          <div className="bg-black/50 inline-flex h-7 rounded-lg p-0.5">
+          <div className="bg-black/50 inline-flex h-7 rounded-lg p-0.5 shrink-0">
             <RadioGroup
               value={selectedValue}
               onValueChange={setSelectedValue}
@@ -91,7 +87,11 @@ export function Chart01() {
             >
               <label className="group-data-[state=on]:text-muted-foreground/50 relative z-10 inline-flex h-full min-w-8 cursor-pointer items-center justify-center px-2 whitespace-nowrap transition-colors select-none">
                 MRR
-                <RadioGroupItem id={`${id}-1`} value="off" className="sr-only" />
+                <RadioGroupItem
+                  id={`${id}-1`}
+                  value="off"
+                  className="sr-only"
+                />
               </label>
               <label className="group-data-[state=off]:text-muted-foreground/50 relative z-10 inline-flex h-full min-w-8 cursor-pointer items-center justify-center px-2 whitespace-nowrap transition-colors select-none">
                 ARR
