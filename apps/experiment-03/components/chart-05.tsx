@@ -1,7 +1,7 @@
 "use client"
 
 import { useId } from "react"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, TooltipProps, Cell, Scatter } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
   Card,

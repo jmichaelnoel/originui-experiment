@@ -1,40 +1,10 @@
-"use client"
-
-import { useId } from "react"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis, TooltipProps, Cell, Scatter } from "recharts"
-
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-} from "@/components/ui/chart"
-import { CustomTooltipContent } from "@/components/charts-extra"
 import { Badge } from "@/components/ui/badge";
-
-const chartData = [
-  { month: "Dec 2025", individual: 2000, team: 3000, enterprise: 1500 }
-]
-
-const chartConfig = {
-  individual: {
-    label: "Individual",
-    color: "var(--chart-4)",
-  },
-  team: {
-    label: "Team",
-    color: "var(--chart-1)",
-  },
-  enterprise: {
-    label: "Enterprise",
-    color: "var(--chart-6)",
-  },
-} satisfies ChartConfig
 
 export function Chart06() {
   return (

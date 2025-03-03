@@ -50,12 +50,24 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-function CustomCursor(props: any) {
+interface CustomCursorProps {
+  fill?: string;
+  pointerEvents?: string;
+  height?: number;
+  points?: Array<{ x: number; y: number }>;
+  className?: string;
+}
+
+function CustomCursor(props: CustomCursorProps) {
   const {
     fill, pointerEvents, height, points, className,
   } = props;
 
-  const { x, y } = points[0];
+  if (!points || points.length === 0) {
+    return null;
+  }
+
+  const { x, y } = points[0]!;
   return (
     <>
       <Rectangle
@@ -65,7 +77,6 @@ function CustomCursor(props: any) {
         pointerEvents={pointerEvents}
         width={24}
         height={height}
-        points={points}
         className={className}
         type="linear"
       />
@@ -76,7 +87,6 @@ function CustomCursor(props: any) {
         pointerEvents={pointerEvents}
         width={1}
         height={height}
-        points={points}
         className="recharts-tooltip-inner-cursor"
         type="linear"
       />
@@ -113,7 +123,7 @@ export function Chart04() {
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-4)/10 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-ring">
+        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-4)/10 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-white/20">
           <LineChart
             accessibilityLayer
             data={chartData}

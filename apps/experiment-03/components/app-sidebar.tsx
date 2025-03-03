@@ -2,11 +2,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import {
-  AudioWaveform,
-  Command,
-  GalleryVerticalEnd,
-} from "lucide-react"
 
 import { NavUser } from "@/components/nav-user"
 import {
