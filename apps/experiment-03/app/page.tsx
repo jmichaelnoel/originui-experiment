@@ -25,7 +25,7 @@ export default function Page() {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <div className="px-4 md:px-6 lg:px-8">
+        <div className="px-4 md:px-6 lg:px-8 @container">
           <div className="w-full max-w-6xl mx-auto">
             <header className="flex flex-wrap gap-3 min-h-20 py-4 shrink-0 items-center transition-all ease-linear border-b">
               {/* Left side */}
@@ -55,7 +55,7 @@ export default function Page() {
               <ActionButtons />
             </header>
             <div className="overflow-hidden">
-              <div className="grid auto-rows-min md:grid-cols-2 *:-ms-px *:-mt-px -m-px">
+              <div className="grid auto-rows-min @xl:grid-cols-2 *:-ms-px *:-mt-px -m-px">
                 <Chart01 />
                 <Chart02 />
                 <Chart03 />
