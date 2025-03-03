@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
-import { useId } from "react"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { useId } from "react";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-} from "@/components/ui/chart"
-import { CustomTooltipContent } from "@/components/charts-extra"
+} from "@/components/ui/chart";
+import { CustomTooltipContent } from "@/components/charts-extra";
 import { Badge } from "@/components/ui/badge";
 
 const chartData = [
@@ -29,8 +24,8 @@ const chartData = [
   { month: "Sep 2025", individual: 4500, team: 7000, enterprise: 3000 },
   { month: "Oct 2025", individual: 2500, team: 3000, enterprise: 3500 },
   { month: "Nov 2025", individual: 500, team: 1500, enterprise: 1000 },
-  { month: "Dec 2025", individual: 2000, team: 3000, enterprise: 1500 }
-]
+  { month: "Dec 2025", individual: 2000, team: 3000, enterprise: 1500 },
+];
 
 const chartConfig = {
   individual: {
@@ -45,14 +40,14 @@ const chartConfig = {
     label: "Enterprise",
     color: "var(--chart-6)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function Chart05() {
-  const id = useId()
+  const id = useId();
 
   // Get first and last month with type assertions
-  const firstMonth = chartData[0]?.month as string
-  const lastMonth = chartData[chartData.length - 1]?.month as string
+  const firstMonth = chartData[0]?.month as string;
+  const lastMonth = chartData[chartData.length - 1]?.month as string;
 
   return (
     <Card className="gap-4">
@@ -69,22 +64,38 @@ export function Chart05() {
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
-              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-4"></div>
-              <div className="text-[13px]/3 text-muted-foreground/50">Individual</div>
+              <div
+                aria-hidden="true"
+                className="size-1.5 shrink-0 rounded-xs bg-chart-4"
+              ></div>
+              <div className="text-[13px]/3 text-muted-foreground/50">
+                Individual
+              </div>
             </div>
             <div className="flex items-center gap-2">
-              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-1"></div>
+              <div
+                aria-hidden="true"
+                className="size-1.5 shrink-0 rounded-xs bg-chart-1"
+              ></div>
               <div className="text-[13px]/3 text-muted-foreground/50">Team</div>
             </div>
             <div className="flex items-center gap-2">
-              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-6"></div>
-              <div className="text-[13px]/3 text-muted-foreground/50">Enterprise</div>
+              <div
+                aria-hidden="true"
+                className="size-1.5 shrink-0 rounded-xs bg-chart-6"
+              ></div>
+              <div className="text-[13px]/3 text-muted-foreground/50">
+                Enterprise
+              </div>
             </div>
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15"
+        >
           <BarChart
             accessibilityLayer
             data={chartData}
@@ -97,7 +108,11 @@ export function Chart05() {
                 <stop offset="100%" stopColor="var(--chart-2)" />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--border)" />
+            <CartesianGrid
+              vertical={false}
+              strokeDasharray="2 2"
+              stroke="var(--border)"
+            />
             <XAxis
               dataKey="month"
               tickLine={false}
@@ -108,7 +123,9 @@ export function Chart05() {
             <YAxis
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => value === 0 ? "0" : `${(value / 1000).toFixed(0)}K`}
+              tickFormatter={(value) =>
+                value === 0 ? "0" : `${(value / 1000).toFixed(0)}K`
+              }
             />
             <ChartTooltip
               content={
@@ -116,36 +133,24 @@ export function Chart05() {
                   colorMap={{
                     individual: "var(--chart-4)",
                     team: "var(--chart-1)",
-                    enterprise: "var(--chart-6)"
+                    enterprise: "var(--chart-6)",
                   }}
                   labelMap={{
                     individual: "Individual",
                     team: "Team",
-                    enterprise: "Enterprise"
+                    enterprise: "Enterprise",
                   }}
                   dataKeys={["individual", "team", "enterprise"]}
                   valueFormatter={(value) => `$${value.toLocaleString()}`}
                 />
               }
             />
-            <Bar
-              dataKey="individual"
-              fill="var(--chart-4)"
-              stackId="a"
-            />
-            <Bar
-              dataKey="team"
-              fill={`url(#${id}-gradient)`}
-              stackId="a"
-            />
-            <Bar
-              dataKey="enterprise"
-              fill="var(--chart-6)"
-              stackId="a"
-            />
+            <Bar dataKey="individual" fill="var(--chart-4)" stackId="a" />
+            <Bar dataKey="team" fill={`url(#${id}-gradient)`} stackId="a" />
+            <Bar dataKey="enterprise" fill="var(--chart-6)" stackId="a" />
           </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
-} 
+  );
+}

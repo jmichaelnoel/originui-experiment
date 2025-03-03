@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useId } from "react"
+import { useId } from "react";
 import {
   CartesianGrid,
   Line,
@@ -8,20 +8,15 @@ import {
   Rectangle,
   XAxis,
   YAxis,
-} from "recharts"
+} from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-} from "@/components/ui/chart"
-import { CustomTooltipContent } from "@/components/charts-extra"
+} from "@/components/ui/chart";
+import { CustomTooltipContent } from "@/components/charts-extra";
 import { Badge } from "@/components/ui/badge";
 // Subscriber data for the last 12 months
 const chartData = [
@@ -37,7 +32,7 @@ const chartData = [
   { month: "Oct 2025", actual: 60000, projected: 80000 },
   { month: "Nov 2025", actual: 70000, projected: 65000 },
   { month: "Dec 2025", actual: 78000, projected: 75000 },
-]
+];
 
 const chartConfig = {
   actual: {
@@ -48,7 +43,7 @@ const chartConfig = {
     label: "Projected",
     color: "var(--chart-3)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 interface CustomCursorProps {
   fill?: string;
@@ -59,9 +54,7 @@ interface CustomCursorProps {
 }
 
 function CustomCursor(props: CustomCursorProps) {
-  const {
-    fill, pointerEvents, height, points, className,
-  } = props;
+  const { fill, pointerEvents, height, points, className } = props;
 
   if (!points || points.length === 0) {
     return null;
@@ -95,7 +88,7 @@ function CustomCursor(props: CustomCursorProps) {
 }
 
 export function Chart02() {
-  const id = useId()
+  const id = useId();
 
   return (
     <Card className="gap-4">
@@ -112,18 +105,31 @@ export function Chart02() {
           </div>
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-2">
-              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-1"></div>
-              <div className="text-[13px]/3 text-muted-foreground/50">Actual</div>
+              <div
+                aria-hidden="true"
+                className="size-1.5 shrink-0 rounded-xs bg-chart-1"
+              ></div>
+              <div className="text-[13px]/3 text-muted-foreground/50">
+                Actual
+              </div>
             </div>
             <div className="flex items-center gap-2">
-              <div aria-hidden="true" className="size-1.5 shrink-0 rounded-xs bg-chart-3"></div>
-              <div className="text-[13px]/3 text-muted-foreground/50">Projected</div>
+              <div
+                aria-hidden="true"
+                className="size-1.5 shrink-0 rounded-xs bg-chart-3"
+              ></div>
+              <div className="text-[13px]/3 text-muted-foreground/50">
+                Projected
+              </div>
             </div>
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-1)/15 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-white/20">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-1)/15 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-white/20"
+        >
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -135,7 +141,11 @@ export function Chart02() {
                 <stop offset="100%" stopColor="var(--chart-1)" />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--border)" />
+            <CartesianGrid
+              vertical={false}
+              strokeDasharray="2 2"
+              stroke="var(--border)"
+            />
             <XAxis
               dataKey="month"
               tickLine={false}
@@ -147,8 +157,8 @@ export function Chart02() {
               axisLine={false}
               tickLine={false}
               tickFormatter={(value) => {
-                if (value === 0) return "$0"
-                return `${value / 1000}k`
+                if (value === 0) return "$0";
+                return `${value / 1000}k`;
               }}
               interval="preserveStartEnd"
             />
@@ -165,29 +175,34 @@ export function Chart02() {
                 <CustomTooltipContent
                   colorMap={{
                     actual: "var(--chart-1)",
-                    projected: "var(--chart-3)"
+                    projected: "var(--chart-3)",
                   }}
                   labelMap={{
                     actual: "Actual",
-                    projected: "Projected"
+                    projected: "Projected",
                   }}
                   dataKeys={["actual", "projected"]}
                   valueFormatter={(value) => `$${value.toLocaleString()}`}
                 />
               }
               cursor={<CustomCursor fill="var(--chart-1)" />}
-            />            
+            />
             <Line
               type="linear"
               dataKey="actual"
               stroke={`url(#${id}-gradient)`}
               strokeWidth={2}
               dot={false}
-              activeDot={{ r: 5, fill: "var(--chart-1)", stroke: "var(--background)", strokeWidth: 2 }}
+              activeDot={{
+                r: 5,
+                fill: "var(--chart-1)",
+                stroke: "var(--background)",
+                strokeWidth: 2,
+              }}
             />
           </LineChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -17,7 +17,8 @@ function Calendar({
   const defaultClassNames = {
     months: "relative flex flex-col sm:flex-row gap-4",
     month: "w-full",
-    month_caption: "relative mx-10 mb-1 flex h-9 items-center justify-center z-20",
+    month_caption:
+      "relative mx-10 mb-1 flex h-9 items-center justify-center z-20",
     caption_label: "text-sm font-medium",
     nav: "absolute top-0 flex w-full justify-between z-10",
     button_previous: cn(
@@ -37,12 +38,15 @@ function Calendar({
     range_middle: "range-middle",
     today:
       "*:after:pointer-events-none *:after:absolute *:after:bottom-1 *:after:start-1/2 *:after:z-10 *:after:size-[3px] *:after:-translate-x-1/2 *:after:rounded-full *:after:bg-primary [&[data-selected]:not(.range-middle)>*]:after:bg-background [&[data-disabled]>*]:after:bg-foreground/30 *:after:transition-colors",
-    outside: "text-muted-foreground data-selected:bg-accent/50 data-selected:text-muted-foreground",
+    outside:
+      "text-muted-foreground data-selected:bg-accent/50 data-selected:text-muted-foreground",
     hidden: "invisible",
     week_number: "size-9 p-0 text-xs font-medium text-muted-foreground/80",
   };
 
-  const mergedClassNames: typeof defaultClassNames = Object.keys(defaultClassNames).reduce(
+  const mergedClassNames: typeof defaultClassNames = Object.keys(
+    defaultClassNames,
+  ).reduce(
     (acc, key) => ({
       ...acc,
       [key]: classNames?.[key as keyof typeof classNames]
@@ -56,7 +60,7 @@ function Calendar({
   );
 
   const defaultComponents = {
-    Chevron: (props: { 
+    Chevron: (props: {
       className?: string;
       size?: number;
       disabled?: boolean;

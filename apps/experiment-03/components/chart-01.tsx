@@ -1,20 +1,15 @@
-"use client"
+"use client";
 
-import { useId } from "react"
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
+import { useId } from "react";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
-} from "@/components/ui/chart"
-import { CustomTooltipContent } from "@/components/charts-extra"
+} from "@/components/ui/chart";
+import { CustomTooltipContent } from "@/components/charts-extra";
 import { Badge } from "@/components/ui/badge";
 
 const chartData = [
@@ -30,7 +25,7 @@ const chartData = [
   { month: "Oct 2025", actual: 1180000, projected: 110000 },
   { month: "Nov 2025", actual: 1280000, projected: 130000 },
   { month: "Dec 2025", actual: 1380000, projected: 100000 },
-]
+];
 
 const chartConfig = {
   actual: {
@@ -41,14 +36,14 @@ const chartConfig = {
     label: "Projected",
     color: "var(--chart-3)",
   },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
 export function Chart01() {
-  const id = useId()
+  const id = useId();
 
   // Get first and last month with type assertions
-  const firstMonth = chartData[0]?.month as string
-  const lastMonth = chartData[chartData.length - 1]?.month as string  
+  const firstMonth = chartData[0]?.month as string;
+  const lastMonth = chartData[chartData.length - 1]?.month as string;
 
   return (
     <Card className="gap-4">
@@ -64,10 +59,13 @@ export function Chart01() {
         </div>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig} className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15">
-          <BarChart 
-            accessibilityLayer 
-            data={chartData} 
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-60 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-[var(--chart-1)]/15"
+        >
+          <BarChart
+            accessibilityLayer
+            data={chartData}
             maxBarSize={20}
             margin={{ left: -12, right: 12, top: 12 }}
           >
@@ -76,8 +74,12 @@ export function Chart01() {
                 <stop offset="0%" stopColor="var(--chart-1)" />
                 <stop offset="100%" stopColor="var(--chart-2)" />
               </linearGradient>
-            </defs>            
-            <CartesianGrid vertical={false} strokeDasharray="2 2" stroke="var(--border)" />
+            </defs>
+            <CartesianGrid
+              vertical={false}
+              strokeDasharray="2 2"
+              stroke="var(--border)"
+            />
             <XAxis
               dataKey="month"
               tickLine={false}
@@ -85,40 +87,38 @@ export function Chart01() {
               ticks={[firstMonth, lastMonth]}
               stroke="var(--border)"
             />
-            <YAxis 
+            <YAxis
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => value === 0 ? "$0" : `$${(value / 1000000).toFixed(1)}M`}
+              tickFormatter={(value) =>
+                value === 0 ? "$0" : `$${(value / 1000000).toFixed(1)}M`
+              }
             />
             <ChartTooltip
               content={
                 <CustomTooltipContent
                   colorMap={{
                     actual: "var(--chart-1)",
-                    projected: "var(--chart-3)"
+                    projected: "var(--chart-3)",
                   }}
                   labelMap={{
                     actual: "Actual",
-                    projected: "Projected"
+                    projected: "Projected",
                   }}
                   dataKeys={["actual", "projected"]}
                   valueFormatter={(value) => `$${value.toLocaleString()}`}
                 />
               }
             />
-            <Bar
-              dataKey="actual"
-              fill={`url(#${id}-gradient)`}
-              stackId="a"
-            />             
+            <Bar dataKey="actual" fill={`url(#${id}-gradient)`} stackId="a" />
             <Bar
               dataKey="projected"
               fill="var(--color-projected)"
               stackId="a"
-            />           
+            />
           </BarChart>
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

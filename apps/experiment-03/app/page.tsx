@@ -1,4 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -6,20 +6,20 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
-import { Chart01 } from "@/components/chart-01"
-import { Chart02 } from "@/components/chart-02"
-import { Chart03 } from "@/components/chart-03"
-import { Chart04 } from "@/components/chart-04"
-import { Chart05 } from "@/components/chart-05"
-import { Chart06 } from "@/components/chart-06"
-import { ActionButtons } from "@/components/action-buttons"
+} from "@/components/ui/sidebar";
+import { Chart01 } from "@/components/chart-01";
+import { Chart02 } from "@/components/chart-02";
+import { Chart03 } from "@/components/chart-03";
+import { Chart04 } from "@/components/chart-04";
+import { Chart05 } from "@/components/chart-05";
+import { Chart06 } from "@/components/chart-06";
+import { ActionButtons } from "@/components/action-buttons";
 export default function Page() {
   return (
     <SidebarProvider>
@@ -39,9 +39,7 @@ export default function Page() {
                   <Breadcrumb>
                     <BreadcrumbList>
                       <BreadcrumbItem className="hidden md:block">
-                        <BreadcrumbLink href="#">
-                          Home
-                        </BreadcrumbLink>
+                        <BreadcrumbLink href="#">Home</BreadcrumbLink>
                       </BreadcrumbItem>
                       <BreadcrumbSeparator className="hidden md:block" />
                       <BreadcrumbItem>
@@ -68,5 +66,5 @@ export default function Page() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

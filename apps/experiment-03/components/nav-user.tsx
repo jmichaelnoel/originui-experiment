@@ -1,40 +1,43 @@
-"use client"
-
-import { RiMore2Line, RiTimer2Line, RiUserLine, RiPulseLine, RiFindReplaceLine, RiLogoutCircleLine } from "@remixicon/react"
+"use client";
 
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+  RiMore2Line,
+  RiTimer2Line,
+  RiUserLine,
+  RiPulseLine,
+  RiFindReplaceLine,
+  RiLogoutCircleLine,
+} from "@remixicon/react";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 export function NavUser({
   user,
 }: {
   user: {
-    name: string
-    email: string
-    avatar: string
-  }
+    name: string;
+    email: string;
+    avatar: string;
+  };
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-          <DropdownMenu>
+        <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
@@ -52,55 +55,55 @@ export function NavUser({
               </div>
             </SidebarMenuButton>
           </DropdownMenuTrigger>
-            <DropdownMenuContent
-              className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
-              side={isMobile ? "bottom" : "right"}
-              align="end"
-              sideOffset={4}
-            >
-              <DropdownMenuItem className="gap-3 px-1">
-                <RiTimer2Line
-                  size={20}
-                  className="text-muted-foreground/70"
-                  aria-hidden="true"
-                />
-                <span>Dashboard</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="gap-3 px-1">
-                <RiUserLine
-                  size={20}
-                  className="text-muted-foreground/70"
-                  aria-hidden="true"
-                />
-                <span>Profile</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="gap-3 px-1">
-                <RiPulseLine
-                  size={20}
-                  className="text-muted-foreground/70"
-                  aria-hidden="true"
-                />
-                <span>Changelog</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="gap-3 px-1">
-                <RiFindReplaceLine
-                  size={20}
-                  className="text-muted-foreground/70"
-                  aria-hidden="true"
-                />
-                <span>History</span>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="gap-3 px-1">
-                <RiLogoutCircleLine
-                  size={20}
-                  className="text-muted-foreground/70"
-                  aria-hidden="true"
-                />
-                <span>Log out</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <DropdownMenuContent
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+            side={isMobile ? "bottom" : "right"}
+            align="end"
+            sideOffset={4}
+          >
+            <DropdownMenuItem className="gap-3 px-1">
+              <RiTimer2Line
+                size={20}
+                className="text-muted-foreground/70"
+                aria-hidden="true"
+              />
+              <span>Dashboard</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="gap-3 px-1">
+              <RiUserLine
+                size={20}
+                className="text-muted-foreground/70"
+                aria-hidden="true"
+              />
+              <span>Profile</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="gap-3 px-1">
+              <RiPulseLine
+                size={20}
+                className="text-muted-foreground/70"
+                aria-hidden="true"
+              />
+              <span>Changelog</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="gap-3 px-1">
+              <RiFindReplaceLine
+                size={20}
+                className="text-muted-foreground/70"
+                aria-hidden="true"
+              />
+              <span>History</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="gap-3 px-1">
+              <RiLogoutCircleLine
+                size={20}
+                className="text-muted-foreground/70"
+                aria-hidden="true"
+              />
+              <span>Log out</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
