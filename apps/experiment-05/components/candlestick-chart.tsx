@@ -293,7 +293,7 @@ function CandlestickChart() {
           </span>
         </div>
       </div>
-      <ChartContainer config={chartConfig} className="aspect-auto h-100 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
+      <ChartContainer config={chartConfig} className="aspect-auto h-120 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
         <BarChart data={data} maxBarSize={20}
           margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
           <XAxis
