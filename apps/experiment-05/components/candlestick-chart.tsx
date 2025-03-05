@@ -296,6 +296,11 @@ function CandlestickChart() {
       <ChartContainer config={chartConfig} className="aspect-auto h-120 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
         <BarChart data={data} maxBarSize={20}
           margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
+          <CartesianGrid
+            vertical={false}
+            stroke="var(--border)"
+            strokeWidth={1}
+          />
           <XAxis
             dataKey="date" 
             tickLine={false} 
@@ -307,6 +312,7 @@ function CandlestickChart() {
           />
           <YAxis
             domain={[minValue ?? 0, maxValue]}
+            tickCount={7}
             tickLine={false}
             stroke="var(--border)"
             orientation="right"
@@ -317,7 +323,8 @@ function CandlestickChart() {
           {mostRecentClose && (
             <ReferenceLine 
               y={mostRecentClose} 
-              stroke="var(--ring)" 
+              stroke="var(--muted-foreground)" 
+              opacity={0.7}
               strokeWidth={1}
               strokeDasharray="2 2"
               label={({ viewBox }) => (
