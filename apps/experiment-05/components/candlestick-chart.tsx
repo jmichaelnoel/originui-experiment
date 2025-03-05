@@ -19,6 +19,8 @@ import {
   ChartTooltip,
 } from "@/components/ui/chart";
 import { CustomTooltipContent } from "@/components/charts-extra";
+import UsdSymbol from "@/app/usd.svg";
+import EuroSymbol from "@/app/eur.svg";
 
 const data = [
   // November 2024
@@ -204,11 +206,11 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: Record<s
   if (active && payload && payload.length) {
     return (
       <div className="bg-popover text-popover-foreground grid min-w-32 items-start gap-1.5 rounded-lg border px-3 py-1.5 text-xs">
-        <p className="label">{payload[0].payload.date}</p>
-        <p className="label">{`high : ${payload[0].payload.high}`}</p>
-        <p className="label">{`low : ${payload[0].payload.low}`}</p>
-        <p className="label">{`open : ${payload[0].payload.openClose[0]}`}</p>
-        <p className="label">{`close : ${payload[0].payload.openClose[1]}`}</p>
+        <p className="font-medium">{new Date(payload[0].payload.date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</p>
+        <p className="text-muted-foreground">Open: <span className="text-foreground font-medium">{payload[0].payload.openClose[0]}</span></p>
+        <p className="text-muted-foreground">High: <span className="text-foreground font-medium">{payload[0].payload.high}</span></p>
+        <p className="text-muted-foreground">Low: <span className="text-foreground font-medium">{payload[0].payload.low}</span></p>
+        <p className="text-muted-foreground">Close: <span className="text-foreground font-medium">{payload[0].payload.openClose[1]}</span></p>
       </div>
     );
   }
@@ -259,89 +261,101 @@ function CandlestickChart() {
     return '';
   };
 
-  // Get the most recent day's close value (last item in the array)
+  // Get the most recent day's close value
   const mostRecentData = data[data.length - 1];
   const mostRecentClose = mostRecentData ? mostRecentData.openClose[1] : null;
-
-  // Custom Y-axis tick with conditional styling
-  const CustomYAxisTick = (props: any) => {
-    const { x, y, payload } = props;
-    
-    // Check if this tick value is close to the most recent close value
-    const isRecentClose = mostRecentClose && Math.abs(payload.value - mostRecentClose) < 0.0001;
-    
-    return (
-      <g transform={`translate(${x},${y})`}>
-        {isRecentClose ? (
-          <>
-            <rect x="2" y="-10" width="55" height="20" fill="#ecfdf5" rx="4" />
-            <text x="6" y="4" fill="#10b981" fontSize="12" fontWeight="bold" textAnchor="start">
-              {payload.value.toFixed(4)}
-            </text>
-          </>
-        ) : (
-          <text x="0" y="0" dy={4} fill="var(--foreground)" fontSize="12" textAnchor="start">
-            {payload.value.toFixed(4)}
-          </text>
-        )}
-      </g>
-    );
-  };
+  
+  // Add this line to define isGrowing
+  const isGrowing = mostRecentData && mostRecentData.openClose && mostRecentData.openClose[1] !== undefined && mostRecentData.openClose[0] !== undefined 
+    ? mostRecentData.openClose[1] > mostRecentData.openClose[0] 
+    : undefined;
 
   return (
-    <ChartContainer config={chartConfig} className="aspect-auto h-100 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-100">
-      <BarChart data={data} maxBarSize={20}
-        margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
-        <CartesianGrid
-          vertical={false}
-          strokeDasharray="2 2"
-          stroke="var(--border)"
-        />
-        <XAxis
-          dataKey="date" 
-          tickLine={false} 
-          stroke="var(--border)" 
-          tickFormatter={customTickFormatter}
-          interval={0}
-          minTickGap={5}
-          tickMargin={12}
-        />
-        <YAxis
-          domain={[minValue ?? 0, maxValue]}
-          tickLine={false}
-          stroke="var(--border)"
-          orientation="right"
-          tickFormatter={(value) => value.toFixed(4)}
-        />
-        
-        {/* Reference line for most recent close value */}
-        {mostRecentClose && (
-          <ReferenceLine 
-            y={mostRecentClose} 
-            stroke="var(--ring)" 
-            strokeWidth={1}
-            label={{
-              position: 'right',
-              value: mostRecentClose.toFixed(4),
-              fill: '#10b981',
-              fontSize: 12,
-              fontWeight: 'bold',
-              backgroundColor: '#ecfdf5',
-              padding: 4,
-            }}
+    <div className="w-full">
+      <div className="flex items-start gap-2 px-5">
+        <div className="flex items-center mt-0.5 gap-2">
+          <img src={UsdSymbol.src} alt="USD" className="size-4 inline-flex" />
+          <img src={EuroSymbol.src} alt="EUR" className="size-4 inline-flex" />
+        </div>
+        <div className="text-sm">
+          <span>
+            U.S. Dollar <span className="text-muted-foreground/80">/</span> Euro <span className="text-muted-foreground/80">·</span> 1D <span className="text-muted-foreground/80">·</span> ICE
+          </span>
+          <span className="ms-8 relative inline-flex size-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex size-2 rounded-full bg-emerald-400"></span>
+          </span>
+          <span className="ms-4 text-xs">
+            <span className="text-muted-foreground">O:</span><span>{mostRecentData?.openClose[0]?.toFixed(4) || "N/A"}</span>{" "}
+            <span className="text-muted-foreground">H:</span><span>{mostRecentData?.high?.toFixed(4) || "N/A"}</span>{" "}
+            <span className="text-muted-foreground">L:</span><span>{mostRecentData?.low?.toFixed(4) || "N/A"}</span>{" "}
+            <span className="text-muted-foreground">C:</span><span>{mostRecentData?.openClose[1]?.toFixed(4) || "N/A"}</span>
+          </span>
+        </div>
+      </div>
+      <ChartContainer config={chartConfig} className="aspect-auto h-100 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
+        <BarChart data={data} maxBarSize={20}
+          margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
+          <XAxis
+            dataKey="date" 
+            tickLine={false} 
+            stroke="var(--border)" 
+            tickFormatter={customTickFormatter}
+            interval={0}
+            minTickGap={5}
+            tickMargin={12}
           />
-        )}
-        
-        {/* @ts-expect-error custom components do not have a good type support */}
-        <ChartTooltip content={<CustomTooltip />} />
-        {/* @ts-expect-error custom components do not have a good type support */}
-        <Bar dataKey="openClose" fill="#8884d8" shape={<Candlestick />}>
-          {data.map(({ date }: any) => (
-            <Cell key={`cell-${date}`} />
-          ))}
-        </Bar>
-      </BarChart>
-    </ChartContainer>
+          <YAxis
+            domain={[minValue ?? 0, maxValue]}
+            tickLine={false}
+            stroke="var(--border)"
+            orientation="right"
+            tickFormatter={(value) => value.toFixed(4)}
+          />
+          
+          {/* Reference line for most recent close value */}
+          {mostRecentClose && (
+            <ReferenceLine 
+              y={mostRecentClose} 
+              stroke="var(--ring)" 
+              strokeWidth={1}
+              strokeDasharray="2 2"
+              label={({ viewBox }) => (
+                <g transform={`translate(${viewBox.x + viewBox.width + 5},${viewBox.y})`}>
+                  <rect
+                    x={-2}
+                    y={-10} 
+                    width={50}
+                    height={20}
+                    fill={isGrowing ? 'var(--color-emerald-500)' : 'var(--color-rose-500)'}
+                    rx={4}
+                  />
+                  <text
+                    x={2}
+                    y={4}
+                    fill="#fff"
+                    fontSize={12}
+                    fontWeight="500"
+                    textAnchor="start"
+                  >
+                    {mostRecentClose.toFixed(4)}
+                  </text>
+                </g>
+              )}
+            />
+          )}
+          
+          {/* @ts-expect-error custom components do not have a good type support */}
+          <ChartTooltip content={<CustomTooltip />} />
+          {/* @ts-expect-error custom components do not have a good type support */}
+          <Bar dataKey="openClose" fill="#8884d8" shape={<Candlestick />}>
+            {data.map(({ date }: any) => (
+              <Cell key={`cell-${date}`} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ChartContainer>
+    </div>
   );
 }
 
