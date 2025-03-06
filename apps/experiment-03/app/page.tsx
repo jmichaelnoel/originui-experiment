@@ -20,6 +20,7 @@ import { Chart04 } from "@/components/chart-04";
 import { Chart05 } from "@/components/chart-05";
 import { Chart06 } from "@/components/chart-06";
 import { ActionButtons } from "@/components/action-buttons";
+import { Banner } from "@/components/banner";
 
 export default function Page() {
   return (
@@ -66,6 +67,7 @@ export default function Page() {
           </div>
         </div>
       </SidebarInset>
+      <Banner />
     </SidebarProvider>
   );
 }
