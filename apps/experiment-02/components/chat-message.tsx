@@ -31,7 +31,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
           "rounded-full",
           isUser ? "order-1" : "border border-black/[0.08] shadow-sm",
         )}
-        src={isUser ? "/user-02.png" : "/user-01.png"}
+        src={isUser ? "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345634/user-02_mlqqqt.png" : "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345634/user-01_i5l7tp.png"}
         alt={isUser ? "User profile" : "Bart logo"}
         width={40}
         height={40}
@@ -58,7 +58,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first-of-type:rounded-s-lg last-of-type:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring/70">
+        <button className="relative text-muted-foreground/80 hover:text-foreground transition-colors size-8 flex items-center justify-center before:absolute before:inset-y-1.5 before:left-0 before:w-px before:bg-border first:before:hidden first-of-type:rounded-s-lg last-of-type:rounded-e-lg focus-visible:z-10 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring/70">
           {icon}
           <span className="sr-only">{label}</span>
         </button>

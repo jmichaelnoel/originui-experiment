@@ -32,15 +32,15 @@ const data = {
   teams: [
     {
       name: "InnovaCraft",
-      logo: "/logo-01.png",
+      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345507/logo-01_kp2j8x.png",
     },
     {
       name: "Acme Corp.",
-      logo: "/logo-01.png",
+      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345507/logo-01_kp2j8x.png",
     },
     {
       name: "Evil Corp.",
-      logo: "/logo-01.png",
+      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345507/logo-01_kp2j8x.png",
     },
   ],
   navMain: [

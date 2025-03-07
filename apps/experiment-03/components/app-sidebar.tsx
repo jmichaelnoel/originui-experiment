@@ -32,7 +32,7 @@ const data = {
   user: {
     name: "Mark Bannert",
     email: "mark@bannert.com",
-    avatar: "/user.png",
+    avatar: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
   },
   navMain: [
     {
