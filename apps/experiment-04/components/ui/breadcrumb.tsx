@@ -1,6 +1,6 @@
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
-import { ChevronRight, MoreHorizontal } from "lucide-react";
+import { ChevronRightIcon, MoreHorizontal } from "lucide-react";
+import * as React from "react";
 
 import { cn } from "@workspace/ui/lib/utils";
 
@@ -13,7 +13,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
     <ol
       data-slot="breadcrumb-list"
       className={cn(
-        "text-muted-foreground font-medium flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
+        "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
         className,
       )}
       {...props}
@@ -62,37 +62,30 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
   );
 }
 
-function BreadcrumbSeparator({
-  children,
-  className,
-  ...props
-}: React.ComponentProps<"li">) {
+function BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<"li">) {
   return (
     <li
       data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
-      className={cn("text-muted-foreground/50", className)}
+      className={className}
       {...props}
     >
-      {children ?? <ChevronRight size={16} />}
+      {children ?? <ChevronRightIcon size={16} />}
     </li>
   );
 }
 
-function BreadcrumbEllipsis({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
+function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
       role="presentation"
       aria-hidden="true"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn("flex size-5 items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal className="size-4" />
+      <MoreHorizontal size={16} />
       <span className="sr-only">More</span>
     </span>
   );
@@ -100,10 +93,10 @@ function BreadcrumbEllipsis({
 
 export {
   Breadcrumb,
-  BreadcrumbList,
+  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
+  BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-  BreadcrumbEllipsis,
 };
