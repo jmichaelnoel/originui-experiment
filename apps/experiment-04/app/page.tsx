@@ -20,7 +20,7 @@ export default function Page() {
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset className="overflow-auto">
-          <header className="bg-background sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
+          <header className="bg-sidebar sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
               orientation="vertical"
