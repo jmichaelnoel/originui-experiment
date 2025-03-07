@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experiment 01 - Crafted.is",
+};
+
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
