@@ -4,9 +4,9 @@
 
 Check out the live demos of all the layouts and UI experiments, showcased in chronological order:
 
-- [SaaS Dashboard](https://ui-experiment-03.vercel.app/)
-- [AI Chat](https://ui-experiment-02.vercel.app/)
-- [Dark Table](https://ui-experiments-green.vercel.app/)
+- [SaaS Dashboard](https://crafted.is/exp1)
+- [AI Chat](https://crafted.is/exp2)
+- [Dark Table](https://crafted.is/exp3)
 
 ## shadcn/ui monorepo template
 
