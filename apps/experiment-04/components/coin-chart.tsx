@@ -383,7 +383,7 @@ function CustomCursor(props: CustomCursorProps) {
   );
 }
 
-export function Chart01() {
+export function CoinChart() {
   const id = useId();
   const [selectedValue, setSelectedValue] = useState("1h");
   const selectedIndex = TIME_PERIOD_OPTIONS.indexOf(selectedValue);

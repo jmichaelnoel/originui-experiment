@@ -8,9 +8,9 @@ import { Input } from "@/components/ui/input"
 import UserDropdown from "@/components/user-dropdown"
 import { RiSearch2Line } from "@remixicon/react"
 import ThemeToggle from "@/components/theme-toggle"
-import { Card } from "@/components/ui/card"
 import { Converter } from "@/components/converter"
-import { Chart01 } from "@/components/chart-01"
+import { CoinChart } from "@/components/coin-chart"
+import { TransactionsTable } from "@/components/transactions-table"
 
 export default function Page() {
   const id = useId()
@@ -45,8 +45,9 @@ export default function Page() {
               <Converter />
             </div> 
             {/* Chart and table */}
-            <div className="flex-1">
-              <Chart01 />
+            <div className="flex-1 flex flex-col gap-6">
+              <CoinChart />
+              <TransactionsTable />
             </div>
           </div>
         </SidebarInset>
