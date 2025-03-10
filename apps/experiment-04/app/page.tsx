@@ -20,7 +20,7 @@ export default function Page() {
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset className="overflow-auto px-4 md:px-6 lg:px-8">
-          <header className="bg-sidebar sticky top-0 flex shrink-0 items-center gap-2 border-b py-4">
+          <header className="bg-sidebar sticky top-0 flex shrink-0 items-center gap-2 border-b py-4 w-full max-w-7xl mx-auto">
             <div className="flex-1">
               <div className="relative inline-flex">
                 <Input id={id} className="h-8 ps-9 pe-9 bg-border border-transparent w-fit min-w-65" aria-label="Search" />
@@ -39,9 +39,9 @@ export default function Page() {
               <UserDropdown />  
             </div>
           </header>
-          <div className="flex flex-1 gap-6 py-6">
+          <div className="flex max-lg:flex-col flex-1 gap-6 py-6 w-full max-w-7xl mx-auto">
             {/* Converter widget */}
-            <div className="md:order-1 md:w-90">
+            <div className="lg:order-1 lg:w-90">
               <Converter />
             </div> 
             {/* Chart and table */}
