@@ -8,7 +8,9 @@ import { Input } from "@/components/ui/input"
 import UserDropdown from "@/components/user-dropdown"
 import { RiSearch2Line } from "@remixicon/react"
 import ThemeToggle from "@/components/theme-toggle"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
+import { Converter } from "@/components/converter"
+import { Chart01 } from "@/components/chart-01"
 
 export default function Page() {
   const id = useId()
@@ -40,14 +42,11 @@ export default function Page() {
           <div className="flex flex-1 gap-6 py-6">
             {/* Converter widget */}
             <div className="md:order-1 md:w-90">
-              <div>
-                
-              </div>
+              <Converter />
             </div> 
             {/* Chart and table */}
             <div className="flex-1">
-              <Card>
-              </Card>
+              <Chart01 />
             </div>
           </div>
         </SidebarInset>
