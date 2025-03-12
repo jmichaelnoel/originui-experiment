@@ -417,11 +417,11 @@ export function CoinChart() {
             <div className="font-bold text-3xl mb-1"><span className="text-xl text-muted-foreground">$</span>1,327,349.19</div>
             <div className="text-emerald-500 text-sm font-medium">↗ $2,849.27 (+4%)</div>
           </div>
-          <div className="bg-muted inline-flex h-8 rounded-full p-1 shrink-0">
+          <div className="bg-muted dark:bg-background/50 inline-flex h-8 rounded-full p-1 shrink-0">
             <RadioGroup
               value={selectedValue}
               onValueChange={setSelectedValue}
-              className="group text-xs after:bg-background has-focus-visible:after:border-ring has-focus-visible:after:ring-ring/50 relative inline-grid grid-cols-[repeat(5,1fr)] items-center gap-0 font-medium after:absolute after:inset-y-0 after:w-1/5 after:rounded-full after:shadow-xs after:transition-[translate,box-shadow] after:duration-300 after:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)] has-focus-visible:after:ring-[3px] [&:after]:translate-x-[calc(var(--selected-index)*100%)]"
+              className="group text-xs after:bg-background dark:after:bg-card/64 has-focus-visible:after:border-ring has-focus-visible:after:ring-ring/50 relative inline-grid grid-cols-[repeat(5,1fr)] items-center gap-0 font-medium after:absolute after:inset-y-0 after:w-1/5 after:rounded-full after:shadow-xs dark:after:inset-shadow-[0_1px_rgb(255_255_255/0.15)] after:transition-[translate,box-shadow] after:duration-300 after:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)] has-focus-visible:after:ring-[3px] [&:after]:translate-x-[calc(var(--selected-index)*100%)]"
               data-state={selectedValue}
               style={{
                 '--selected-index': selectedIndex
@@ -441,7 +441,7 @@ export function CoinChart() {
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className="aspect-auto h-72 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-1)/10 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-(--chart-1)/25"
+          className="aspect-auto h-72 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-(--chart-1)/10 [&_.recharts-rectangle.recharts-tooltip-inner-cursor]:fill-(--chart-1)/25 [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border dark:[&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-card [&_.recharts-cartesian-axis-line]:stroke-border dark:[&_.recharts-cartesian-axis-line]:stroke-card"
         >
           <LineChart
             accessibilityLayer
@@ -452,13 +452,11 @@ export function CoinChart() {
             <CartesianGrid
               vertical={false}
               strokeDasharray="2 2"
-              stroke="var(--border)"
             />
             <XAxis
               dataKey={selectedValue === "1h" ? "time" : "date"}
               tickLine={false}
               tickMargin={12}
-              stroke="var(--border)"
               minTickGap={40}
               tickFormatter={(value) => formatDate(value, selectedValue)}
             />
