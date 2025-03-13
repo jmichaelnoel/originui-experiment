@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -9,7 +12,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { RiArrowRightLine, RiCheckLine, RiCloseLine, RiRefreshLine } from "@remixicon/react";
+import { RiArrowRightLine, RiCheckLine, RiCloseLine, RiRefreshLine, RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+} from "@/components/ui/pagination";
+import { cn } from "@workspace/ui/lib/utils";
 
 interface Transaction {
   id: string;
@@ -17,10 +28,12 @@ interface Transaction {
   in: {
     symbol: string;
     name: string;
+    icon: string[];
   };
   out: {
     symbol: string;
     name: string;
+    icon: string[];
   };
   fees: string;
   change: {
@@ -31,17 +44,21 @@ interface Transaction {
   spent: string;
 }
 
+const basePath = "https://res.cloudinary.com/dlzlfasou/image/upload/";
+
 const items: Transaction[] = [
   {
     id: "1",
     date: "17 Feb, 2025",
     in: {
       symbol: "ARK",
-      name: "ArkFi"
+      name: "ArkFi",
+      icon: ["v1741861900/coin-01-sm-light_hgzpka.svg", "v1741861900/coin-01-sm-dark_hkrvvm.svg"],
     },
     out: {
       symbol: "TOK",
-      name: "Token"
+      name: "Token",
+      icon: ["v1741861900/coin-02-sm-light_t1qflr.svg", "v1741861900/coin-02-sm-dark_iqldgv.svg"],
     },
     fees: "$31.2",
     change: {
@@ -56,11 +73,13 @@ const items: Transaction[] = [
     date: "17 Feb, 2025",
     in: {
       symbol: "ARK",
-      name: "ArkFi"
+      name: "ArkFi",
+      icon: ["v1741861900/coin-01-sm-light_hgzpka.svg", "v1741861900/coin-01-sm-dark_hkrvvm.svg"],
     },
     out: {
       symbol: "TOK",
-      name: "Token"
+      name: "Token",
+      icon: ["v1741861900/coin-02-sm-light_t1qflr.svg", "v1741861900/coin-02-sm-dark_iqldgv.svg"],
     },
     fees: "$22.3",
     change: {
@@ -75,11 +94,13 @@ const items: Transaction[] = [
     date: "17 Feb, 2025",
     in: {
       symbol: "ARK",
-      name: "ArkFi"
+      name: "ArkFi",
+      icon: ["v1741861900/coin-01-sm-light_hgzpka.svg", "v1741861900/coin-01-sm-dark_hkrvvm.svg"],
     },
     out: {
       symbol: "TOK",
-      name: "Token"
+      name: "Token",
+      icon: ["v1741861900/coin-02-sm-light_t1qflr.svg", "v1741861900/coin-02-sm-dark_iqldgv.svg"],
     },
     fees: "$7.4",
     change: {
@@ -94,11 +115,13 @@ const items: Transaction[] = [
     date: "17 Feb, 2025",
     in: {
       symbol: "ARK",
-      name: "ArkFi"
+      name: "ArkFi",
+      icon: ["v1741861900/coin-01-sm-light_hgzpka.svg", "v1741861900/coin-01-sm-dark_hkrvvm.svg"],
     },
     out: {
       symbol: "TOK",
-      name: "Token"
+      name: "Token",
+      icon: ["v1741861900/coin-02-sm-light_t1qflr.svg", "v1741861900/coin-02-sm-dark_iqldgv.svg"],
     },
     fees: "$42.1",
     change: {
@@ -113,11 +136,13 @@ const items: Transaction[] = [
     date: "17 Feb, 2025",
     in: {
       symbol: "ARK",
-      name: "ArkFi"
+      name: "ArkFi",
+      icon: ["v1741861900/coin-01-sm-light_hgzpka.svg", "v1741861900/coin-01-sm-dark_hkrvvm.svg"],
     },
     out: {
       symbol: "TOK",
-      name: "Token"
+      name: "Token",
+      icon: ["v1741861900/coin-02-sm-light_t1qflr.svg", "v1741861900/coin-02-sm-dark_iqldgv.svg"],
     },
     fees: "$24.7",
     change: {
@@ -130,56 +155,61 @@ const items: Transaction[] = [
 ];
 
 export function TransactionsTable() {
+  const [currentPage] = useState(1);
+  const totalPages = 12;
+
   return (
     <Card className="gap-4">
       <CardHeader>
         <CardTitle>Transactions</CardTitle>
       </CardHeader>
       <CardContent>
-        <Table>
+        <Table className="border-separate border-spacing-0 [&_tr_td]:border-b [&_tr_td]:border-border/64 dark:[&_tr_td]:border-card/80">
           <TableHeader>
-            <TableRow className="hover:bg-transparent">
-              <TableHead>Date</TableHead>
-              <TableHead>Conversion</TableHead>
-              <TableHead>Fees</TableHead>
-              <TableHead>Change</TableHead>
-              <TableHead className="text-center">Status</TableHead>
-              <TableHead>Spent</TableHead>
-              <TableHead className="text-center">Action</TableHead>
+            <TableRow className="hover:bg-transparent border-0">
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal">Date</TableHead>
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal">Conversion</TableHead>
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal">Fees</TableHead>
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal">Change</TableHead>
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal text-center">Status</TableHead>
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal">Spent</TableHead>
+              <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal text-center">Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {items.map((item) => (
-              <TableRow key={item.id}>
+              <TableRow key={item.id} className="hover:bg-transparent">
                 <TableCell className="text-foreground/70 whitespace-nowrap">{item.date}</TableCell>
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1">
-                      <div className="flex items-center justify-center w-6 h-6 rounded-full bg-muted text-xs font-medium">
-                        {item.in.symbol.charAt(0)}
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-full shadow-xs">
+                        <img className="dark:hidden" src={basePath + item.in.icon[0]} alt={item.in.name} />
+                        <img className="hidden dark:block" src={basePath + item.in.icon[1]} alt={item.in.name} />
                       </div>
                       <span>{item.in.symbol}</span>
                     </div>
-                    <RiArrowRightLine size={16} className="text-input" aria-hidden="true" />
-                    <div className="flex items-center gap-1">
-                      <div className="flex items-center justify-center w-6 h-6 rounded-full bg-muted text-xs font-medium">
-                        {item.out.symbol.charAt(0)}
+                    <RiArrowRightLine size={16} className="text-muted-foreground/50" aria-hidden="true" />
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-full shadow-xs">
+                        <img className="dark:hidden" src={basePath + item.out.icon[0]} alt={item.out.name} />
+                        <img className="hidden dark:block" src={basePath + item.out.icon[1]} alt={item.out.name} />
                       </div>
                       <span>{item.out.symbol}</span>
-                    </div>                  
+                    </div>
                   </div>
                 </TableCell>
                 <TableCell className="text-foreground/70">{item.fees}</TableCell>
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    <Badge className="text-sm font-normal bg-emerald-500/12 text-emerald-600 border-none py-0.5 px-2">
+                    <Badge className="text-sm font-normal bg-emerald-500/12 text-emerald-600 border-0 py-0.5 px-2">
                       {item.change.received}
                     </Badge>
-                    <RiArrowRightLine size={16} className="text-input" aria-hidden="true" />
-                    <Badge className="text-sm font-normal bg-red-500/12 text-red-500 border-none py-0.5 px-2">
-                    {item.change.spent}
-                  </Badge>
-                  </div>                    
+                    <RiArrowRightLine size={16} className="text-muted-foreground/50" aria-hidden="true" />
+                    <Badge className="text-sm font-normal bg-red-500/12 text-red-500 border-0 py-0.5 px-2">
+                      {item.change.spent}
+                    </Badge>
+                  </div>
                 </TableCell>
                 <TableCell className="text-center">
                   {item.status === "completed" && (
@@ -200,7 +230,7 @@ export function TransactionsTable() {
                   <Button
                     size="icon"
                     variant="ghost"
-                    className="shadow-none text-muted-foreground/60"
+                    className="shadow-none text-muted-foreground/50 dark:hover:bg-card/64"
                     aria-label="Edit item"
                   >
                     <RiRefreshLine size={16} aria-hidden="true" />
@@ -210,6 +240,48 @@ export function TransactionsTable() {
             ))}
           </TableBody>
         </Table>
+        <Pagination className="mt-5">
+          <PaginationContent className="w-full justify-between">
+            <PaginationItem>
+              <PaginationLink
+                className={cn(
+                  buttonVariants({
+                    variant: "outline",
+                  }),
+                  "size-8 p-0 aria-disabled:pointer-events-none aria-disabled:text-muted-foreground/50 border-none hover:bg-background dark:bg-card/64 dark:hover:bg-card/80 shadow-xs dark:inset-shadow-[0_1px_rgb(255_255_255/0.15)]",
+                )}
+                href={currentPage === 1 ? undefined : `#/page/${currentPage - 1}`}
+                aria-label="Go to previous page"
+                aria-disabled={currentPage === 1 ? true : undefined}
+                role={currentPage === 1 ? "link" : undefined}
+              >
+                <RiArrowLeftSLine className="size-5" size={20} aria-hidden="true" />
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <p className="text-muted-foreground text-sm" aria-live="polite">
+                Page <span className="text-foreground">{currentPage}</span> of{" "}
+                <span className="text-foreground">{totalPages}</span>
+              </p>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink
+                className={cn(
+                  buttonVariants({
+                    variant: "outline",
+                  }),
+                  "size-8 p-0 aria-disabled:pointer-events-none aria-disabled:text-muted-foreground/50 border-none hover:bg-background dark:bg-card/64 dark:hover:bg-card/80 shadow-xs dark:inset-shadow-[0_1px_rgb(255_255_255/0.15)]",
+                )}
+                href={currentPage === totalPages ? undefined : `#/page/${currentPage + 1}`}
+                aria-label="Go to next page"
+                aria-disabled={currentPage === totalPages ? true : undefined}
+                role={currentPage === totalPages ? "link" : undefined}
+              >
+                <RiArrowRightSLine className="size-5" size={20} aria-hidden="true" />
+              </PaginationLink>
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       </CardContent>
     </Card>
   );

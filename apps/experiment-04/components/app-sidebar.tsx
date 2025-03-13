@@ -16,38 +16,26 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
+const basePath = "https://res.cloudinary.com/dlzlfasou/image/upload/";
+
 // This is sample data
 const navigationItems = [
   {
-    title: "Inbox",
+    title: "ArkFi",
     url: "#",
-    icon: Inbox,
+    icon: ["v1741795549/coin-01-light_mfrp33.svg", "v1741795549/coin-01-dark_k0xthz.svg"],
     isActive: true,
   },
   {
-    title: "Drafts",
+    title: "Solaris",
     url: "#",
-    icon: File,
-    isActive: false,
+    icon: ["v1741795550/coin-02-light_wbsrxl.svg", "v1741795550/coin-02-dark_l7j3yv.svg"]
   },
   {
-    title: "Sent",
+    title: "Nexus",
     url: "#",
-    icon: Send,
-    isActive: false,
+    icon: ["v1741795550/coin-03-light_dvkbrk.svg", "v1741795549/coin-03-dark_htjbyp.svg"],
   },
-  {
-    title: "Junk",
-    url: "#",
-    icon: ArchiveX,
-    isActive: false,
-  },
-  {
-    title: "Trash",
-    url: "#",
-    icon: Trash2,
-    isActive: false,
-  }
 ]
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -75,7 +63,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <span className="relative has-data-[active=true]:before:absolute has-data-[active=true]:before:inset-0 has-data-[active=true]:before:rounded-full has-data-[active=true]:before:bg-sidebar-primary/48 has-data-[active=true]:before:blur-[10px] has-data-[active=true]:before:-left-2 has-data-[active=true]:after:absolute has-data-[active=true]:after:size-1 has-data-[active=true]:after:bg-foreground has-data-[active=true]:after:rounded-full has-data-[active=true]:after:right-full has-data-[active=true]:after:top-1/2 has-data-[active=true]:after:-translate-y-1/2 has-data-[active=true]:after:-translate-x-2">
                   <SidebarMenuButton
                     asChild
-                    className="relative size-11 p-0 items-center justify-center rounded-full bg-linear-to-b from-background/64 to-background shadow-lg"
+                    className="relative size-11 p-0 items-center justify-center rounded-full bg-linear-to-b from-background/64 to-background shadow-[0_1px_1px_rgba(0,0,0,0.05),_0_2px_2px_rgba(0,0,0,0.05),_0_4px_4px_rgba(0,0,0,0.05),_0_6px_6px_rgba(0,0,0,0.05)]"
                     tooltip={{
                       children: item.title,
                       hidden: false,
@@ -83,7 +71,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     isActive={item.isActive}
                   >
                     <a href={item.url}>
-                      <item.icon />
+                      <img className="dark:hidden" src={basePath + item.icon[0]} alt={item.title} />
+                      <img className="hidden dark:block" src={basePath + item.icon[1]} alt={item.title} />
                       <span className="sr-only">{item.title}</span>
                     </a>
                   </SidebarMenuButton>

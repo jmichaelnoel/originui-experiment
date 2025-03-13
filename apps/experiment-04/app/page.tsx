@@ -20,7 +20,7 @@ export default function Page() {
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset className="overflow-auto px-4 md:px-6 lg:px-8">
-          <header className="bg-sidebar sticky top-0 z-9999 -mx-2 px-2">
+          <header className="bg-sidebar/90 backdrop-blur-sm sticky top-0 z-9999 -mx-2 px-2">
             <div className="flex shrink-0 items-center gap-2 border-b py-4 w-full max-w-7xl mx-auto">
               <div className="flex-1">
                 <div className="relative inline-flex">
