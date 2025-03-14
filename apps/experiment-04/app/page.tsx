@@ -54,22 +54,20 @@ export default function Page() {
           </div>
 
           <div className="grid grid-cols-2 w-48 gap-8 mb-20">
-            <div className="size-20 bg-white shadow-2xs rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_0.5px_0.5px_rgba(0,0,0,0.03),_0_1px_1px_rgba(0,0,0,0.03)]"></div>
-            <div className="size-20 bg-white shadow-xs rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_0.5px_0.5px_rgba(0,0,0,0.03),_0_1px_1px_rgba(0,0,0,0.03),_0_2px_2px_rgba(0,0,0,0.03)]"></div>
-            <div className="size-20 bg-white shadow-sm rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_0.5px_0.5px_rgba(0,0,0,0.04),_0_1px_1px_rgba(0,0,0,0.04),_0_2px_2px_rgba(0,0,0,0.04),_0_3px_3px_rgba(0,0,0,0.04)]"></div>
-            <div className="size-20 bg-white shadow rounded"></div>
-            <div className="size-20 bg-white rounded"></div>
-            <div className="size-20 bg-white shadow-md rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.05),_0_2px_2px_rgba(0,0,0,0.05),_0_4px_4px_rgba(0,0,0,0.05),_0_6px_6px_rgba(0,0,0,0.05)]"></div>
-            <div className="size-20 bg-white shadow-lg rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_2px_2px_rgba(0,0,0,0.06),_0_4px_4px_rgba(0,0,0,0.06),_0_8px_8px_rgba(0,0,0,0.06),_0_12px_12px_rgba(0,0,0,0.06),_0_15px_15px_rgba(0,0,0,0.06)]"></div>
-            <div className="size-20 bg-white shadow-xl rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_3px_3px_rgba(0,0,0,0.07),_0_8px_8px_rgba(0,0,0,0.07),_0_15px_15px_rgba(0,0,0,0.07),_0_20px_20px_rgba(0,0,0,0.07),_0_25px_25px_rgba(0,0,0,0.07)]"></div>
-            <div className="size-20 bg-white shadow-2xl rounded"></div>
-            <div className="size-20 bg-white rounded shadow-[0_5px_5px_rgba(0,0,0,0.09),_0_10px_10px_rgba(0,0,0,0.09),_0_20px_20px_rgba(0,0,0,0.09),_0_30px_30px_rgba(0,0,0,0.09),_0_40px_40px_rgba(0,0,0,0.09),_0_50px_50px_rgba(0,0,0,0.09)]"></div>
+          <div className="size-20 bg-white shadow-2xs rounded"></div>
+<div className="size-20 bg-white rounded shadow-2xs"></div>
+<div className="size-20 bg-white shadow-xs rounded"></div>
+<div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.05)]"></div>
+<div className="size-20 bg-white shadow-sm rounded"></div>
+<div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.04),0_2px_2px_rgba(0,0,0,0.04),0_2px_4px_rgba(0,0,0,0.04)]"></div>
+<div className="size-20 bg-white shadow-md rounded"></div>
+<div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.04),0_2px_2px_rgba(0,0,0,0.04),0_4px_4px_rgba(0,0,0,0.04),0_8px_8px_rgba(0,0,0,0.04)]"></div>
+<div className="size-20 bg-white shadow-lg rounded"></div>
+<div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.04),0_2px_2px_rgba(0,0,0,0.04),0_4px_4px_rgba(0,0,0,0.04),0_8px_8px_rgba(0,0,0,0.04),0_16px_16px_rgba(0,0,0,0.04)]"></div>
+<div className="size-20 bg-white shadow-xl rounded"></div>
+<div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.04),0_2px_2px_rgba(0,0,0,0.04),0_4px_4px_rgba(0,0,0,0.04),0_8px_8px_rgba(0,0,0,0.04),0_16px_16px_rgba(0,0,0,0.04),0_32px_32px_rgba(0,0,0,0.04)]"></div>
+<div className="size-20 bg-white shadow-2xl rounded"></div>
+<div className="size-20 bg-white rounded shadow-[0_1px_1px_rgba(0,0,0,0.04),0_2px_2px_rgba(0,0,0,0.04),0_4px_4px_rgba(0,0,0,0.04),0_8px_8px_rgba(0,0,0,0.04),0_16px_16px_rgba(0,0,0,0.04),0_32px_32px_rgba(0,0,0,0.04),0_64px_64px_rgba(0,0,0,0.04)]"></div>
           </div>
         </SidebarInset>
       </SidebarProvider>
