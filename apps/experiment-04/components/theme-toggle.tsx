@@ -10,7 +10,9 @@ export default function ThemeToggle() {
   const [system, setSystem] = useState(false);
 
   const smartToggle = () => {
-    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDarkScheme = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     if (theme === "system") {
       setTheme(prefersDarkScheme ? "light" : "dark");
       setSystem(false);
@@ -43,7 +45,11 @@ export default function ThemeToggle() {
         aria-hidden="true"
       >
         <RiSunLine className="dark:hidden" size={20} aria-hidden="true" />
-        <RiMoonClearLine className="hidden dark:block" size={20} aria-hidden="true" />
+        <RiMoonClearLine
+          className="hidden dark:block"
+          size={20}
+          aria-hidden="true"
+        />
         <span className="sr-only">Switch to system/light/dark version</span>
       </label>
     </div>

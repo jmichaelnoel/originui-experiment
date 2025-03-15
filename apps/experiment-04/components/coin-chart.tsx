@@ -297,13 +297,20 @@ const yearlyData = [
 const formatDate = (dateStr: string, period: string) => {
   const date = new Date(dateStr);
   if (period === "1d") {
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
   } else if (period === "1w") {
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
   } else if (period === "1m") {
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+    });
   } else if (period === "1y") {
-    return date.toLocaleDateString('en-US', { year: 'numeric' });
+    return date.toLocaleDateString("en-US", { year: "numeric" });
   } else {
     return dateStr;
   }
@@ -320,23 +327,13 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const TIME_PERIOD_OPTIONS = ['1h', '1d', '1w', '1m', '1y'];
+const TIME_PERIOD_OPTIONS = ["1h", "1d", "1w", "1m", "1y"];
 
-const ViewOption = ({
-  id,
-  value,
-}: {
-  id: string;
-  value: string;
-}) => {
+const ViewOption = ({ id, value }: { id: string; value: string }) => {
   return (
     <label className="relative z-10 inline-flex h-full min-w-8 cursor-pointer items-center justify-center px-2 whitespace-nowrap transition-colors select-none uppercase text-foreground has-data-[state=unchecked]:text-muted-foreground">
       {value}
-      <RadioGroupItem
-        id={`${id}-${value}`}
-        value={value}
-        className="sr-only"
-      />
+      <RadioGroupItem id={`${id}-${value}`} value={value} className="sr-only" />
     </label>
   );
 };
@@ -387,7 +384,7 @@ export function CoinChart() {
   const id = useId();
   const [selectedValue, setSelectedValue] = useState("1h");
   const selectedIndex = TIME_PERIOD_OPTIONS.indexOf(selectedValue);
-  
+
   // Determine which data set to use based on the selected time period
   const getChartDataForTimePeriod = () => {
     switch (selectedValue) {
@@ -405,7 +402,7 @@ export function CoinChart() {
         return hourlyData;
     }
   };
-  
+
   const chartDataToUse = getChartDataForTimePeriod();
 
   return (
@@ -414,8 +411,13 @@ export function CoinChart() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="space-y-0.5">
             <CardTitle>ArkFi</CardTitle>
-            <div className="font-bold text-3xl mb-1"><span className="text-xl text-muted-foreground">$</span>1,327,349.19</div>
-            <div className="text-emerald-500 text-sm font-medium">↗ $2,849.27 (+4%)</div>
+            <div className="font-bold text-3xl mb-1">
+              <span className="text-xl text-muted-foreground">$</span>
+              1,327,349.19
+            </div>
+            <div className="text-emerald-500 text-sm font-medium">
+              ↗ $2,849.27 (+4%)
+            </div>
           </div>
           <div className="bg-muted dark:bg-background/50 inline-flex h-8 rounded-full p-1 shrink-0">
             <RadioGroup
@@ -423,16 +425,14 @@ export function CoinChart() {
               onValueChange={setSelectedValue}
               className="group text-xs after:bg-background dark:after:bg-card/64 has-focus-visible:after:border-ring has-focus-visible:after:ring-ring/50 relative inline-grid grid-cols-[repeat(5,1fr)] items-center gap-0 font-medium after:absolute after:inset-y-0 after:w-1/5 after:rounded-full after:shadow-xs dark:after:inset-shadow-[0_1px_rgb(255_255_255/0.15)] after:transition-[translate,box-shadow] after:duration-300 after:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)] has-focus-visible:after:ring-[3px] [&:after]:translate-x-[calc(var(--selected-index)*100%)]"
               data-state={selectedValue}
-              style={{
-                '--selected-index': selectedIndex
-              } as React.CSSProperties}
+              style={
+                {
+                  "--selected-index": selectedIndex,
+                } as React.CSSProperties
+              }
             >
               {TIME_PERIOD_OPTIONS.map((value) => (
-                <ViewOption 
-                  key={value}
-                  id={id}
-                  value={value}
-                />
+                <ViewOption key={value} id={id} value={value} />
               ))}
             </RadioGroup>
           </div>
@@ -449,10 +449,7 @@ export function CoinChart() {
             data={chartDataToUse}
             margin={{ left: 4, right: 12, top: 12 }}
           >
-            <CartesianGrid
-              vertical={false}
-              strokeDasharray="2 2"
-            />
+            <CartesianGrid vertical={false} strokeDasharray="2 2" />
             <XAxis
               dataKey={selectedValue === "1h" ? "time" : "date"}
               tickLine={false}
@@ -464,16 +461,18 @@ export function CoinChart() {
               axisLine={false}
               tickLine={false}
               allowDataOverflow={true}
-              domain={['dataMin - 1000', 'dataMax + 1000']}
+              domain={["dataMin - 1000", "dataMax + 1000"]}
               tickFormatter={(value) => {
                 if (value === 0) return "$0.00";
-                return `$${(value / 1000).toLocaleString('en-US', { maximumFractionDigits: 2 })}k`;
+                return `$${(value / 1000).toLocaleString("en-US", { maximumFractionDigits: 2 })}k`;
               }}
             />
             <ChartTooltip
               content={<ChartTooltipContent hideIndicator />}
               cursor={<CustomCursor fill="var(--chart-1)" />}
-              formatter={(value) => `$${Number(value).toLocaleString('en-US', { maximumFractionDigits: 2 })}`}
+              formatter={(value) =>
+                `$${Number(value).toLocaleString("en-US", { maximumFractionDigits: 2 })}`
+              }
             />
             <Line
               type="linear"

@@ -1,19 +1,16 @@
-import { useId } from "react"
-import { AppSidebar } from "@/components/app-sidebar"
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar"
-import { Input } from "@/components/ui/input"
-import UserDropdown from "@/components/user-dropdown"
-import { RiSearch2Line } from "@remixicon/react"
-import ThemeToggle from "@/components/theme-toggle"
-import { Converter } from "@/components/converter"
-import { CoinChart } from "@/components/coin-chart"
-import { TransactionsTable } from "@/components/transactions-table"
+import { useId } from "react";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { Input } from "@/components/ui/input";
+import UserDropdown from "@/components/user-dropdown";
+import { RiSearch2Line } from "@remixicon/react";
+import ThemeToggle from "@/components/theme-toggle";
+import { Converter } from "@/components/converter";
+import { CoinChart } from "@/components/coin-chart";
+import { TransactionsTable } from "@/components/transactions-table";
 
 export default function Page() {
-  const id = useId()
+  const id = useId();
 
   return (
     <div className="flex h-svh">
@@ -24,7 +21,11 @@ export default function Page() {
             <div className="flex shrink-0 items-center gap-2 border-b py-4 w-full max-w-7xl mx-auto">
               <div className="flex-1">
                 <div className="relative inline-flex">
-                  <Input id={id} className="h-8 ps-9 pe-9 bg-border border-transparent w-fit min-w-65" aria-label="Search" />
+                  <Input
+                    id={id}
+                    className="h-8 ps-9 pe-9 bg-border border-transparent w-fit min-w-65"
+                    aria-label="Search"
+                  />
                   <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-2 text-muted-foreground peer-disabled:opacity-50">
                     <RiSearch2Line size={20} aria-hidden="true" />
                   </div>
@@ -37,7 +38,7 @@ export default function Page() {
               </div>
               <div className="flex items-center gap-4">
                 <ThemeToggle />
-                <UserDropdown />  
+                <UserDropdown />
               </div>
             </div>
           </header>
@@ -45,16 +46,15 @@ export default function Page() {
             {/* Converter widget */}
             <div className="lg:order-1 lg:w-90 shrink-0">
               <Converter />
-            </div> 
+            </div>
             {/* Chart and table */}
             <div className="flex-1 flex flex-col gap-6 min-w-0">
               <CoinChart />
               <TransactionsTable />
             </div>
           </div>
-
         </SidebarInset>
       </SidebarProvider>
     </div>
-  )
+  );
 }

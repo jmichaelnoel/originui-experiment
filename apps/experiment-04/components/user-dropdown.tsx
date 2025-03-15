@@ -16,7 +16,10 @@ export default function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="h-auto p-0 hover:bg-transparent rounded-full">
+        <Button
+          variant="ghost"
+          className="h-auto p-0 hover:bg-transparent rounded-full"
+        >
           <Avatar>
             <AvatarImage
               src="https://res.cloudinary.com/dlzlfasou/image/upload/v1741353515/user_i02xph.png"

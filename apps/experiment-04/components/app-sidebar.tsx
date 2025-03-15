@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ArchiveX, Command, File, Inbox, Send, Trash2 } from "lucide-react"
-import Link from "next/link"
+import * as React from "react";
+import { ArchiveX, Command, File, Inbox, Send, Trash2 } from "lucide-react";
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +11,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 const basePath = "https://res.cloudinary.com/dlzlfasou/image/upload/";
 
@@ -20,31 +20,40 @@ const navigationItems = [
   {
     title: "ArkFi",
     url: "#",
-    icon: ["v1741795549/coin-01-light_mfrp33.svg", "v1741795549/coin-01-dark_k0xthz.svg"],
+    icon: [
+      "v1741795549/coin-01-light_mfrp33.svg",
+      "v1741795549/coin-01-dark_k0xthz.svg",
+    ],
     isActive: true,
   },
   {
     title: "Solaris",
     url: "#",
-    icon: ["v1741795550/coin-02-light_wbsrxl.svg", "v1741795550/coin-02-dark_l7j3yv.svg"]
+    icon: [
+      "v1741795550/coin-02-light_wbsrxl.svg",
+      "v1741795550/coin-02-dark_l7j3yv.svg",
+    ],
   },
   {
     title: "Nexus",
     url: "#",
-    icon: ["v1741795550/coin-03-light_dvkbrk.svg", "v1741795549/coin-03-dark_htjbyp.svg"],
+    icon: [
+      "v1741795550/coin-03-light_dvkbrk.svg",
+      "v1741795549/coin-03-dark_htjbyp.svg",
+    ],
   },
-]
+];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="none" className="w-16 sm:w-20 border-r" {...props}>
       <SidebarHeader className="items-center py-4">
         <Link className="inline-flex" href="/" aria-label="Go to homepage">
-          <svg 
-            className="text-foreground" 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="32" 
-            height="32" 
+          <svg
+            className="text-foreground"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
             fill="currentColor"
           >
             <title>Logo</title>
@@ -56,7 +65,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup className="p-4">
           <SidebarMenu className="gap-4">
             {navigationItems.map((item) => (
-              <SidebarMenuItem key={item.title} className="flex items-center justify-center">
+              <SidebarMenuItem
+                key={item.title}
+                className="flex items-center justify-center"
+              >
                 <span className="relative has-data-[active=true]:before:absolute has-data-[active=true]:before:inset-0 has-data-[active=true]:before:rounded-full has-data-[active=true]:before:bg-sidebar-primary/48 has-data-[active=true]:before:blur-[10px] has-data-[active=true]:before:-left-2 has-data-[active=true]:after:absolute has-data-[active=true]:after:size-1 has-data-[active=true]:after:bg-foreground has-data-[active=true]:after:rounded-full has-data-[active=true]:after:right-full has-data-[active=true]:after:top-1/2 has-data-[active=true]:after:-translate-y-1/2 has-data-[active=true]:after:-translate-x-2">
                   <SidebarMenuButton
                     asChild
@@ -68,8 +80,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     isActive={item.isActive}
                   >
                     <a href={item.url}>
-                      <img className="dark:hidden" src={basePath + item.icon[0]} alt={item.title} />
-                      <img className="hidden dark:block" src={basePath + item.icon[1]} alt={item.title} />
+                      <img
+                        className="dark:hidden"
+                        src={basePath + item.icon[0]}
+                        alt={item.title}
+                      />
+                      <img
+                        className="hidden dark:block"
+                        src={basePath + item.icon[1]}
+                        alt={item.title}
+                      />
                       <span className="sr-only">{item.title}</span>
                     </a>
                   </SidebarMenuButton>
@@ -80,5 +100,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

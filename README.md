@@ -41,4 +41,3 @@ import { Button } from "@workspace/ui/components/ui/button";
 You are welcome to use these layouts and UI experiments for both personal and commercial projects, but redistribution or resale (even partial) is not permitted.
 
 All copyrights are owned by [Origin UI](https://originui.com) and [Crafted](https://crafted.is).
-

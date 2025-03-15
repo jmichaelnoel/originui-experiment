@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { RiSettings2Line, RiArrowDownLine } from "@remixicon/react";
 import { Input, Label, NumberField } from "react-aria-components";
 import { I18nProvider } from "react-aria";
@@ -28,24 +34,32 @@ function ConverterField({
   defaultValue,
   balance,
   defaultCoin,
-  coins
+  coins,
 }: ConverterFieldProps) {
   return (
     <>
       {isLast && (
-        <div className="size-10 flex items-center justify-center rounded-full bg-linear-to-b from-primary to-primary-to inset-shadow-[0_1px_rgb(255_255_255/0.15)] absolute top-1/2 -translate-y-1/2" aria-hidden="true">
+        <div
+          className="size-10 flex items-center justify-center rounded-full bg-linear-to-b from-primary to-primary-to inset-shadow-[0_1px_rgb(255_255_255/0.15)] absolute top-1/2 -translate-y-1/2"
+          aria-hidden="true"
+        >
           <RiArrowDownLine className="text-primary-foreground" size={20} />
         </div>
-
       )}
-      <Card className={
-        cn("relative w-full flex-row items-center justify-between gap-2 p-5 dark:bg-card/64",
-          isLast ? "[mask-image:radial-gradient(ellipse_26px_24px_at_50%_0%,transparent_0,_transparent_24px,_black_25px)]" : "[mask-image:radial-gradient(ellipse_26px_24px_at_50%_100%,transparent_0,_transparent_24px,_black_25px)]",
-          className
-        )
-      }>
+      <Card
+        className={cn(
+          "relative w-full flex-row items-center justify-between gap-2 p-5 dark:bg-card/64",
+          isLast
+            ? "[mask-image:radial-gradient(ellipse_26px_24px_at_50%_0%,transparent_0,_transparent_24px,_black_25px)]"
+            : "[mask-image:radial-gradient(ellipse_26px_24px_at_50%_100%,transparent_0,_transparent_24px,_black_25px)]",
+          className,
+        )}
+      >
         {isLast && (
-          <div className="absolute -top-px left-1/2 -translate-x-1/2 w-[50px] h-[25px] rounded-b-full border-b border-x border-white/15" aria-hidden="true"></div>
+          <div
+            className="absolute -top-px left-1/2 -translate-x-1/2 w-[50px] h-[25px] rounded-b-full border-b border-x border-white/15"
+            aria-hidden="true"
+          ></div>
         )}
         <div className="grow">
           <I18nProvider locale="en-US">
@@ -55,27 +69,27 @@ function ConverterField({
               formatOptions={{
                 minimumFractionDigits: 1,
                 maximumFractionDigits: 2,
-                useGrouping: true
+                useGrouping: true,
               }}
             >
-              <Label className="sr-only">
-                Amount
-              </Label>
+              <Label className="sr-only">Amount</Label>
               <Input className="w-full max-w-40 text-2xl font-semibold bg-transparent focus-visible:outline-none py-0.5 px-1 -ml-1 mb-0.5 focus:bg-card/64 rounded-lg appearance-none" />
             </NumberField>
           </I18nProvider>
           <div className="text-xs text-muted-foreground">
-            <span className="text-muted-foreground/70">Balance: </span>{balance}
+            <span className="text-muted-foreground/70">Balance: </span>
+            {balance}
           </div>
         </div>
         <div>
           <Select defaultValue={defaultCoin}>
-            <SelectTrigger
-              className="p-1 pr-2 h-8 rounded-full [&>span_svg]:text-muted-foreground/80 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 border-0 bg-card/64 hover:bg-card/80 shadow-lg inset-shadow-[0_1px_rgb(255_255_255/0.15)]"
-            >
+            <SelectTrigger className="p-1 pr-2 h-8 rounded-full [&>span_svg]:text-muted-foreground/80 [&>span]:flex [&>span]:items-center [&>span]:gap-2 [&>span_svg]:shrink-0 border-0 bg-card/64 hover:bg-card/80 shadow-lg inset-shadow-[0_1px_rgb(255_255_255/0.15)]">
               <SelectValue placeholder="Select coin" />
             </SelectTrigger>
-            <SelectContent className="[&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0" align="center">
+            <SelectContent
+              className="[&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0"
+              align="center"
+            >
               {coins.map((coin) => (
                 <SelectItem key={coin.id} value={coin.id}>
                   <img
@@ -85,7 +99,9 @@ function ConverterField({
                     height={24}
                     alt={coin.name}
                   />
-                  <span className="truncate uppercase text-xs font-medium">{coin.name}</span>
+                  <span className="truncate uppercase text-xs font-medium">
+                    {coin.name}
+                  </span>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -101,13 +117,15 @@ export function Converter() {
     {
       id: "1",
       name: "Ark",
-      image: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741861900/coin-01-sm-dark_hkrvvm.svg"
+      image:
+        "https://res.cloudinary.com/dlzlfasou/image/upload/v1741861900/coin-01-sm-dark_hkrvvm.svg",
     },
     {
       id: "2",
       name: "Tok",
-      image: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741861900/coin-02-sm-dark_iqldgv.svg"
-    }
+      image:
+        "https://res.cloudinary.com/dlzlfasou/image/upload/v1741861900/coin-02-sm-dark_iqldgv.svg",
+    },
   ];
 
   return (
@@ -133,7 +151,11 @@ export function Converter() {
             Send
           </TabsTrigger>
         </TabsList>
-        <Button size="icon" variant="ghost" className="size-8 shrink-0 text-muted-foreground hover:text-foreground/80">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="size-8 shrink-0 text-muted-foreground hover:text-foreground/80"
+        >
           <span className="sr-only">Settings</span>
           <RiSettings2Line size={20} aria-hidden="true" />
         </Button>
@@ -142,7 +164,7 @@ export function Converter() {
         <TabsContent value="tab-1">
           <div className="relative flex flex-col items-center gap-1 mb-4">
             <ConverterField
-              defaultValue={15494.90}
+              defaultValue={15494.9}
               balance="24,579"
               defaultCoin="2"
               coins={coins}
@@ -155,7 +177,9 @@ export function Converter() {
               coins={coins}
             />
           </div>
-          <div className="mb-2 ps-3 uppercase text-muted-foreground/50 text-xs font-medium">Summary</div>
+          <div className="mb-2 ps-3 uppercase text-muted-foreground/50 text-xs font-medium">
+            Summary
+          </div>
           <Card className="p-4 gap-0 rounded-[0.75rem]">
             <ul className="text-sm">
               <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
@@ -171,15 +195,24 @@ export function Converter() {
                 <span className="font-medium">$2,898.2</span>
               </li>
             </ul>
-            <Button size="lg" className="w-full">Confirm</Button>
-            <div className="text-xs text-center uppercase mt-3">1 <span className="text-muted-foreground">ARK =</span> 1,574.04 <span className="text-muted-foreground">TOK</span></div>
+            <Button size="lg" className="w-full">
+              Confirm
+            </Button>
+            <div className="text-xs text-center uppercase mt-3">
+              1 <span className="text-muted-foreground">ARK =</span> 1,574.04{" "}
+              <span className="text-muted-foreground">TOK</span>
+            </div>
           </Card>
         </TabsContent>
         <TabsContent value="tab-2">
-          <p className="text-muted-foreground p-4 text-center text-xs">Content for Tab 2</p>
+          <p className="text-muted-foreground p-4 text-center text-xs">
+            Content for Tab 2
+          </p>
         </TabsContent>
         <TabsContent value="tab-3">
-          <p className="text-muted-foreground p-4 text-center text-xs">Content for Tab 3</p>
+          <p className="text-muted-foreground p-4 text-center text-xs">
+            Content for Tab 3
+          </p>
         </TabsContent>
       </div>
     </Tabs>

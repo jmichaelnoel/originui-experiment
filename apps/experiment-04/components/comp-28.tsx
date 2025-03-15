@@ -1,7 +1,13 @@
 "use client";
 
 import { MinusIcon, PlusIcon } from "lucide-react";
-import { Button, Group, Input, Label, NumberField } from "react-aria-components";
+import {
+  Button,
+  Group,
+  Input,
+  Label,
+  NumberField,
+} from "react-aria-components";
 
 export default function Component() {
   return (
@@ -26,7 +32,11 @@ export default function Component() {
           </Button>
         </Group>
       </div>
-      <p className="text-muted-foreground mt-2 text-xs" role="region" aria-live="polite">
+      <p
+        className="text-muted-foreground mt-2 text-xs"
+        role="region"
+        aria-live="polite"
+      >
         Built with{" "}
         <a
           className="hover:text-foreground underline"
