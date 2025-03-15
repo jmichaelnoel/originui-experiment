@@ -11,8 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { RiSettings2Line, RiArrowDownLine } from "@remixicon/react";
-import { Input, Label, NumberField } from "react-aria-components";
-import { I18nProvider } from "react-aria";
+import { I18nProvider, Input, Label, NumberField } from "react-aria-components";
 import { cn } from "@workspace/ui/lib/utils";
 
 interface ConverterFieldProps {
@@ -128,6 +127,54 @@ export function Converter() {
     },
   ];
 
+  function ConverterContent() {
+    return (
+      <>
+        <div className="relative flex flex-col items-center gap-1 mb-4">
+          <ConverterField
+            defaultValue={15494.9}
+            balance="24,579"
+            defaultCoin="2"
+            coins={coins}
+          />
+          <ConverterField
+            isLast
+            defaultValue={12984.2}
+            balance="1,379.2"
+            defaultCoin="1"
+            coins={coins}
+          />
+        </div>
+        <div className="mb-2 ps-3 uppercase text-muted-foreground/50 text-xs font-medium">
+          Summary
+        </div>
+        <Card className="p-4 gap-0 rounded-[0.75rem]">
+          <ul className="text-sm">
+            <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
+              <span className="text-muted-foreground">Transaction Value</span>
+              <span className="font-medium">$2,867</span>
+            </li>
+            <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
+              <span className="text-muted-foreground">Network Fees</span>
+              <span className="font-medium">$31.2</span>
+            </li>
+            <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
+              <span className="text-muted-foreground">Order Net</span>
+              <span className="font-medium">$2,898.2</span>
+            </li>
+          </ul>
+          <Button size="lg" className="w-full">
+            Confirm
+          </Button>
+          <div className="text-xs text-center uppercase mt-3">
+            1 <span className="text-muted-foreground">ARK =</span> 1,574.04{" "}
+            <span className="text-muted-foreground">TOK</span>
+          </div>
+        </Card>
+      </>
+    );
+  }
+
   return (
     <Tabs defaultValue="tab-1" className="flex-1 gap-5">
       <div className="flex items-center gap-2">
@@ -162,57 +209,13 @@ export function Converter() {
       </div>
       <div className="dark bg-background dark:bg-secondary/64 rounded-2xl p-2">
         <TabsContent value="tab-1">
-          <div className="relative flex flex-col items-center gap-1 mb-4">
-            <ConverterField
-              defaultValue={15494.9}
-              balance="24,579"
-              defaultCoin="2"
-              coins={coins}
-            />
-            <ConverterField
-              isLast
-              defaultValue={12984.2}
-              balance="1,379.2"
-              defaultCoin="1"
-              coins={coins}
-            />
-          </div>
-          <div className="mb-2 ps-3 uppercase text-muted-foreground/50 text-xs font-medium">
-            Summary
-          </div>
-          <Card className="p-4 gap-0 rounded-[0.75rem]">
-            <ul className="text-sm">
-              <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
-                <span className="text-muted-foreground">Transaction Value</span>
-                <span className="font-medium">$2,867</span>
-              </li>
-              <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
-                <span className="text-muted-foreground">Network Fees</span>
-                <span className="font-medium">$31.2</span>
-              </li>
-              <li className="flex items-center justify-between pb-3 mb-3 border-b border-card/50">
-                <span className="text-muted-foreground">Order Net</span>
-                <span className="font-medium">$2,898.2</span>
-              </li>
-            </ul>
-            <Button size="lg" className="w-full">
-              Confirm
-            </Button>
-            <div className="text-xs text-center uppercase mt-3">
-              1 <span className="text-muted-foreground">ARK =</span> 1,574.04{" "}
-              <span className="text-muted-foreground">TOK</span>
-            </div>
-          </Card>
+          <ConverterContent />
         </TabsContent>
         <TabsContent value="tab-2">
-          <p className="text-muted-foreground p-4 text-center text-xs">
-            Content for Tab 2
-          </p>
+          <ConverterContent />
         </TabsContent>
         <TabsContent value="tab-3">
-          <p className="text-muted-foreground p-4 text-center text-xs">
-            Content for Tab 3
-          </p>
+          <ConverterContent />
         </TabsContent>
       </div>
     </Tabs>
