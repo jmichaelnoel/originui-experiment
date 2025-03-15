@@ -39,7 +39,7 @@ function ConverterField({
 
       )}
       <Card className={
-        cn("relative w-full flex-row items-center justify-between gap-2 p-5",
+        cn("relative w-full flex-row items-center justify-between gap-2 p-5 dark:bg-card/64",
           isLast ? "[mask-image:radial-gradient(ellipse_26px_24px_at_50%_0%,transparent_0,_transparent_24px,_black_25px)]" : "[mask-image:radial-gradient(ellipse_26px_24px_at_50%_100%,transparent_0,_transparent_24px,_black_25px)]",
           className
         )

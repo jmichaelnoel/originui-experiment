@@ -163,8 +163,8 @@ export function TransactionsTable() {
       <CardHeader>
         <CardTitle>Transactions</CardTitle>
       </CardHeader>
-      <CardContent>
-        <Table className="border-separate border-spacing-0 [&_tr_td]:border-b [&_tr_td]:border-border/64 dark:[&_tr_td]:border-card/80">
+      <CardContent className="px-0">
+        <Table className="px-6 border-separate border-spacing-0 [&_tr_td]:border-b [&_tr_td]:border-border/64 dark:[&_tr_td]:border-card/80">
           <TableHeader>
             <TableRow className="hover:bg-transparent border-0">
               <TableHead className="relative h-8 select-none bg-muted dark:bg-card/48 border-0 first:rounded-l-lg last:rounded-r-lg font-normal">Date</TableHead>
@@ -240,7 +240,7 @@ export function TransactionsTable() {
             ))}
           </TableBody>
         </Table>
-        <Pagination className="mt-5">
+        <Pagination className="mt-5 px-6">
           <PaginationContent className="w-full justify-between">
             <PaginationItem>
               <PaginationLink
