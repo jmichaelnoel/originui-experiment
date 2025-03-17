@@ -7,6 +7,7 @@ Check out the live demos of all the layouts and UI experiments, showcased in chr
 - [SaaS Dashboard](https://crafted.is/exp1)
 - [AI Chat](https://crafted.is/exp2)
 - [Dark Table](https://crafted.is/exp3)
+- [Crypto Wallet](https://ui-experiment-04.vercel.app/)
 
 ## shadcn/ui monorepo template
 
