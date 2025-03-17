@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RiSettings2Line, RiArrowDownLine } from "@remixicon/react";
+import { RiSettings4Line, RiArrowDownLine } from "@remixicon/react";
 import { I18nProvider, Input, Label, NumberField } from "react-aria-components";
 import { cn } from "@workspace/ui/lib/utils";
 
@@ -86,7 +86,7 @@ function ConverterField({
               <SelectValue placeholder="Select coin" />
             </SelectTrigger>
             <SelectContent
-              className="[&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0"
+              className="dark bg-zinc-800 border-none shadow-black/10 inset-shadow-[0_1px_rgb(255_255_255/0.15)] [&_*[role=option]>span>svg]:text-muted-foreground/80 [&_*[role=option]]:ps-2 [&_*[role=option]]:pe-8 [&_*[role=option]>span]:start-auto [&_*[role=option]>span]:end-2 [&_*[role=option]>span]:flex [&_*[role=option]>span]:items-center [&_*[role=option]>span]:gap-2 [&_*[role=option]>span>svg]:shrink-0"
               align="center"
             >
               {coins.map((coin) => (
@@ -204,7 +204,7 @@ export function Converter() {
           className="size-8 shrink-0 text-muted-foreground hover:text-foreground/80"
         >
           <span className="sr-only">Settings</span>
-          <RiSettings2Line size={20} aria-hidden="true" />
+          <RiSettings4Line className="size-5" size={20} aria-hidden="true" />
         </Button>
       </div>
       <div className="dark bg-background dark:bg-secondary/64 rounded-2xl p-2">

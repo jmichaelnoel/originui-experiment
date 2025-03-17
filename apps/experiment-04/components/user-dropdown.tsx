@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { RiSettingsLine, RiTeamLine, RiLogoutBoxLine } from "@remixicon/react";
+import { RiGlobalLine, RiWalletLine, RiLogoutBoxLine } from "@remixicon/react";
 
 export default function UserDropdown() {
   return (
@@ -31,7 +31,7 @@ export default function UserDropdown() {
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="max-w-64" align="end">
+      <DropdownMenuContent className="max-w-64 dark:border-none" align="end">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="truncate text-sm font-medium text-foreground">
             Lucy Bennett
@@ -40,22 +40,18 @@ export default function UserDropdown() {
             l.bennett@originui.com
           </span>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="dark:bg-white/8" />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <RiSettingsLine
-              size={16}
-              className="opacity-60"
-              aria-hidden="true"
-            />
-            <span>Account settings</span>
+            <RiGlobalLine size={16} className="opacity-60" aria-hidden="true" />
+            <span>Currency</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <RiTeamLine size={16} className="opacity-60" aria-hidden="true" />
-            <span>Affiliate area</span>
+            <RiWalletLine size={16} className="opacity-60" aria-hidden="true" />
+            <span>Wallet</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="dark:bg-white/8" />
         <DropdownMenuItem>
           <RiLogoutBoxLine
             size={16}

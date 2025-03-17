@@ -236,7 +236,7 @@ export function TransactionsTable() {
                 <TableCell className="font-medium">
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2">
-                      <div className="rounded-full shadow-xs">
+                      <div className="max-[1320px]:hidden shrink-0 rounded-full shadow-xs">
                         <img
                           className="dark:hidden"
                           src={basePath + item.in.icon[0]}
@@ -256,7 +256,7 @@ export function TransactionsTable() {
                       aria-hidden="true"
                     />
                     <div className="flex items-center gap-2">
-                      <div className="rounded-full shadow-xs">
+                      <div className="max-[1320px]:hidden shrink-0 rounded-full shadow-xs">
                         <img
                           className="dark:hidden"
                           src={basePath + item.out.icon[0]}
