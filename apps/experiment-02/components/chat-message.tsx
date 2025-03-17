@@ -31,7 +31,7 @@ export function ChatMessage({ isUser, children }: ChatMessageProps) {
           "rounded-full",
           isUser ? "order-1" : "border border-black/[0.08] shadow-sm",
         )}
-        src={isUser ? "/user-02.png" : "/user-01.png"}
+        src={isUser ? "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345634/user-02_mlqqqt.png" : "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345634/user-01_i5l7tp.png"}
         alt={isUser ? "User profile" : "Bart logo"}
         width={40}
         height={40}
