@@ -9,6 +9,7 @@ import {
   Cell,
   CartesianGrid,
   ReferenceLine,
+  TooltipProps,
 } from "recharts";
 import {
   ChartConfig,
@@ -370,6 +371,13 @@ const data = [
   },
 ];
 
+interface CandlestickData {
+  date: string;
+  openClose: [number, number];
+  high: number;
+  low: number;
+}
+
 const chartConfig = {
   openClose: {
     label: "Price",
@@ -385,7 +393,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const Candlestick = (props: {
+interface CandlestickProps {
   x: number;
   y: number;
   width: number;
@@ -393,7 +401,9 @@ const Candlestick = (props: {
   low: number;
   high: number;
   openClose: [number, number];
-}) => {
+}
+
+const Candlestick = (props: CandlestickProps) => {
   const {
     x,
     y,
@@ -459,18 +469,53 @@ const Candlestick = (props: {
   );
 };
 
-const CustomTooltip = ({
-  active,
-  payload,
-}: {
-  active: boolean;
-  payload: Record<string, any>;
-}) => {
+const renderCandlestick = (props: any) => {
+  // Extract the necessary data from the props
+  const { x, y, width, height, payload } = props;
+
+  // If we have valid payload, use its data
+  if (
+    payload &&
+    payload.low !== undefined &&
+    payload.high !== undefined &&
+    payload.openClose
+  ) {
+    return (
+      <Candlestick
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        low={payload.low}
+        high={payload.high}
+        openClose={payload.openClose}
+      />
+    );
+  }
+
+  // Return an empty candlestick with default values if payload is missing
+  return (
+    <Candlestick
+      x={x || 0}
+      y={y || 0}
+      width={width || 0}
+      height={height || 0}
+      low={0}
+      high={0}
+      openClose={[0, 0]}
+    />
+  );
+};
+
+const CustomTooltip = ({ active, payload }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
+    const data = payload[0]?.payload as CandlestickData | undefined;
+    if (!data) return null;
+
     return (
       <div className="bg-popover text-popover-foreground grid min-w-32 items-start gap-1.5 rounded-lg border px-3 py-1.5 text-xs">
         <p className="font-medium">
-          {new Date(payload[0].payload.date).toLocaleDateString("en-US", {
+          {new Date(data.date).toLocaleDateString("en-US", {
             weekday: "short",
             year: "numeric",
             month: "short",
@@ -480,25 +525,19 @@ const CustomTooltip = ({
         <p className="text-muted-foreground">
           Open:{" "}
           <span className="text-foreground font-medium">
-            {payload[0].payload.openClose[0]}
+            {data.openClose[0]}
           </span>
         </p>
         <p className="text-muted-foreground">
-          High:{" "}
-          <span className="text-foreground font-medium">
-            {payload[0].payload.high}
-          </span>
+          High: <span className="text-foreground font-medium">{data.high}</span>
         </p>
         <p className="text-muted-foreground">
-          Low:{" "}
-          <span className="text-foreground font-medium">
-            {payload[0].payload.low}
-          </span>
+          Low: <span className="text-foreground font-medium">{data.low}</span>
         </p>
         <p className="text-muted-foreground">
           Close:{" "}
           <span className="text-foreground font-medium">
-            {payload[0].payload.openClose[1]}
+            {data.openClose[1]}
           </span>
         </p>
       </div>
@@ -638,10 +677,8 @@ function CandlestickChart() {
             />
           )}
 
-          {/* @ts-expect-error custom components do not have a good type support */}
           <ChartTooltip content={<CustomTooltip />} />
-          {/* @ts-expect-error custom components do not have a good type support */}
-          <Bar dataKey="openClose" fill="#8884d8" shape={<Candlestick />}>
+          <Bar dataKey="openClose" shape={renderCandlestick}>
             {data.map(({ date }: any) => (
               <Cell key={`cell-${date}`} />
             ))}
