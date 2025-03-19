@@ -29,9 +29,7 @@ export default function Component() {
       <DropdownMenuContent align="end" className="w-fit min-w-28">
         <DropdownMenuRadioGroup value={period} onValueChange={setPeriod}>
           <DropdownMenuRadioItem value="1">1 week</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="2">
-            1 month
-          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="2">1 month</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="3">1 year</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

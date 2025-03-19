@@ -25,16 +25,34 @@ export default function Page() {
                     {/* Coin symbols */}
                     <div className="mt-0.5 shrink-0">
                       <div className="inline-flex rounded-full border-2 border-card last:-ms-3.5 last:translate-y-3.5">
-                        <Image src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-01_tidmpi.svg" width={28} height={28} alt="TRX" />
+                        <Image
+                          src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-01_tidmpi.svg"
+                          width={28}
+                          height={28}
+                          alt="TRX"
+                        />
                       </div>
                       <div className="inline-flex rounded-full border-2 border-card last:-ms-3.5 last:translate-y-3.5">
-                        <Image src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-02_a6ineb.svg" width={28} height={28} alt="TOK" />
+                        <Image
+                          src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-02_a6ineb.svg"
+                          width={28}
+                          height={28}
+                          alt="TOK"
+                        />
                       </div>
                     </div>
                     {/* Exchange information */}
                     <div className="flex flex-col gap-0.5">
-                      <div className="text-xl font-semibold">TRX <span className="text-muted-foreground">:</span> TOK</div>
-                      <div className="text-[13px] text-muted-foreground/72 dark:text-muted-foreground/64 uppercase font-medium">1 Year <span className="text-muted-foreground/40">·</span> PRC <span className="text-emerald-500">1,970.84 (+4.37%)</span></div>
+                      <div className="text-xl font-semibold">
+                        TRX <span className="text-muted-foreground">:</span> TOK
+                      </div>
+                      <div className="text-[13px] text-muted-foreground/72 dark:text-muted-foreground/64 uppercase font-medium">
+                        1 Year{" "}
+                        <span className="text-muted-foreground/40">·</span> PRC{" "}
+                        <span className="text-emerald-500">
+                          1,970.84 (+4.37%)
+                        </span>
+                      </div>
                     </div>
                   </div>
                   {/* Right side */}
@@ -52,7 +70,7 @@ export default function Page() {
             </Card>
           </div>
           {/* Sidebar with links */}
-          <Sidebar />     
+          <Sidebar />
         </div>
       </div>
     </div>

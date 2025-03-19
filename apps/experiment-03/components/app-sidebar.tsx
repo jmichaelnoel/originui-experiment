@@ -32,7 +32,8 @@ const data = {
   user: {
     name: "Mark Bannert",
     email: "mark@bannert.com",
-    avatar: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
+    avatar:
+      "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
   },
   navMain: [
     {
@@ -146,10 +147,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     >
                       <a href={item.url}>
                         {item.icon && (
-                          <item.icon
-                            size={20}
-                            aria-hidden="true"
-                          />
+                          <item.icon size={20} aria-hidden="true" />
                         )}
                         <span>{item.title}</span>
                       </a>
