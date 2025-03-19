@@ -10,6 +10,7 @@ export default function Page() {
     <div className="px-6 py-20 min-h-svh flex flex-col justify-center bg-zinc-100">
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row gap-6">
+          {/* Chart area */}
           <div className="flex-1 @container">
             <Card className="shadow-2xl rounded-3xl">
               <CardContent>
@@ -46,6 +47,7 @@ export default function Page() {
               </CardContent>
             </Card>
           </div>
+          {/* Sidebar with links */}
           <aside className="md:-order-1 dark md:w-60 rounded-3xl bg-sidebar text-foreground p-5 flex flex-col gap-4">
             {/* Logo */}
             <div className="mb-4">
