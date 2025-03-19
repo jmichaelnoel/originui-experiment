@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { ArchiveX, Command, File, Inbox, Send, Trash2 } from "lucide-react";
 import Link from "next/link";
 import {
   Sidebar,
