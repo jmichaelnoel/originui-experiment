@@ -272,49 +272,31 @@ function CandlestickChart() {
 
   return (
     <div className="w-full">
-      <div className="flex items-start gap-2 px-5">
-        <div className="flex items-center mt-0.5 gap-2">
-          <img src={UsdSymbol.src} alt="USD" className="size-4 inline-flex" />
-          <img src={EuroSymbol.src} alt="EUR" className="size-4 inline-flex" />
-        </div>
-        <div className="text-sm">
-          <span>
-            U.S. Dollar <span className="text-muted-foreground/80">/</span> Euro <span className="text-muted-foreground/80">·</span> 1D <span className="text-muted-foreground/80">·</span> ICE
-          </span>
-          <span className="ms-8 relative inline-flex size-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-400"></span>
-          </span>
-          <span className="ms-4 text-xs">
-            <span className="text-muted-foreground">O:</span><span>{mostRecentData?.openClose[0]?.toFixed(4) || "N/A"}</span>{" "}
-            <span className="text-muted-foreground">H:</span><span>{mostRecentData?.high?.toFixed(4) || "N/A"}</span>{" "}
-            <span className="text-muted-foreground">L:</span><span>{mostRecentData?.low?.toFixed(4) || "N/A"}</span>{" "}
-            <span className="text-muted-foreground">C:</span><span>{mostRecentData?.openClose[1]?.toFixed(4) || "N/A"}</span>
-          </span>
-        </div>
-      </div>
-      <ChartContainer config={chartConfig} className="aspect-auto h-120 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
+      <ChartContainer config={chartConfig} className="aspect-auto h-110 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
         <BarChart data={data} maxBarSize={20}
-          margin={{ left: 20, right: 20, top: 20, bottom: 20 }}>
+          margin={{ left: 20, right: -5 }}>
           <CartesianGrid
             vertical={false}
-            stroke="var(--border)"
+            stroke="var(--muted)"
             strokeWidth={1}
           />
           <XAxis
             dataKey="date" 
             tickLine={false} 
-            stroke="var(--border)" 
+            stroke="var(--muted)" 
             tickFormatter={customTickFormatter}
             interval={0}
             minTickGap={5}
             tickMargin={12}
           />
           <YAxis
-            domain={[minValue ?? 0, maxValue]}
+            domain={[
+              minValue !== null ? minValue - ((maxValue - (minValue ?? 0)) * 0.1) : 0,
+              maxValue + ((maxValue - (minValue ?? 0)) * 0.1)
+            ]}
             tickCount={7}
             tickLine={false}
-            stroke="var(--border)"
+            stroke="var(--muted)"
             orientation="right"
             tickFormatter={(value) => value.toFixed(4)}
           />

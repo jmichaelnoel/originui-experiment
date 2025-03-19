@@ -1,11 +1,55 @@
+import { Card, CardContent } from "@/components/ui/card";
 import { CandlestickChart } from "@/components/candlestick-chart";
+import Image from "next/image";
+import CoinSelector from "@/components/coin-selector";
+import PeriodSelector from "@/components/period-selector";
 
 export default function Page() {
   return (
-    <main className="max-w-6xl mx-auto p-4">
-      <div className="flex items-center justify-center h-screen">
-        <CandlestickChart />
+    <div className="px-6 py-20 min-h-svh flex flex-col justify-center bg-zinc-100">
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="flex flex-col md:flex-row gap-6">
+          <aside className="w-60">
+
+          </aside>
+          <div className="flex-1 @container">
+            <Card className="shadow-lg rounded-3xl">
+              <CardContent>
+                {/* Header */}
+                <div className="flex flex-col @xl:flex-row @xl:items-center gap-3 mb-6">
+                  {/* Left side */}
+                  <div className="flex-1 flex gap-3">
+                    {/* Coin symbols */}
+                    <div className="mt-0.5 shrink-0">
+                      <div className="inline-flex rounded-full border-2 border-card last:-ms-3.5 last:translate-y-3.5">
+                        <Image src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-01_tidmpi.svg" width={28} height={28} alt="TRX" />
+                      </div>
+                      <div className="inline-flex rounded-full border-2 border-card last:-ms-3.5 last:translate-y-3.5">
+                        <Image src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-02_a6ineb.svg" width={28} height={28} alt="TOK" />
+                      </div>
+                    </div>
+                    {/* Exchange information */}
+                    <div className="flex flex-col gap-0.5">
+                      <div className="text-xl font-semibold">TRX <span className="text-muted-foreground">:</span> TOK</div>
+                      <div className="text-[13px] text-muted-foreground uppercase font-medium">1 Year <span className="text-muted-foreground/80">·</span> PRC <span className="text-emerald-500">1,970.84 (+4.37%)</span></div>
+                    </div>
+                  </div>
+                  {/* Right side */}
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <CoinSelector defaultValue="TRX" />
+                      <CoinSelector defaultValue="TOK" />
+                    </div>
+                    <PeriodSelector />
+                  </div>
+                </div>
+                {/* The Chart */}
+                <CandlestickChart />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
