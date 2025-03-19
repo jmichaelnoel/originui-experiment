@@ -4,6 +4,7 @@
 
 Check out the live demos of all the layouts and UI experiments, showcased in chronological order:
 
+- [Chart Widget](https://ui-experiment-05.vercel.app/)
 - [Crypto Wallet](https://ui-experiment-04.vercel.app/)
 - [SaaS Dashboard](https://crafted.is/exp1)
 - [AI Chat](https://crafted.is/exp2)
