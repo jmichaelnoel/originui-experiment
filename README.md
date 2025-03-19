@@ -4,11 +4,11 @@
 
 Check out the live demos of all the layouts and UI experiments, showcased in chronological order:
 
-- [Chart Widget](https://ui-experiment-05.vercel.app/)
-- [Crypto Wallet](https://ui-experiment-04.vercel.app/)
-- [SaaS Dashboard](https://crafted.is/exp1)
+- [Chart Widget](https://crafted.is/exp4)
+- [Crypto Wallet](https://crafted.is/exp4)
+- [SaaS Dashboard](https://crafted.is/exp3)
 - [AI Chat](https://crafted.is/exp2)
-- [Dark Table](https://crafted.is/exp3)
+- [Dark Table](https://crafted.is/exp1)
 
 ## shadcn/ui monorepo template
 
