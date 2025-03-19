@@ -28,7 +28,7 @@ export function Sidebar() {
   };
 
   return (
-    <aside className="md:-order-1 dark md:w-60 rounded-3xl shadow-2xl bg-sidebar text-foreground p-5 flex flex-col gap-4">
+    <aside className="md:-order-1 dark md:w-60 rounded-3xl shadow-2xl bg-sidebar text-foreground p-5 flex flex-col gap-4 border border-transparent dark:border-border/64">
       {/* Logo */}
       <div className="mb-4">
         <Link href="/">
@@ -41,9 +41,9 @@ export function Sidebar() {
       </div>
       {/* Navigation menu */}
       <div className="flex-1">
-        <div className="uppercase font-medium text-xs text-muted-foreground/80 mb-2">Live market</div>
+        <div className="uppercase font-medium text-xs text-muted-foreground/64 mb-2">Live market</div>
         <nav>
-          <ul className="text-[13px] font-semibold divide-y divide-sidebar-border">
+          <ul className="text-[13px] font-semibold divide-y divide-border/64">
             {links.map((link) => (
               <li key={link.id}>
                 <ScrambleLink link={link} formatValue={formatValue} />
@@ -59,7 +59,7 @@ export function Sidebar() {
       </div>
       {/* Market sentiment */}
       <div>
-        <div className="uppercase font-medium text-xs text-muted-foreground/80 mb-4">Market sentiment</div>
+        <div className="uppercase font-medium text-xs text-muted-foreground/64 mb-4">Market sentiment</div>
         <div className="flex items-center text-[13px] font-semibold gap-2 mb-2">
           <div className="text-emerald-500">27%</div>
           <div className="h-1.5 flex items-center gap-1 flex-1" aria-hidden="true">
@@ -68,7 +68,7 @@ export function Sidebar() {
           </div>
           <div className="text-rose-500">73%</div>
         </div>
-        <div className="text-[13px] flex justify-between text-muted-foreground/80">
+        <div className="text-[13px] flex justify-between text-muted-foreground/64">
           <div>Bullish</div>
           <div>Bearish</div>
         </div>

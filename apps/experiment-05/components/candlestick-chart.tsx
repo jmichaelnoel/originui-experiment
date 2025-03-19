@@ -272,18 +272,16 @@ function CandlestickChart() {
 
   return (
     <div className="w-full">
-      <ChartContainer config={chartConfig} className="aspect-auto h-110 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5">
+      <ChartContainer config={chartConfig} className="aspect-auto h-110 w-full [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/5 dark:[&_.recharts-rectangle.recharts-tooltip-cursor]:fill-zinc-950/25 [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/64 [&_.recharts-cartesian-axis-line]:stroke-border/64 [&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground/72 dark:[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground/64">
         <BarChart data={data} maxBarSize={20}
           margin={{ left: 20, right: -5 }}>
           <CartesianGrid
             vertical={false}
-            stroke="var(--muted)"
             strokeWidth={1}
           />
           <XAxis
             dataKey="date" 
-            tickLine={false} 
-            stroke="var(--muted)" 
+            tickLine={false}  
             tickFormatter={customTickFormatter}
             interval={0}
             minTickGap={5}
@@ -296,7 +294,6 @@ function CandlestickChart() {
             ]}
             tickCount={7}
             tickLine={false}
-            stroke="var(--muted)"
             orientation="right"
             tickFormatter={(value) => value.toFixed(4)}
           />
@@ -306,7 +303,7 @@ function CandlestickChart() {
             <ReferenceLine 
               y={mostRecentClose} 
               stroke="var(--muted-foreground)" 
-              opacity={0.7}
+              opacity={0.5}
               strokeWidth={1}
               strokeDasharray="2 2"
               label={({ viewBox }) => (

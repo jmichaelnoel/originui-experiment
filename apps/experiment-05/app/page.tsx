@@ -4,15 +4,19 @@ import Image from "next/image";
 import CoinSelector from "@/components/coin-selector";
 import PeriodSelector from "@/components/period-selector";
 import { Sidebar } from "@/components/sidebar";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function Page() {
   return (
-    <div className="px-6 py-20 min-h-svh flex flex-col justify-center bg-zinc-100">
+    <div className="px-6 py-20 min-h-svh flex flex-col justify-center bg-zinc-100 dark:bg-zinc-950">
+      <div className="fixed top-4 right-4">
+        <ThemeToggle />
+      </div>
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row gap-6">
           {/* Chart area */}
           <div className="flex-1 @container">
-            <Card className="shadow-2xl rounded-3xl">
+            <Card className="shadow-2xl rounded-3xl border-transparent dark:border-border/64">
               <CardContent>
                 {/* Header */}
                 <div className="flex flex-col @xl:flex-row @xl:items-center gap-3 mb-6">
@@ -30,7 +34,7 @@ export default function Page() {
                     {/* Exchange information */}
                     <div className="flex flex-col gap-0.5">
                       <div className="text-xl font-semibold">TRX <span className="text-muted-foreground">:</span> TOK</div>
-                      <div className="text-[13px] text-muted-foreground uppercase font-medium">1 Year <span className="text-muted-foreground/80">·</span> PRC <span className="text-emerald-500">1,970.84 (+4.37%)</span></div>
+                      <div className="text-[13px] text-muted-foreground/72 dark:text-muted-foreground/64 uppercase font-medium">1 Year <span className="text-muted-foreground/40">·</span> PRC <span className="text-emerald-500">1,970.84 (+4.37%)</span></div>
                     </div>
                   </div>
                   {/* Right side */}
