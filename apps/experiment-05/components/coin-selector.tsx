@@ -75,20 +75,22 @@ export default function CoinSelector({ defaultValue }: CoinSelectorProps) {
             <CommandInput placeholder="Search coin..." className="h-9" />
             <CommandList>
               <CommandEmpty>No coin found.</CommandEmpty>
-              {coins.map((coin) => (
-                <CommandItem
-                  key={coin.value}
-                  value={coin.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  <img src={coin.icon} alt={coin.name} className="size-5" width={20} height={20} />
-                  <span className="truncate">{coin.name} ({coin.value})</span>
-                  {value === coin.value && <CheckIcon size={16} className="ms-auto" />}
-                </CommandItem>
-              ))}
+              <CommandGroup className="p-1">
+                {coins.map((coin) => (
+                  <CommandItem
+                    key={coin.value}
+                    value={coin.value}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <img src={coin.icon} alt={coin.name} className="size-5" width={20} height={20} />
+                    <span className="truncate">{coin.name} ({coin.value})</span>
+                    {value === coin.value && <CheckIcon size={16} className="ms-auto" />}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
             </CommandList>
           </Command>
         </PopoverContent>
