@@ -71,7 +71,16 @@ export default function CoinSelector({ defaultValue }: CoinSelectorProps) {
           className="max-w-48 min-w-[var(--radix-popper-anchor-width)] p-0"
           align="end"
         >
-          <Command>
+          <Command filter={(value, search) => {
+            if (!search) return 1;
+            const item = coins.find(coin => coin.value === value);
+            if (!item) return 0;
+            
+            const nameMatch = item.name.toLowerCase().includes(search.toLowerCase());
+            const valueMatch = item.value.toLowerCase().includes(search.toLowerCase());
+            
+            return nameMatch || valueMatch ? 1 : 0;
+          }}>
             <CommandInput placeholder="Search coin..." className="h-9" />
             <CommandList>
               <CommandEmpty>No coin found.</CommandEmpty>
