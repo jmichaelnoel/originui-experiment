@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experiment 02 - Crafted.is",
+};
+
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   SidebarInset,
@@ -10,6 +16,7 @@ import {
   SettingsPanel,
 } from "@/components/settings-panel";
 import Chat from "@/components/chat";
+import { Banner } from "@/components/banner";
 
 export default function Page() {
   return (
@@ -56,6 +63,7 @@ export default function Page() {
           </div>
         </SettingsPanelProvider>
       </SidebarInset>
+      <Banner />
     </SidebarProvider>
   );
 }

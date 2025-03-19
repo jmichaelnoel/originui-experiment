@@ -30,15 +30,15 @@ const data = {
   teams: [
     {
       name: "ArkDigital",
-      logo: "/logo-01.png",
+      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345635/logo-01_upxvqe.png",
     },
     {
       name: "Acme Corp.",
-      logo: "/logo-01.png",
+      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345635/logo-01_upxvqe.png",
     },
     {
       name: "Evil Corp.",
-      logo: "/logo-01.png",
+      logo: "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345635/logo-01_upxvqe.png",
     },
   ],
   navMain: [

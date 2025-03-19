@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experiment 01 - Crafted.is",
+};
+
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -19,6 +25,7 @@ import FeedbackDialog from "@/components/feedback-dialog";
 import ContactsTable from "@/components/contacts-table";
 import { RiScanLine } from "@remixicon/react";
 import { StatsGrid } from "@/components/stats-grid";
+import { Banner } from "@/components/banner";
 
 export default function Page() {
   return (
@@ -147,6 +154,7 @@ export default function Page() {
           </div>
         </div>
       </SidebarInset>
+      <Banner />
     </SidebarProvider>
   );
 }
