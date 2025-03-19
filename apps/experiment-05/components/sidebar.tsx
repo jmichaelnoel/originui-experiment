@@ -105,16 +105,18 @@ function ScrambleLink({ link, formatValue }: ScrambleLinkProps) {
     overdrive: false
   });
 
+  const handleScramble = () => {
+    replayPair();
+    replayValue();
+  };
+
   return (
     <Link 
       className="flex items-center justify-between gap-2 py-2" 
       href="#"
-      onClick={(e) => {
-        replayPair();
-        replayValue();
-      }}
-      onMouseOver={() => {replayPair(); replayValue();}} 
-      onFocus={() => {replayPair(); replayValue();}}      
+      onClick={handleScramble}
+      onMouseEnter={handleScramble}
+      onFocus={handleScramble}
     >
       <span ref={pairRef}></span>
       <span aria-hidden="true">&nbsp;</span>
