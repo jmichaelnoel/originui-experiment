@@ -48,7 +48,7 @@ export default function Page() {
             </Card>
           </div>
           {/* Sidebar with links */}
-          <aside className="md:-order-1 dark md:w-60 rounded-3xl bg-sidebar text-foreground p-5 flex flex-col gap-4">
+          <aside className="md:-order-1 dark md:w-60 rounded-3xl shadow-2xl bg-sidebar text-foreground p-5 flex flex-col gap-4">
             {/* Logo */}
             <div className="mb-4">
               <Link href="/">
