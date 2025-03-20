@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experiment 05 - Crafted.is",
+};
+
 import { Card, CardContent } from "@/components/ui/card";
 import { CandlestickChart } from "@/components/candlestick-chart";
 import Image from "next/image";
