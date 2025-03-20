@@ -8,7 +8,6 @@ import ThemeToggle from "@/components/theme-toggle";
 import { Converter } from "@/components/converter";
 import { CoinChart } from "@/components/coin-chart";
 import { TransactionsTable } from "@/components/transactions-table";
-import { Banner } from "@/components/banner";
 
 export default function Page() {
   const id = useId();
@@ -55,7 +54,6 @@ export default function Page() {
             </div>
           </div>
         </SidebarInset>
-        <Banner />
       </SidebarProvider>
     </div>
   );

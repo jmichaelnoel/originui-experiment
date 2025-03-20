@@ -16,7 +16,6 @@ import {
   SettingsPanel,
 } from "@/components/settings-panel";
 import Chat from "@/components/chat";
-import { Banner } from "@/components/banner";
 
 export default function Page() {
   return (
@@ -63,7 +62,6 @@ export default function Page() {
           </div>
         </SettingsPanelProvider>
       </SidebarInset>
-      <Banner />
     </SidebarProvider>
   );
 }

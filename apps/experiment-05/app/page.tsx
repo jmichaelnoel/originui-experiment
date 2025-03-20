@@ -5,7 +5,6 @@ import CoinSelector from "@/components/coin-selector";
 import PeriodSelector from "@/components/period-selector";
 import { Sidebar } from "@/components/sidebar";
 import ThemeToggle from "@/components/theme-toggle";
-import { Banner } from "@/components/banner";
 
 export default function Page() {
   return (
@@ -74,7 +73,6 @@ export default function Page() {
           <Sidebar />
         </div>
       </div>
-      <Banner />
     </div>
   );
 }
