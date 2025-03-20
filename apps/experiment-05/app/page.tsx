@@ -74,7 +74,7 @@ export default function Page() {
           <Sidebar />
         </div>
       </div>
-      <Banner />  
+      <Banner />
     </div>
   );
 }

@@ -142,7 +142,10 @@ export default function CoinSelector({ defaultValue }: CoinSelectorProps) {
                       {coin.name} ({coin.value})
                     </span>
                     {value === coin.value && (
-                      <CheckIcon size={16} className="ms-auto" />
+                      <CheckIcon
+                        size={16}
+                        className="ms-auto text-muted-foreground/80"
+                      />
                     )}
                   </CommandItem>
                 ))}
