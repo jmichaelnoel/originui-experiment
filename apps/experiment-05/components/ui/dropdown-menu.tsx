@@ -184,7 +184,7 @@ function DropdownMenuRadioItem({
     >
       <span className="pointer-events-none absolute right-2 flex size-3.5 items-center justify-center">
         <DropdownMenuPrimitive.ItemIndicator>
-          <CheckIcon size={16} />
+          <CheckIcon className="text-muted-foreground/80" size={16} />
         </DropdownMenuPrimitive.ItemIndicator>
       </span>
       {children}
