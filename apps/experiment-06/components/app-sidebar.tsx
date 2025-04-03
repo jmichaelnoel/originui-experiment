@@ -1,22 +1,9 @@
-"use client";
-
 import * as React from "react";
 import {
-  BookOpen,
-  Bot,
   Command,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
 } from "lucide-react";
+import { RiCheckLine } from "@remixicon/react"; 
 
-import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
-import { NavSecondary } from "@/components/nav-secondary";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -26,130 +13,51 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarGroup,
+  SidebarGroupLabel,
+  SidebarGroupContent,
 } from "@/components/ui/sidebar";
 import SidebarCalendar from "@/components/sidebar-calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Mark Bannert",
+    email: "mark@bannert.com",
+    avatar:
+      "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
   },
-  navMain: [
+  etiquettes: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      id: "my-events",
+      name: "My Events",
+      color: "emerald",
       isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
+      id: "marketing-team",
+      name: "Marketing Team",
+      color: "amber",
+      isActive: false,
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
+      id: "interviews",
+      name: "Interviews",
+      color: "violet",
+      isActive: true,
     },
     {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
+      id: "events-planning",
+      name: "Events Planning",
+      color: "blue",
+      isActive: true,
     },
     {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
+      id: "holidays",
+      name: "Holidays",
+      color: "rose",
+      isActive: true,
+    }
   ],
 };
 
@@ -175,9 +83,37 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarCalendar /> 
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <SidebarGroup>
+          <SidebarGroupLabel className="uppercase text-muted-foreground/65">
+            Calendars
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {data.etiquettes.map((item) => (
+                <SidebarMenuItem key={item.id}>
+                  <SidebarMenuButton
+                    asChild
+                    className="relative font-medium gap-3 h-9 rounded-md [&>svg]:size-auto"
+                    isActive={item.isActive}
+                  >
+                    <span>
+                      <Checkbox
+                        id={item.id}
+                        className="order-1 after:absolute after:inset-0"
+                        checked={item.isActive}
+                      />
+                      <RiCheckLine
+                        size={16}
+                        aria-hidden="true"
+                      />
+                      <label htmlFor={item.id}>{item.name}</label>
+                    </span>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
