@@ -354,8 +354,8 @@ export function WeekView({
                 style={{ top: `${currentTimePosition}%` }}
               >
                 <div className="relative flex items-center">
-                  <div className="bg-primary absolute -left-1 h-2 w-2 rounded-full"></div>
-                  <div className="bg-primary h-[2px] w-full"></div>
+                  <div className="bg-red-500 absolute -left-1 h-2 w-2 rounded-full"></div>
+                  <div className="bg-red-500 h-[2px] w-full"></div>
                 </div>
               </div>
             )}
