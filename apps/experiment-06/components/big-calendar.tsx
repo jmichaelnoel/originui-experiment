@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { addDays, subDays, setHours, setMinutes } from "date-fns"
+import { useCalendarContext } from "@/components/event-calendar/calendar-context"
 
 import {
   EventCalendar,
@@ -17,7 +18,7 @@ const sampleEvents: CalendarEvent[] = [
     start: subDays(new Date(), 24), // 24 days before today
     end: subDays(new Date(), 23), // 23 days before today
     allDay: true,
-    color: "sky",
+    color: "blue",
     location: "Main Conference Hall",
   },
   {
@@ -36,7 +37,7 @@ const sampleEvents: CalendarEvent[] = [
     start: subDays(new Date(), 13), // 13 days before today
     end: subDays(new Date(), 13), // 13 days before today
     allDay: true,
-    color: "orange",
+    color: "amber",
     location: "Main Conference Hall",
   },  
   {
@@ -45,7 +46,7 @@ const sampleEvents: CalendarEvent[] = [
     description: "Weekly team sync",
     start: setMinutes(setHours(new Date(), 10), 0), // 10:00 AM today
     end: setMinutes(setHours(new Date(), 11), 0), // 11:00 AM today
-    color: "sky",
+    color: "blue",
     location: "Conference Room A",
   },
   {
@@ -81,7 +82,7 @@ const sampleEvents: CalendarEvent[] = [
     description: "Weekly team sync",
     start: setMinutes(setHours(addDays(new Date(), 5), 9), 0), // 9:00 AM
     end: setMinutes(setHours(addDays(new Date(), 5), 10), 30), // 10:30 AM
-    color: "orange",
+    color: "blue",
     location: "Conference Room A",
   },
   {
@@ -90,7 +91,7 @@ const sampleEvents: CalendarEvent[] = [
     description: "Weekly team sync",
     start: setMinutes(setHours(addDays(new Date(), 5), 14), 0), // 2:00 PM
     end: setMinutes(setHours(addDays(new Date(), 5), 15), 30), // 3:30 PM
-    color: "sky",
+    color: "blue",
     location: "Conference Room A",
   },
   {
@@ -118,7 +119,7 @@ const sampleEvents: CalendarEvent[] = [
     start: new Date(2025, 3, 13), // April 13, 2025
     end: new Date(2025, 3, 13),
     allDay: true,
-    color: "sky",
+    color: "blue",
     location: "Grand Conference Center",
   },
   {
@@ -134,6 +135,12 @@ const sampleEvents: CalendarEvent[] = [
 
 export default function Component() {
   const [events, setEvents] = useState<CalendarEvent[]>(sampleEvents)
+  const { isColorVisible } = useCalendarContext()
+  
+  // Filter events based on visible colors
+  const visibleEvents = useMemo(() => {
+    return events.filter(event => isColorVisible(event.color))
+  }, [events, isColorVisible])
 
   const handleEventAdd = (event: CalendarEvent) => {
     setEvents([...events, event])
@@ -153,7 +160,7 @@ export default function Component() {
 
   return (
     <EventCalendar
-      events={events}
+      events={visibleEvents}
       onEventAdd={handleEventAdd}
       onEventUpdate={handleEventUpdate}
       onEventDelete={handleEventDelete}

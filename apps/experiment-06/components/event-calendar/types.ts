@@ -8,13 +8,13 @@ export interface CalendarEvent {
   end: Date
   allDay?: boolean
   color?: EventColor
+  label?: string
   location?: string
 }
 
 export type EventColor =
-  | "sky"
+  | "blue"
   | "amber"
   | "violet"
   | "rose"
   | "emerald"
-  | "orange"

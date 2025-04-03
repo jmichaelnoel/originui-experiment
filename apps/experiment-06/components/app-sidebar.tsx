@@ -1,8 +1,12 @@
+"use client";
+
 import * as React from "react";
 import {
   Command,
 } from "lucide-react";
 import { RiCheckLine } from "@remixicon/react"; 
+import { useCalendarContext } from "@/components/event-calendar/calendar-context";
+import { EventColor } from "@/components/event-calendar/types";
 
 import { NavUser } from "@/components/nav-user";
 import {
@@ -31,37 +35,38 @@ const data = {
     {
       id: "my-events",
       name: "My Events",
-      color: "emerald",
+      color: "emerald" as EventColor,
       isActive: true,
     },
     {
       id: "marketing-team",
       name: "Marketing Team",
-      color: "amber",
+      color: "amber" as EventColor,
       isActive: false,
     },
     {
       id: "interviews",
       name: "Interviews",
-      color: "violet",
+      color: "violet" as EventColor,
       isActive: true,
     },
     {
       id: "events-planning",
       name: "Events Planning",
-      color: "blue",
+      color: "blue" as EventColor,
       isActive: true,
     },
     {
       id: "holidays",
       name: "Holidays",
-      color: "rose",
+      color: "rose" as EventColor,
       isActive: true,
     }
   ],
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { isColorVisible, toggleColorVisibility } = useCalendarContext();
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -100,7 +105,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <Checkbox
                         id={item.id}
                         className="order-1 after:absolute after:inset-0"
-                        checked={item.isActive}
+                        checked={isColorVisible(item.color)}
+                        onCheckedChange={() => toggleColorVisibility(item.color)}
                       />
                       <RiCheckLine
                         size={16}
