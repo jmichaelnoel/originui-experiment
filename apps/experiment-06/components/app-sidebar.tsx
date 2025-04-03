@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { RiCheckLine } from "@remixicon/react"; 
 import { useCalendarContext } from "@/components/event-calendar/calendar-context";
-import { EventColor } from "@/components/event-calendar/types";
+import { etiquettes } from "@/components/big-calendar";
 
 import { NavUser } from "@/components/nav-user";
 import {
@@ -30,39 +30,7 @@ const data = {
     email: "mark@bannert.com",
     avatar:
       "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
-  },
-  etiquettes: [
-    {
-      id: "my-events",
-      name: "My Events",
-      color: "emerald" as EventColor,
-      isActive: true,
-    },
-    {
-      id: "marketing-team",
-      name: "Marketing Team",
-      color: "amber" as EventColor,
-      isActive: false,
-    },
-    {
-      id: "interviews",
-      name: "Interviews",
-      color: "violet" as EventColor,
-      isActive: true,
-    },
-    {
-      id: "events-planning",
-      name: "Events Planning",
-      color: "blue" as EventColor,
-      isActive: true,
-    },
-    {
-      id: "holidays",
-      name: "Holidays",
-      color: "rose" as EventColor,
-      isActive: true,
-    }
-  ],
+  }
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -94,7 +62,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {data.etiquettes.map((item) => (
+              {etiquettes.map((item) => (
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     asChild

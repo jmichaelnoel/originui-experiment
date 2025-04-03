@@ -1,6 +1,7 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode } from "react"
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react"
+import { etiquettes } from "@/components/big-calendar"
 
 interface CalendarContextType {
   // Date management
@@ -29,13 +30,14 @@ interface CalendarProviderProps {
 
 export function CalendarProvider({ children }: CalendarProviderProps) {
   const [currentDate, setCurrentDate] = useState<Date>(new Date())
-  const [visibleColors, setVisibleColors] = useState<string[]>([
-    "emerald",
-    "amber",
-    "violet",
-    "blue",
-    "rose"
-  ])
+  
+  // Initialize visibleColors based on the isActive property in etiquettes
+  const [visibleColors, setVisibleColors] = useState<string[]>(() => {
+    // Filter etiquettes to get only those that are active
+    return etiquettes
+      .filter(etiquette => etiquette.isActive)
+      .map(etiquette => etiquette.color)
+  })
 
   // Toggle visibility of a color
   const toggleColorVisibility = (color: string) => {

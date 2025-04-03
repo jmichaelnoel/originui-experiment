@@ -7,7 +7,42 @@ import { useCalendarContext } from "@/components/event-calendar/calendar-context
 import {
   EventCalendar,
   type CalendarEvent,
+  type EventColor,
 } from "@/components/event-calendar"
+
+// Etiquettes data for calendar filtering
+export const etiquettes = [
+  {
+    id: "my-events",
+    name: "My Events",
+    color: "emerald" as EventColor,
+    isActive: true,
+  },
+  {
+    id: "marketing-team",
+    name: "Marketing Team",
+    color: "amber" as EventColor,
+    isActive: false,
+  },
+  {
+    id: "interviews",
+    name: "Interviews",
+    color: "violet" as EventColor,
+    isActive: true,
+  },
+  {
+    id: "events-planning",
+    name: "Events Planning",
+    color: "blue" as EventColor,
+    isActive: true,
+  },
+  {
+    id: "holidays",
+    name: "Holidays",
+    color: "rose" as EventColor,
+    isActive: true,
+  }
+];
 
 // Sample events data with hardcoded times
 const sampleEvents: CalendarEvent[] = [
