@@ -179,8 +179,8 @@ export function EventDialog({
     {
       value: "sky",
       label: "Sky",
-      bgClass: "bg-sky-400 data-[state=checked]:bg-sky-400",
-      borderClass: "border-sky-400 data-[state=checked]:border-sky-400",
+      bgClass: "bg-blue-400 data-[state=checked]:bg-blue-400",
+      borderClass: "border-blue-400 data-[state=checked]:border-blue-400",
     },
     {
       value: "amber",
