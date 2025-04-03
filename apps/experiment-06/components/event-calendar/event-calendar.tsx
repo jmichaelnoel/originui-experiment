@@ -260,7 +260,7 @@ export function EventCalendar({
 
   return (
     <div
-      className="flex flex-1 flex-col rounded-lg border"
+      className="flex has-data-[slot=month-view]:flex-1 flex-col rounded-lg border"
       style={
         {
           "--event-height": `${EventHeight}px`,

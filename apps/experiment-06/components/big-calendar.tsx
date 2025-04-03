@@ -157,6 +157,7 @@ export default function Component() {
       onEventAdd={handleEventAdd}
       onEventUpdate={handleEventUpdate}
       onEventDelete={handleEventDelete}
+      initialView="week"
     />
   )
 }
