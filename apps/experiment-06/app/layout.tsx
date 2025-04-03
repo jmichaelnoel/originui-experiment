@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "../providers/theme-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { CalendarProvider } from "@/components/event-calendar/calendar-context";
 import "./globals.css";
 
 const fontSans = Geist({
@@ -28,7 +29,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <CalendarProvider>
+            {children}
+          </CalendarProvider>
         </ThemeProvider>
       </body>
     </html>

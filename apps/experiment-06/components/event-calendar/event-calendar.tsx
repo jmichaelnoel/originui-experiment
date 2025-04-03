@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
+import { useCalendarContext } from "./calendar-context"
 import { RiCalendarCheckLine } from "@remixicon/react"
 import {
   addDays,
@@ -63,7 +64,8 @@ export function EventCalendar({
   className,
   initialView = "month",
 }: EventCalendarProps) {
-  const [currentDate, setCurrentDate] = useState(new Date())
+  // Use the shared calendar context instead of local state
+  const { currentDate, setCurrentDate } = useCalendarContext()
   const [view, setView] = useState<CalendarView>(initialView)
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
