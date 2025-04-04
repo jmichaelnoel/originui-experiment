@@ -28,12 +28,18 @@ export default function SidebarCalendar({ className }: SidebarCalendarProps) {
   }
 
   return (
-    <Calendar
-      mode="single"
-      selected={currentDate}
-      onSelect={handleSelect}
-      month={calendarMonth}
-      onMonthChange={setCalendarMonth}
-    />
+    <div className="w-full flex justify-center">
+      <Calendar
+        mode="single"
+        selected={currentDate}
+        onSelect={handleSelect}
+        month={calendarMonth}
+        onMonthChange={setCalendarMonth}
+        classNames={{
+          day_button: "transition-none!",
+          today: "*:after:transition-none"
+        }}
+      />
+    </div>
   )
 }

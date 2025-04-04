@@ -156,7 +156,7 @@ export function EventItem({
         isDragging={isDragging}
         onClick={onClick}
         className={cn(
-          "mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] sm:text-xs",
+          "mt-[var(--event-gap)] h-[var(--event-height)] items-center text-[10px] sm:text-[13px]",
           className
         )}
         currentTime={currentTime}
@@ -168,7 +168,7 @@ export function EventItem({
         {children || (
           <span className="truncate">
             {!event.allDay && (
-              <span className="truncate text-[11px] font-normal opacity-70">
+              <span className="truncate sm:text-xs font-normal opacity-70">
                 {formatTimeWithOptionalMinutes(displayStart)}{" "}
               </span>
             )}
@@ -190,7 +190,7 @@ export function EventItem({
         className={cn(
           "py-1",
           durationMinutes < 45 ? "items-center" : "flex-col",
-          view === "week" ? "text-[10px] sm:text-xs" : "text-xs",
+          view === "week" ? "text-[10px] sm:text-[13px]" : "text-[13px]",
           className
         )}
         currentTime={currentTime}
@@ -203,12 +203,7 @@ export function EventItem({
           <div className="truncate">
             {event.title}{" "}
             {showTime && (
-              <span
-                className={cn(
-                  "opacity-70",
-                  view === "week" ? "sm:text-[11px]" : "text-[11px]"
-                )}
-              >
+              <span className="opacity-70">
                 {formatTimeWithOptionalMinutes(displayStart)}
               </span>
             )}
@@ -217,9 +212,9 @@ export function EventItem({
           <>
             <div className="truncate font-medium">{event.title}</div>
             {showTime && (
-              <div className="truncate text-[11px] font-normal opacity-70">
-                {getEventTime()}
-              </div>
+              <div className="truncate font-normal opacity-70 sm:text-xs">
+              {getEventTime()}
+            </div>
             )}
           </>
         )}

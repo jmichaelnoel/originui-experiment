@@ -36,7 +36,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { isColorVisible, toggleColorVisibility } = useCalendarContext();
   return (
-    <Sidebar variant="inset" {...props} className="dark">
+    <Sidebar variant="inset" {...props} className="dark scheme-only-dark">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
