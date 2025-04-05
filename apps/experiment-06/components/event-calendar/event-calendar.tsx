@@ -46,6 +46,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import ThemeToggle from "@/components/theme-toggle"
 
 export interface EventCalendarProps {
   events?: CalendarEvent[]
@@ -361,6 +362,7 @@ export function EventCalendar({
               />
               <span className="max-sm:sr-only">New event</span>
             </Button>
+            <ThemeToggle />
           </div>
         </div>
 
