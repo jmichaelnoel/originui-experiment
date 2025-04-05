@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { addDays, subDays, setHours, setMinutes } from "date-fns"
+import { addDays, subDays, setHours, setMinutes, getDay } from "date-fns"
 import { useCalendarContext } from "@/components/event-calendar/calendar-context"
 
 import {
@@ -21,8 +21,8 @@ export const etiquettes = [
   {
     id: "marketing-team",
     name: "Marketing Team",
-    color: "amber" as EventColor,
-    isActive: false,
+    color: "orange" as EventColor,
+    isActive: true,
   },
   {
     id: "interviews",
@@ -44,128 +44,338 @@ export const etiquettes = [
   }
 ];
 
+// Function to calculate days until next Sunday
+const getDaysUntilNextSunday = (date: Date) => {
+  const day = getDay(date); // 0 is Sunday, 6 is Saturday
+  return day === 0 ? 0 : 7 - day; // If today is Sunday, return 0, otherwise calculate days until Sunday
+}
+
+// Store the current date to avoid repeated new Date() calls
+const currentDate = new Date();
+
+// Calculate the offset once to avoid repeated calculations
+const daysUntilNextSunday = getDaysUntilNextSunday(currentDate);
+
 // Sample events data with hardcoded times
-const sampleEvents: CalendarEvent[] = [
+const sampleEvents: CalendarEvent[] = [ 
   {
-    id: "1",
-    title: "Annual Planning",
-    description: "Strategic planning for next year",
-    start: subDays(new Date(), 24), // 24 days before today
-    end: subDays(new Date(), 23), // 23 days before today
-    allDay: true,
+    id: "w1-0a",
+    title: "Executive Board Meeting",
+    description: "Quarterly review with executive team",
+    start: setMinutes(setHours(addDays(currentDate, -13 + daysUntilNextSunday), 9), 0),
+    end: setMinutes(setHours(addDays(currentDate, -13 + daysUntilNextSunday), 11), 30),
     color: "blue",
-    location: "Main Conference Hall",
+    location: "Executive Boardroom",
   },
   {
-    id: "2",
-    title: "Project Deadline",
-    description: "Submit final deliverables",
-    start: setMinutes(setHours(subDays(new Date(), 9), 13), 0), // 1:00 PM, 9 days before
-    end: setMinutes(setHours(subDays(new Date(), 9), 15), 30), // 3:30 PM, 9 days before
-    color: "amber",
-    location: "Office",
-  },
-  {
-    id: "3",
-    title: "Quarterly Budget Review",
-    description: "Strategic planning for next year",
-    start: subDays(new Date(), 13), // 13 days before today
-    end: subDays(new Date(), 13), // 13 days before today
-    allDay: true,
-    color: "amber",
-    location: "Main Conference Hall",
-  },  
-  {
-    id: "4",
-    title: "Team Meeting",
-    description: "Weekly team sync",
-    start: setMinutes(setHours(new Date(), 10), 0), // 10:00 AM today
-    end: setMinutes(setHours(new Date(), 11), 0), // 11:00 AM today
-    color: "blue",
-    location: "Conference Room A",
-  },
-  {
-    id: "5",
-    title: "Lunch with Client",
-    description: "Discuss new project requirements",
-    start: setMinutes(setHours(addDays(new Date(), 1), 12), 0), // 12:00 PM tomorrow
-    end: setMinutes(setHours(addDays(new Date(), 1), 13), 15), // 1:15 PM tomorrow
-    color: "emerald",
-    location: "Downtown Cafe",
-  },
-  {
-    id: "6",
-    title: "Product Launch",
-    description: "New product release",
-    start: addDays(new Date(), 3),
-    end: addDays(new Date(), 6),
-    allDay: true,
+    id: "w1-0b",
+    title: "Investor Call",
+    description: "Update investors on company progress",
+    start: setMinutes(setHours(addDays(currentDate, -13 + daysUntilNextSunday), 14), 0),
+    end: setMinutes(setHours(addDays(currentDate, -13 + daysUntilNextSunday), 15), 0),
     color: "violet",
-  },
-  {
-    id: "7",
-    title: "Sales Conference",
-    description: "Discuss about new clients",
-    start: setMinutes(setHours(addDays(new Date(), 4), 14), 30), // 2:30 PM
-    end: setMinutes(setHours(addDays(new Date(), 5), 14), 45), // 2:45 PM
-    color: "rose",
-    location: "Downtown Cafe",
-  },
-  {
-    id: "8",
-    title: "Team Meeting",
-    description: "Weekly team sync",
-    start: setMinutes(setHours(addDays(new Date(), 5), 9), 0), // 9:00 AM
-    end: setMinutes(setHours(addDays(new Date(), 5), 10), 30), // 10:30 AM
-    color: "blue",
     location: "Conference Room A",
   },
   {
-    id: "9",
-    title: "Review contracts",
-    description: "Weekly team sync",
-    start: setMinutes(setHours(addDays(new Date(), 5), 14), 0), // 2:00 PM
-    end: setMinutes(setHours(addDays(new Date(), 5), 15), 30), // 3:30 PM
-    color: "blue",
-    location: "Conference Room A",
-  },
-  {
-    id: "10",
-    title: "Team Meeting",
-    description: "Weekly team sync",
-    start: setMinutes(setHours(addDays(new Date(), 5), 9), 45), // 9:45 AM
-    end: setMinutes(setHours(addDays(new Date(), 5), 11), 0), // 11:00 AM
-    color: "amber",
-    location: "Conference Room A",
-  },
-  {
-    id: "11",
-    title: "Marketing Strategy Session",
-    description: "Quarterly marketing planning",
-    start: new Date(2025, 3, 5, 10, 0), // April 5, 2025, 10:00 AM
-    end: new Date(2025, 3, 5, 15, 30), // April 5, 2025, 3:30 PM
-    color: "emerald",
-    location: "Marketing Department",
-  },
-  {
-    id: "12",
-    title: "Annual Shareholders Meeting",
-    description: "Presentation of yearly results",
-    start: new Date(2025, 3, 13), // April 13, 2025
-    end: new Date(2025, 3, 13),
-    allDay: true,
-    color: "blue",
-    location: "Grand Conference Center",
-  },
-  {
-    id: "13",
-    title: "Product Development Workshop",
-    description: "Brainstorming for new features",
-    start: new Date(2025, 3, 22, 9, 0), // April 22, 2025, 9:00 AM
-    end: new Date(2025, 3, 23, 17, 0), // April 23, 2025, 5:00 PM
-    color: "rose",
+    id: "w1-1",
+    title: "Strategy Workshop",
+    description: "Annual strategy planning session",
+    start: setMinutes(setHours(addDays(currentDate, -12 + daysUntilNextSunday), 8), 30),
+    end: setMinutes(setHours(addDays(currentDate, -12 + daysUntilNextSunday), 10), 0),
+    color: "violet",
     location: "Innovation Lab",
   },
+  {
+    id: "w1-2",
+    title: "Client Presentation",
+    description: "Present quarterly results",
+    start: setMinutes(setHours(addDays(currentDate, -12 + daysUntilNextSunday), 13), 0),
+    end: setMinutes(setHours(addDays(currentDate, -12 + daysUntilNextSunday), 14), 30),
+    color: "emerald",
+    location: "Client HQ",
+  },
+  {
+    id: "w1-3",
+    title: "Budget Review",
+    description: "Review department budgets",
+    start: setMinutes(setHours(addDays(currentDate, -11 + daysUntilNextSunday), 9), 15),
+    end: setMinutes(setHours(addDays(currentDate, -11 + daysUntilNextSunday), 11), 0),
+    color: "blue",
+    location: "Finance Room",
+  },
+  {
+    id: "w1-4",
+    title: "Team Lunch",
+    description: "Quarterly team lunch",
+    start: setMinutes(setHours(addDays(currentDate, -11 + daysUntilNextSunday), 12), 0),
+    end: setMinutes(setHours(addDays(currentDate, -11 + daysUntilNextSunday), 13), 30),
+    color: "orange",
+    location: "Bistro Garden",
+  },
+  {
+    id: "w1-5",
+    title: "Project Kickoff",
+    description: "Launch new marketing campaign",
+    start: setMinutes(setHours(addDays(currentDate, -10 + daysUntilNextSunday), 10), 0),
+    end: setMinutes(setHours(addDays(currentDate, -10 + daysUntilNextSunday), 12), 0),
+    color: "orange",
+    location: "Marketing Suite",
+  },
+  {
+    id: "w1-6",
+    title: "Interview: UX Designer",
+    description: "First round interview",
+    start: setMinutes(setHours(addDays(currentDate, -10 + daysUntilNextSunday), 14), 0),
+    end: setMinutes(setHours(addDays(currentDate, -10 + daysUntilNextSunday), 15), 0),
+    color: "violet",
+    location: "HR Office",
+  },
+  {
+    id: "w1-7",
+    title: "Company All-Hands",
+    description: "Monthly company update",
+    start: setMinutes(setHours(addDays(currentDate, -9 + daysUntilNextSunday), 9), 0),
+    end: setMinutes(setHours(addDays(currentDate, -9 + daysUntilNextSunday), 10), 30),
+    color: "emerald",
+    location: "Main Auditorium",
+  },
+  {
+    id: "w1-8",
+    title: "Product Demo",
+    description: "Demo new features to stakeholders",
+    start: setMinutes(setHours(addDays(currentDate, -9 + daysUntilNextSunday), 13), 45),
+    end: setMinutes(setHours(addDays(currentDate, -9 + daysUntilNextSunday), 15), 0),
+    color: "blue",
+    location: "Demo Room",
+  },
+  {
+    id: "w1-9",
+    title: "Family Time",
+    description: "Morning routine with kids",
+    start: setMinutes(setHours(addDays(currentDate, -8 + daysUntilNextSunday), 7), 0),
+    end: setMinutes(setHours(addDays(currentDate, -8 + daysUntilNextSunday), 7), 30),
+    color: "rose",
+  },
+  {
+    id: "w1-10",
+    title: "Family Time",
+    description: "Breakfast with family",
+    start: setMinutes(setHours(addDays(currentDate, -8 + daysUntilNextSunday), 10), 0),
+    end: setMinutes(setHours(addDays(currentDate, -8 + daysUntilNextSunday), 10), 30),
+    color: "rose",
+  },
+  {
+    id: "5e",
+    title: "Family Time",
+    description: "Some time to spend with family",
+    start: setMinutes(setHours(addDays(currentDate, -7 + daysUntilNextSunday), 10), 0),
+    end: setMinutes(setHours(addDays(currentDate, -7 + daysUntilNextSunday), 13), 30),
+    color: "rose",
+  },  
+  {
+    id: "1b",
+    title: "Meeting w/ Ely",
+    description: "Strategic planning for next year",
+    start: setMinutes(setHours(addDays(currentDate, -6 + daysUntilNextSunday), 7), 0),
+    end: setMinutes(setHours(addDays(currentDate, -6 + daysUntilNextSunday), 8), 0),
+    color: "orange",
+    location: "Main Conference Hall",
+  }, 
+  {
+    id: "1c",
+    title: "Team Catch-up",
+    description: "Weekly team sync",
+    start: setMinutes(setHours(addDays(currentDate, -6 + daysUntilNextSunday), 8), 15),
+    end: setMinutes(setHours(addDays(currentDate, -6 + daysUntilNextSunday), 11), 0),
+    color: "blue",
+    location: "Main Conference Hall",
+  }, 
+  {
+    id: "1d",
+    title: "Checkin w/ Pedra",
+    description: "Coordinate operations",
+    start: setMinutes(setHours(addDays(currentDate, -6 + daysUntilNextSunday), 15), 0),
+    end: setMinutes(setHours(addDays(currentDate, -6 + daysUntilNextSunday), 16), 0),
+    color: "blue",
+    location: "Main Conference Hall",
+  },    
+  {
+    id: "1e",
+    title: "Teem Intro",
+    description: "Introduce team members",
+    start: setMinutes(setHours(addDays(currentDate, -5 + daysUntilNextSunday), 8), 15),
+    end: setMinutes(setHours(addDays(currentDate, -5 + daysUntilNextSunday), 9), 30),
+    color: "emerald",
+    location: "Main Conference Hall",
+  },
+  {
+    id: "1f",
+    title: "Task Presentation",
+    description: "Present tasks",
+    start: setMinutes(setHours(addDays(currentDate, -5 + daysUntilNextSunday), 10), 45),
+    end: setMinutes(setHours(addDays(currentDate, -5 + daysUntilNextSunday), 13), 30),
+    color: "emerald",
+    location: "Main Conference Hall",
+  },          
+  {
+    id: "5",
+    title: "Product Meeting",
+    description: "Discuss product requirements",
+    start: setMinutes(setHours(addDays(currentDate, -4 + daysUntilNextSunday), 9), 0),
+    end: setMinutes(setHours(addDays(currentDate, -4 + daysUntilNextSunday), 11), 30),
+    color: "orange",
+    location: "Downtown Cafe",
+  },
+  {
+    id: "5b",
+    title: "Team Meeting",
+    description: "Discuss new project requirements",
+    start: setMinutes(setHours(addDays(currentDate, -4 + daysUntilNextSunday), 13), 30),
+    end: setMinutes(setHours(addDays(currentDate, -4 + daysUntilNextSunday), 14), 0),
+    color: "violet",
+    location: "Downtown Cafe",
+  },  
+  {
+    id: "5c",
+    title: "1:1 w/ Tommy",
+    description: "Talent review",
+    start: setMinutes(setHours(addDays(currentDate, -3 + daysUntilNextSunday), 9), 45),
+    end: setMinutes(setHours(addDays(currentDate, -3 + daysUntilNextSunday), 10), 45),
+    color: "violet",
+    location: "Abbey Road Room",
+  },
+  {
+    id: "5d",
+    title: "Kick-off call",
+    description: "Ultra fast call with Sonia",
+    start: setMinutes(setHours(addDays(currentDate, -3 + daysUntilNextSunday), 11), 0),
+    end: setMinutes(setHours(addDays(currentDate, -3 + daysUntilNextSunday), 11), 30),
+    color: "violet",
+    location: "Abbey Road Room",
+  }, 
+  {
+    id: "5ef",
+    title: "Weekly Review",
+    description: "Manual process review",
+    start: setMinutes(setHours(addDays(currentDate, -2 + daysUntilNextSunday), 8), 45),
+    end: setMinutes(setHours(addDays(currentDate, -2 + daysUntilNextSunday), 9), 45),
+    color: "blue",
+  },      
+  {
+    id: "5f",
+    title: "Meeting w/ Mike",
+    description: "Explore new ideas",
+    start: setMinutes(setHours(addDays(currentDate, -2 + daysUntilNextSunday), 14), 30),
+    end: setMinutes(setHours(addDays(currentDate, -2 + daysUntilNextSunday), 15), 30),
+    color: "orange",
+    location: "Main Conference Hall",
+  }, 
+  {
+    id: "5g",
+    title: "Family Time",
+    description: "Some time to spend with family",
+    start: setMinutes(setHours(addDays(currentDate, -1 + daysUntilNextSunday), 7), 0),
+    end: setMinutes(setHours(addDays(currentDate, -1 + daysUntilNextSunday), 7), 30),
+    color: "rose",
+  }, 
+  {
+    id: "w3-1",
+    title: "Quarterly Planning",
+    description: "Plan next quarter objectives",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday), 9), 30),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday), 12), 0),
+    color: "blue",
+    location: "Planning Room",
+  },
+  {
+    id: "w3-2",
+    title: "Vendor Meeting",
+    description: "Review vendor proposals",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 1), 7), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 1), 8), 30),
+    color: "violet",
+    location: "Meeting Room B",
+  },
+  {
+    id: "w3-3",
+    title: "Design Workshop",
+    description: "Brainstorming session for new UI",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 1), 10), 15),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 1), 12), 45),
+    color: "emerald",
+    location: "Design Studio",
+  },
+  {
+    id: "w3-4",
+    title: "Lunch with CEO",
+    description: "Informal discussion about company vision",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 1), 13), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 1), 14), 30),
+    color: "orange",
+    location: "Executive Dining Room",
+  },
+  {
+    id: "w3-5",
+    title: "Technical Review",
+    description: "Code review with engineering team",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 2), 11), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 2), 12), 30),
+    color: "blue",
+    location: "Engineering Lab",
+  },
+  {
+    id: "w3-6",
+    title: "Customer Call",
+    description: "Follow-up with key customer",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 2), 15), 15),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 2), 16), 0),
+    color: "violet",
+    location: "Call Center",
+  },
+  {
+    id: "w3-7",
+    title: "Team Building",
+    description: "Offsite team building activity",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 3), 9), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 3), 17), 0),
+    color: "emerald",
+    location: "Adventure Park",
+    allDay: true,
+  },
+  {
+    id: "w3-8",
+    title: "Marketing Review",
+    description: "Review campaign performance",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 4), 8), 45),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 4), 10), 15),
+    color: "orange",
+    location: "Marketing Room",
+  },
+  {
+    id: "w3-9",
+    title: "Product Roadmap",
+    description: "Discuss product roadmap for next quarter",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 5), 14), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 5), 16), 30),
+    color: "blue",
+    location: "Strategy Room",
+  },
+  {
+    id: "w3-10",
+    title: "Family Time",
+    description: "Morning walk with family",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 6), 7), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 6), 7), 30),
+    color: "rose",
+  },
+  {
+    id: "w3-11",
+    title: "Family Time",
+    description: "Brunch with family",
+    start: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 6), 10), 0),
+    end: setMinutes(setHours(addDays(currentDate, daysUntilNextSunday + 6), 10), 30),
+    color: "rose",
+  }
 ]
 
 export default function Component() {

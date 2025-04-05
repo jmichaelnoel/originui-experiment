@@ -61,7 +61,7 @@ export function EventDialog({
   const [endTime, setEndTime] = useState(`${DefaultEndHour}:00`)
   const [allDay, setAllDay] = useState(false)
   const [location, setLocation] = useState("")
-  const [color, setColor] = useState<EventColor>("sky")
+  const [color, setColor] = useState<EventColor>("blue")
   const [error, setError] = useState<string | null>(null)
   const [startDateOpen, setStartDateOpen] = useState(false)
   const [endDateOpen, setEndDateOpen] = useState(false)
@@ -101,7 +101,7 @@ export function EventDialog({
     setEndTime(`${DefaultEndHour}:00`)
     setAllDay(false)
     setLocation("")
-    setColor("sky")
+    setColor("blue")
     setError(null)
   }
 
@@ -183,16 +183,10 @@ export function EventDialog({
     borderClass: string
   }> = [
     {
-      value: "sky",
-      label: "Sky",
+      value: "blue",
+      label: "Blue",
       bgClass: "bg-blue-400 data-[state=checked]:bg-blue-400",
       borderClass: "border-blue-400 data-[state=checked]:border-blue-400",
-    },
-    {
-      value: "amber",
-      label: "Amber",
-      bgClass: "bg-amber-400 data-[state=checked]:bg-amber-400",
-      borderClass: "border-amber-400 data-[state=checked]:border-amber-400",
     },
     {
       value: "violet",

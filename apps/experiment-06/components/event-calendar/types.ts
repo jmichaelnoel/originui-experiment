@@ -14,7 +14,7 @@ export interface CalendarEvent {
 
 export type EventColor =
   | "blue"
-  | "amber"
+  | "orange"
   | "violet"
   | "rose"
   | "emerald"
