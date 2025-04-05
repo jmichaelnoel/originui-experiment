@@ -57,30 +57,36 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarCalendar /> 
         <SidebarGroup>
-          <SidebarGroupLabel className="uppercase text-muted-foreground/65">
+          <SidebarGroupLabel className="uppercase text-muted-foreground/65 px-0">
             Calendars
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {etiquettes.map((item) => (
-                <SidebarMenuItem key={item.id}>
+                <SidebarMenuItem key={item.id} className="-mx-2">
                   <SidebarMenuButton
                     asChild
-                    className="relative font-medium gap-3 h-9 rounded-md [&>svg]:size-auto"
-                    isActive={item.isActive}
+                    className="relative rounded-md [&>svg]:size-auto justify-between"
                   >
                     <span>
-                      <Checkbox
-                        id={item.id}
-                        className="order-1 after:absolute after:inset-0"
-                        checked={isColorVisible(item.color)}
-                        onCheckedChange={() => toggleColorVisibility(item.color)}
-                      />
-                      <RiCheckLine
-                        size={16}
-                        aria-hidden="true"
-                      />
-                      <label htmlFor={item.id}>{item.name}</label>
+                      <span className="font-medium flex items-center justify-between gap-3">
+                        <Checkbox
+                          id={item.id}
+                          className="sr-only peer"
+                          checked={isColorVisible(item.color)}
+                          onCheckedChange={() => toggleColorVisibility(item.color)}
+                        />
+                        <RiCheckLine
+                          className="peer-not-data-[state=checked]:invisible"
+                          size={16}
+                          aria-hidden="true"
+                        />
+                        <label htmlFor={item.id} className="peer-not-data-[state=checked]:line-through peer-not-data-[state=checked]:text-muted-foreground/65 after:absolute after:inset-0">{item.name}</label>
+                      </span>
+                      <span 
+                        className="size-1.5 rounded-full bg-(--event-color)"
+                        style={{ '--event-color': `var(--color-${item.color}-400)` } as React.CSSProperties}
+                      ></span>
                     </span>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
