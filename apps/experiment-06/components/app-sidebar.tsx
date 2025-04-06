@@ -25,10 +25,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 const data = {
   user: {
-    name: "Mark Bannert",
-    email: "mark@bannert.com",
+    name: "Sofia Safier",
+    email: "sofia@safier.com",
     avatar:
-      "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
+      "https://res.cloudinary.com/dlzlfasou/image/upload/v1743935337/user-01_l4if9t.png",
   }
 };
 
@@ -45,7 +45,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <path fill="#F4F4F5" d="M17.28 0h-2.56v12.91L5.591 3.78l-1.81 1.81 9.129 9.129H0v2.56h12.91L3.78 26.409l1.81 1.81 9.129-9.129V32h2.56V19.09l9.128 9.129 1.81-1.81-9.128-9.129H32v-2.56H19.09l9.129-9.129-1.81-1.81-9.129 9.129V0Z" />
             </svg>
           </Link>
-          <SidebarTrigger className="text-muted-foreground hover:text-foreground/80 hover:bg-transparent!" />
+          <SidebarTrigger className="text-muted-foreground/80 hover:text-foreground/80 hover:bg-transparent!" />
         </div>
       </SidebarHeader>
       <SidebarContent className="gap-0 mt-3 pt-3 border-t">
