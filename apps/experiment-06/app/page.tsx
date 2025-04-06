@@ -19,7 +19,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import ThemeToggle from "@/components/theme-toggle";
 import BigCalendar from "@/components/big-calendar";
 
 export default function Page() {
