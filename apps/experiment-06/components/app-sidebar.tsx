@@ -62,7 +62,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuItem key={item.id}>
                   <SidebarMenuButton
                     asChild
-                    className="relative rounded-md [&>svg]:size-auto justify-between focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px]"
+                    className="relative rounded-md [&>svg]:size-auto justify-between has-focus-visible:border-ring has-focus-visible:ring-ring/50 has-focus-visible:ring-[3px]"
                   >
                     <span>
                       <span className="font-medium flex items-center justify-between gap-3">
