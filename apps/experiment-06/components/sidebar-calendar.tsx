@@ -36,7 +36,7 @@ export default function SidebarCalendar({ className }: SidebarCalendarProps) {
         month={calendarMonth}
         onMonthChange={setCalendarMonth}
         classNames={{
-          day_button: "transition-none! hover:not-in-data-selected:bg-sidebar-accent group-[.range-middle]:group-data-selected:bg-sidebar-accent",
+          day_button: "transition-none! hover:not-in-data-selected:bg-sidebar-accent group-[.range-middle]:group-data-selected:bg-sidebar-accent text-sidebar-foreground",
           today: "*:after:transition-none",
           outside: "data-selected:bg-sidebar-accent/50"
         }}
