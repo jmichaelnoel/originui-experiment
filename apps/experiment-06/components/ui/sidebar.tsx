@@ -3,7 +3,6 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
-import { RiLayoutLeft2Line } from "@remixicon/react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -259,9 +258,14 @@ function Sidebar({
 function SidebarTrigger({
   className,
   onClick,
+  isOutsideSidebar = false,
   ...props
-}: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar();
+}: React.ComponentProps<typeof Button> & {
+  isOutsideSidebar?: boolean;
+}) {
+  const { toggleSidebar, open, openMobile } = useSidebar();
+  const isMobile = useIsMobile();
+  const isSidebarVisible = isMobile ? openMobile : open;
 
   return (
     <Button
@@ -276,8 +280,12 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <RiLayoutLeft2Line className="size-5" size={20} aria-hidden="true" />
-      <span className="sr-only">Toggle Sidebar</span>
+      {!isOutsideSidebar ? (
+        <svg className="size-5" width={20} height={20} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 4C22 3.44772 21.5523 3 21 3H3C2.44772 3 2 3.44772 2 4V20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20V4ZM4 5H20V19H4V5ZM8 17V7H6V17H8ZM10.7929 12L14.5 15.7071L15.9142 14.2929L13.6213 12L15.9142 9.70711L14.5 8.29289L10.7929 12Z"/></svg>
+      ) : (
+        <svg className="size-5" width={20} height={20} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M22 4C22 3.44772 21.5523 3 21 3H3C2.44772 3 2 3.44772 2 4V20C2 20.5523 2.44772 21 3 21H21C21.5523 21 22 20.5523 22 20V4ZM4 5H20V19H4V5ZM8 17V7H6V17H8ZM15.9142 12L12.2071 8.29289L10.7929 9.70711L13.0858 12L10.7929 14.2929L12.2071 15.7071L15.9142 12Z"/></svg>        
+      )}
+      <span className="sr-only">{isOutsideSidebar ? "Collapse sidebar" : "Expand sidebar"}</span>
     </Button>
   );
 }
