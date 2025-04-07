@@ -52,7 +52,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup className="px-1">
           <SidebarCalendar /> 
         </SidebarGroup>
-        <SidebarGroup className="px-1">
+        <SidebarGroup className="px-1 mt-3 pt-4 border-t">
           <SidebarGroupLabel className="uppercase text-muted-foreground/65">
             Calendars
           </SidebarGroupLabel>
