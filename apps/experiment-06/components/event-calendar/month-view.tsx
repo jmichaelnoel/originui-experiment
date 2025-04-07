@@ -95,11 +95,11 @@ export function MonthView({
 
   return (
     <div data-slot="month-view" className="contents">
-      <div className="border-border/70 grid grid-cols-7 border-b">
+      <div className="border-border/70 grid grid-cols-7 border-y uppercase">
         {weekdays.map((day) => (
           <div
             key={day}
-            className="text-muted-foreground/70 py-2 text-center text-sm"
+            className="text-muted-foreground/70 py-2 text-center text-xs"
           >
             {day}
           </div>

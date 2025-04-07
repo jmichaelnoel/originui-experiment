@@ -168,7 +168,7 @@ export function EventItem({
         {children || (
           <span className="truncate">
             {!event.allDay && (
-              <span className="truncate sm:text-xs font-normal opacity-70">
+              <span className="truncate sm:text-xs font-normal opacity-70 uppercase">
                 {formatTimeWithOptionalMinutes(displayStart)}{" "}
               </span>
             )}
@@ -212,7 +212,7 @@ export function EventItem({
           <>
             <div className="truncate font-medium">{event.title}</div>
             {showTime && (
-              <div className="truncate font-normal opacity-70 sm:text-xs">
+              <div className="truncate font-normal opacity-70 sm:text-xs uppercase">
                 {getEventTime()}
               </div>
             )}

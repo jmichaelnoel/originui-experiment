@@ -219,14 +219,14 @@ export function WeekView({
 
   return (
     <div data-slot="week-view" className="flex h-full flex-col">
-      <div className="bg-background/80 border-border/70 sticky top-0 z-30 grid grid-cols-8 border-b backdrop-blur-md">
-        <div className="text-muted-foreground/70 py-2 text-center text-sm">
+      <div className="bg-background/80 border-border/70 sticky top-0 z-30 grid grid-cols-8 border-y backdrop-blur-md uppercase">
+        <div className="text-muted-foreground/70 py-2 text-center text-xs">
           <span className="max-[479px]:sr-only">{format(new Date(), "O")}</span>
         </div>
         {days.map((day) => (
           <div
             key={day.toString()}
-            className="data-today:text-foreground text-muted-foreground/70 py-2 text-center text-sm data-today:font-medium"
+            className="data-today:text-foreground text-muted-foreground/70 py-2 text-center text-xs data-today:font-medium"
             data-today={isToday(day) || undefined}
           >
             <span className="sm:hidden" aria-hidden="true">
