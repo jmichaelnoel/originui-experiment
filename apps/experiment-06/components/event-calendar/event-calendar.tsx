@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { useCalendarContext } from "./calendar-context"
-import { RiCalendarCheckLine } from "@remixicon/react"
 import {
   addDays,
   addMonths,
@@ -18,7 +17,6 @@ import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  PlusIcon,
 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -46,8 +44,10 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import ThemeToggle from "@/components/theme-toggle"
 import Participants from "@/components/participants"
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface EventCalendarProps {
   events?: CalendarEvent[]
@@ -71,6 +71,7 @@ export function EventCalendar({
   const [view, setView] = useState<CalendarView>(initialView)
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false)
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
+  const { open } = useSidebar();
 
   // Add keyboard shortcuts for view switching
   useEffect(() => {
@@ -280,15 +281,18 @@ export function EventCalendar({
             className
           )}
         >
-          <div className="flex sm:flex-col items-center justify-between gap-1.5">
-            <h2 className="font-semibold text-lg md:text-xl">
-              {viewTitle}
-            </h2>
+          <div className="flex sm:flex-col max-sm:items-center justify-between gap-1.5">
+            <div className="flex items-center gap-1.5 lg:has-data-[state=invisible]:-translate-x-7.5 transition-transform ease-in-out duration-300">
+              <SidebarTrigger data-state={open ? "invisible" : "visible"} className="peer size-7 text-muted-foreground/80 hover:text-foreground/80 hover:bg-transparent! sm:-ms-1.5 lg:data-[state=invisible]:opacity-0 lg:data-[state=invisible]:pointer-events-none transition-opacity ease-in-out duration-300" />
+              <h2 className="font-semibold text-xl">
+                {viewTitle}
+              </h2>
+            </div>
             <Participants />
           </div>
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center sm:gap-2">
+              <div className="flex items-center sm:gap-2 max-sm:order-1">
                 <Button
                   variant="ghost"
                   size="icon"

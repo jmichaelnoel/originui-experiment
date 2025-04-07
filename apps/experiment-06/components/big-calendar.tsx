@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { addDays, subDays, setHours, setMinutes, getDay } from "date-fns"
+import { addDays, setHours, setMinutes, getDay } from "date-fns"
 import { useCalendarContext } from "@/components/event-calendar/calendar-context"
 
 import {

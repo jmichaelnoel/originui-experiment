@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
-import { RiLayoutLeftLine } from "@remixicon/react";
+import { RiLayoutLeft2Line } from "@remixicon/react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -276,7 +276,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <RiLayoutLeftLine className="size-5" size={20} aria-hidden="true" />
+      <RiLayoutLeft2Line className="size-5" size={20} aria-hidden="true" />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
