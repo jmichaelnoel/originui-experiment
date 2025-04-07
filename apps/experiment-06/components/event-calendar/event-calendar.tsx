@@ -47,7 +47,6 @@ import {
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import ThemeToggle from "@/components/theme-toggle";
 import Participants from "@/components/participants";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 export interface EventCalendarProps {
   events?: CalendarEvent[];

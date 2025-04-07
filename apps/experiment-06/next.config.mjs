@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  assetPrefix: "/exp5-static",
+  assetPrefix: "/exp6-static",
   transpilePackages: ["@workspace/ui"],
   images: {
     remotePatterns: [

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useCalendarContext } from "@/components/event-calendar/calendar-context";
 import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
 
 interface SidebarCalendarProps {
   className?: string;
@@ -28,7 +29,7 @@ export default function SidebarCalendar({ className }: SidebarCalendarProps) {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div className={cn("w-full flex justify-center", className)}>
       <Calendar
         mode="single"
         selected={currentDate}
