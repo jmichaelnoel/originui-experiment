@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { CalendarProvider } from "@/components/event-calendar/calendar-context";
 import "./globals.css";
@@ -32,6 +33,7 @@ export default function RootLayout({
           <CalendarProvider>
             {children}
           </CalendarProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
