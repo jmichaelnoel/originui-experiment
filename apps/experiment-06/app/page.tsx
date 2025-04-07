@@ -5,10 +5,7 @@ export const metadata: Metadata = {
 };
 
 import { AppSidebar } from "@/components/app-sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import BigCalendar from "@/components/big-calendar";
 
 export default function Page() {

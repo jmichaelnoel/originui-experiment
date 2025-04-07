@@ -1,31 +1,31 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { useCalendarContext } from "@/components/event-calendar/calendar-context"
-import { Calendar } from "@/components/ui/calendar"
+import { useEffect, useState } from "react";
+import { useCalendarContext } from "@/components/event-calendar/calendar-context";
+import { Calendar } from "@/components/ui/calendar";
 
 interface SidebarCalendarProps {
-  className?: string
+  className?: string;
 }
 
 export default function SidebarCalendar({ className }: SidebarCalendarProps) {
   // Use the shared calendar context
-  const { currentDate, setCurrentDate } = useCalendarContext()
-  
+  const { currentDate, setCurrentDate } = useCalendarContext();
+
   // Track the month to display in the calendar
-  const [calendarMonth, setCalendarMonth] = useState<Date>(currentDate)
-  
+  const [calendarMonth, setCalendarMonth] = useState<Date>(currentDate);
+
   // Update the calendar month whenever currentDate changes
   useEffect(() => {
-    setCalendarMonth(currentDate)
-  }, [currentDate])
+    setCalendarMonth(currentDate);
+  }, [currentDate]);
 
   // Handle date selection
   const handleSelect = (date: Date | undefined) => {
     if (date) {
-      setCurrentDate(date)
+      setCurrentDate(date);
     }
-  }
+  };
 
   return (
     <div className="w-full flex justify-center">
@@ -36,11 +36,12 @@ export default function SidebarCalendar({ className }: SidebarCalendarProps) {
         month={calendarMonth}
         onMonthChange={setCalendarMonth}
         classNames={{
-          day_button: "transition-none! hover:not-in-data-selected:bg-sidebar-accent group-[.range-middle]:group-data-selected:bg-sidebar-accent text-sidebar-foreground",
+          day_button:
+            "transition-none! hover:not-in-data-selected:bg-sidebar-accent group-[.range-middle]:group-data-selected:bg-sidebar-accent text-sidebar-foreground",
           today: "*:after:transition-none",
-          outside: "data-selected:bg-sidebar-accent/50"
+          outside: "data-selected:bg-sidebar-accent/50",
         }}
       />
     </div>
-  )
+  );
 }

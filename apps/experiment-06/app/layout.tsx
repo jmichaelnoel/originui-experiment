@@ -30,9 +30,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <CalendarProvider>
-            {children}
-          </CalendarProvider>
+          <CalendarProvider>{children}</CalendarProvider>
           <Toaster />
         </ThemeProvider>
       </body>

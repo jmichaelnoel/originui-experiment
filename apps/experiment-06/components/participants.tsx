@@ -39,7 +39,7 @@ export default function Participants() {
         size="icon"
       >
         <RiMoreFill className="size-4" size={16} />
-      </Button>      
+      </Button>
     </div>
-  )
+  );
 }

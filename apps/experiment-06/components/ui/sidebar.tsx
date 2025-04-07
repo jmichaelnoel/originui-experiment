@@ -282,9 +282,11 @@ function SidebarTrigger({
       {!isOutsideSidebar ? (
         <RiSkipLeftLine className="size-5" size={20} />
       ) : (
-        <RiLayoutLeft2Line className="size-5" size={20} />        
+        <RiLayoutLeft2Line className="size-5" size={20} />
       )}
-      <span className="sr-only">{isOutsideSidebar ? "Collapse sidebar" : "Expand sidebar"}</span>
+      <span className="sr-only">
+        {isOutsideSidebar ? "Collapse sidebar" : "Expand sidebar"}
+      </span>
     </Button>
   );
 }
