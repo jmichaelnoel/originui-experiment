@@ -430,6 +430,7 @@ export function EventDialog({
           {event?.id && (
             <Button
               variant="outline"
+              className="text-destructive hover:text-destructive"
               size="icon"
               onClick={handleDelete}
               aria-label="Delete event"
