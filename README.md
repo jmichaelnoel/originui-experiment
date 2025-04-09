@@ -4,6 +4,7 @@
 
 Check out the live demos of all the layouts and UI experiments, showcased in chronological order:
 
+- [Event Calendar](https://crafted.is/exp6)
 - [Candlestick Chart](https://crafted.is/exp5)
 - [Crypto Wallet](https://crafted.is/exp4)
 - [SaaS Dashboard](https://crafted.is/exp3)
