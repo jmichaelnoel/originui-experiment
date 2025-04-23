@@ -8,22 +8,24 @@ import {
   Background,
   useNodesState,
   useEdgesState,
-  addEdge,
-  type Connection,
-  type Edge,
   Panel,
   useReactFlow,
   BackgroundVariant,
 } from "@xyflow/react"
-import "@xyflow/react/dist/style.css"
+import '@xyflow/react/dist/base.css';
 import { Plus, Minus, Maximize2, Check } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import TableNode from "@/components/table-node"
+import SchemaEdge from "@/components/schema-edge"
 import { initialNodes, initialEdges } from "@/lib/schema-data"
 
-// Register custom node types
+// Register custom node types and edge types
 const nodeTypes = {
   tableNode: TableNode,
+}
+
+const edgeTypes = {
+  custom: SchemaEdge,
 }
 
 function SchemaVisualizerInner() {
@@ -31,8 +33,6 @@ function SchemaVisualizerInner() {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
   const reactFlowWrapper = useRef<HTMLDivElement>(null)
   const { fitView, zoomIn, zoomOut } = useReactFlow()
-
-  const onConnect = useCallback((params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)), [setEdges])
 
   const onFitView = useCallback(() => {
     fitView({ padding: 0.2 })
@@ -46,15 +46,14 @@ function SchemaVisualizerInner() {
         edges={edges}
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         fitView
         minZoom={0.1}
         maxZoom={1.5}
         defaultEdgeOptions={{
-          type: "smoothstep",
-          style: { stroke: "#d0d0d0", strokeWidth: 1 },
-          animated: true,
+          type: "custom",
+          className: "*:stroke-foreground/20! *:stroke-[1.5px]!",
         }}
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />

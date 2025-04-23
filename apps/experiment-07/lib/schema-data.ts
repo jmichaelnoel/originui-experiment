@@ -5,7 +5,7 @@ export const initialNodes: Node[] = [
   {
     id: "users",
     type: "tableNode",
-    position: { x: 800, y: 100 },
+    position: { x: 800, y: 150 },
     data: {
       label: "users",
       fields: [
@@ -22,7 +22,7 @@ export const initialNodes: Node[] = [
   {
     id: "orders",
     type: "tableNode",
-    position: { x: 450, y: 100 },
+    position: { x: 450, y: 187 },
     data: {
       label: "orders",
       fields: [
@@ -37,7 +37,7 @@ export const initialNodes: Node[] = [
   {
     id: "order_items",
     type: "tableNode",
-    position: { x: 100, y: 100 },
+    position: { x: 100, y: 150 },
     data: {
       label: "order_items",
       fields: [
@@ -52,7 +52,7 @@ export const initialNodes: Node[] = [
   {
     id: "products",
     type: "tableNode",
-    position: { x: 100, y: 350 },
+    position: { x: 100, y: 460 },
     data: {
       label: "products",
       fields: [
@@ -69,7 +69,7 @@ export const initialNodes: Node[] = [
   {
     id: "merchants",
     type: "tableNode",
-    position: { x: 450, y: 350 },
+    position: { x: 450, y: 497 },
     data: {
       label: "merchants",
       fields: [
@@ -84,7 +84,7 @@ export const initialNodes: Node[] = [
   {
     id: "countries",
     type: "tableNode",
-    position: { x: 800, y: 350 },
+    position: { x: 800, y: 570 },
     data: {
       label: "countries",
       fields: [
@@ -105,9 +105,7 @@ export const initialEdges: Edge[] = [
     source: "users",
     target: "orders",
     sourceHandle: "id",
-    targetHandle: "user_id",
-    type: "smoothstep",
-    animated: true,
+    targetHandle: "user_id"
   },
   // Orders to Order Items (one-to-many): orders.id -> order_items.order_id
   {
@@ -115,9 +113,7 @@ export const initialEdges: Edge[] = [
     source: "orders",
     target: "order_items",
     sourceHandle: "id",
-    targetHandle: "order_id",
-    type: "smoothstep",
-    animated: true,
+    targetHandle: "order_id"
   },
   // Products to Order Items (one-to-many): products.id -> order_items.product_id
   {
@@ -125,9 +121,7 @@ export const initialEdges: Edge[] = [
     source: "products",
     target: "order_items",
     sourceHandle: "id",
-    targetHandle: "product_id",
-    type: "smoothstep",
-    animated: true,
+    targetHandle: "product_id"
   },
   // Merchants to Products (one-to-many): merchants.id -> products.merchant_id
   {
@@ -135,9 +129,7 @@ export const initialEdges: Edge[] = [
     source: "merchants",
     target: "products",
     sourceHandle: "id",
-    targetHandle: "merchant_id",
-    type: "smoothstep",
-    animated: true,
+    targetHandle: "merchant_id"
   },
   // Countries to Users (one-to-many): countries.code -> users.country_code
   {
@@ -145,9 +137,7 @@ export const initialEdges: Edge[] = [
     source: "countries",
     target: "users",
     sourceHandle: "code",
-    targetHandle: "country_code",
-    type: "smoothstep",
-    animated: true,
+    targetHandle: "country_code"
   },
   // Countries to Merchants (one-to-many): countries.code -> merchants.country_code
   {
@@ -155,8 +145,6 @@ export const initialEdges: Edge[] = [
     source: "countries",
     target: "merchants",
     sourceHandle: "code",
-    targetHandle: "country_code",
-    type: "smoothstep",
-    animated: true,
-  },
+    targetHandle: "country_code"
+  }
 ]
