@@ -1,4 +1,9 @@
 import Link from "next/link";
+import Participants from "@/components/participants";
+import TemplateSwitcher from "@/components/template-switcher";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function Header() {
   return (
@@ -13,12 +18,15 @@ export default function Header() {
           </Link>
         </div>
         {/* Center area */}
-        <div>
-          argagaegeag
+        <div className="grow flex justify-center">
+          <TemplateSwitcher />
         </div>
         {/* Right area */}
-        <div className="flex-1 flex justify-end items-center">
-          asefeasfeasgfaegasgesag
+        <div className="flex-1 flex justify-end items-center gap-4">
+          <Participants />
+          <Button size="sm">Share</Button>
+          <Separator orientation="vertical" className="min-h-6 max-sm:hidden" />
+          <ThemeToggle />
         </div>
       </div>
     </header>
