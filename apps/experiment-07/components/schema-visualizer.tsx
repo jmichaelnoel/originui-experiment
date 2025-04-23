@@ -49,8 +49,8 @@ function SchemaVisualizerInner() {
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
         fitView
-        minZoom={0.1}
-        maxZoom={1.5}
+        minZoom={0.5}
+        maxZoom={1}
         defaultEdgeOptions={{
           type: "custom",
           className: "*:stroke-foreground/20! *:stroke-[1.5px]!",
