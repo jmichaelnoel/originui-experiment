@@ -53,7 +53,7 @@ function SchemaVisualizerInner() {
         maxZoom={1}
         defaultEdgeOptions={{
           type: "custom",
-          className: "*:stroke-foreground/20! *:stroke-[1.5px]!",
+          className: "*:stroke-foreground/25! *:stroke-[1.5px]!",
         }}
       >
         <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
