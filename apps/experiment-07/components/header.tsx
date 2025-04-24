@@ -32,7 +32,9 @@ export default function Header() {
         {/* Right area */}
         <div className="flex-1 flex justify-end items-center gap-4">
           <Participants />
-          <Button size="sm">Share</Button>
+          <Button size="sm" className="text-sm rounded-lg">
+            Share
+          </Button>
           <Separator orientation="vertical" className="min-h-6 max-sm:hidden" />
           <ThemeToggle />
         </div>

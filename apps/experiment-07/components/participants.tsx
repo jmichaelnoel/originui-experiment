@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Participants() {
   return (
-    <div className="flex -space-x-[0.6rem]">
+    <div className="flex -space-x-[0.6rem] max-sm:hidden">
       <div className="size-8">
         <Image
           className="shrink-0 ring-background rounded-full ring-2"
