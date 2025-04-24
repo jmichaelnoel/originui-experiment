@@ -102,6 +102,9 @@
         "recharts",
         "use-scramble"
       ],
+      "devDependencies": [
+        "tw-animate-css"
+      ],      
       "files": [
         {
           "path": "app/layout.tsx",

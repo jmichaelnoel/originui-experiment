@@ -108,6 +108,9 @@
         "react-aria-components",
         "recharts"
       ],
+      "devDependencies": [
+        "tw-animate-css"
+      ],
       "files": [
         {
           "path": "app/layout.tsx",

@@ -19,6 +19,9 @@
     "@radix-ui/react-tooltip",
     "@remixicon/react"
   ],
+  "devDependencies": [
+    "tw-animate-css"
+  ],
   "files": [
     {
       "path": "app/layout.tsx",

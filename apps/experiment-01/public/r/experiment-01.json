@@ -18,6 +18,9 @@
     "@remixicon/react",
     "@tanstack/react-table"
   ],
+  "devDependencies": [
+    "tw-animate-css"
+  ],
   "files": [
     {
       "path": "app/layout.tsx",
