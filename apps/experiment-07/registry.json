@@ -4,103 +4,93 @@
   "homepage": "https://originui.com/layouts",
   "items": [
     {
-      "name": "experiment-05",
+      "name": "experiment-07",
       "type": "registry:style",
       "cssVars": {
         "theme": {
           "font-sans": "var(--font-sans), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'",
-          "font-mono": "var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-          "shadow-xs": "0 1px 1px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.05)",
-          "shadow-sm": "0 1px 1px rgba(0, 0, 0, 0.03), 0 2px 2px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.03)",
-          "shadow-md": "0 1px 1px rgba(0, 0, 0, 0.02), 0 2px 2px rgba(0, 0, 0, 0.02), 0 4px 4px rgba(0, 0, 0, 0.02), 0 8px 8px rgba(0, 0, 0, 0.02)",
-          "shadow-lg": "0 1px 1px rgba(0, 0, 0, 0.02), 0 2px 2px rgba(0, 0, 0, 0.02), 0 4px 4px rgba(0, 0, 0, 0.02), 0 8px 8px rgba(0, 0, 0, 0.02), 0 16px 16px rgba(0, 0, 0, 0.02)",
-          "shadow-xl": "0 1px 1px rgba(0, 0, 0, 0.02), 0 2px 2px rgba(0, 0, 0, 0.02), 0 4px 4px rgba(0, 0, 0, 0.02), 0 8px 8px rgba(0, 0, 0, 0.02), 0 16px 16px rgba(0, 0, 0, 0.02), 0 32px 32px rgba(0, 0, 0, 0.02)",
-          "shadow-2xl": "0 1px 1px rgba(0, 0, 0, 0.02), 0 2px 2px rgba(0, 0, 0, 0.02), 0 4px 4px rgba(0, 0, 0, 0.02), 0 8px 8px rgba(0, 0, 0, 0.02), 0 16px 16px rgba(0, 0, 0, 0.02), 0 32px 32px rgba(0, 0, 0, 0.02), 0 64px 64px rgba(0, 0, 0, 0.02)"
+          "font-mono": "var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace"
         },           
         "light": {
-          "background": "oklch(1 0 0)",
+          "background": "oklch(0.967 0.001 286.375)",
           "foreground": "oklch(0.141 0.005 285.823)",
           "card": "oklch(1 0 0)",
           "card-foreground": "oklch(0.141 0.005 285.823)",
           "popover": "oklch(1 0 0)",
           "popover-foreground": "oklch(0.141 0.005 285.823)",
-          "primary": "oklch(0.606 0.25 292.717)",
-          "primary-foreground": "oklch(0.979 0.021 166.113)",
+          "primary": "oklch(0.21 0.006 285.885)",
+          "primary-foreground": "oklch(0.985 0 0)",
           "secondary": "oklch(0.967 0.001 286.375)",
-          "secondary-foreground": "oklch(0.183 0.006 285.79)",
+          "secondary-foreground": "oklch(0.21 0.006 285.885)",
           "muted": "oklch(0.967 0.001 286.375)",
           "muted-foreground": "oklch(0.552 0.016 285.938)",
           "accent": "oklch(0.967 0.001 286.375)",
-          "accent-foreground": "oklch(0.183 0.006 285.79)",
-          "destructive": "oklch(0.637 0.237 25.331)",
-          "destructive-foreground": "oklch(0.637 0.237 25.331)",
+          "accent-foreground": "oklch(0.21 0.006 285.885)",
+          "destructive": "oklch(0.577 0.245 27.325)",
+          "destructive-foreground": "oklch(0.577 0.245 27.325)",
           "border": "oklch(0.92 0.004 286.32)",
-          "input": "oklch(0.871 0.006 286.286)",
-          "ring": "oklch(0.871 0.006 286.286)",
-          "chart-1": "oklch(0.606 0.25 292.717)",
-          "chart-2": "oklch(0.541 0.281 293.009)",
-          "chart-3": "oklch(0.92 0.004 286.32)",
-          "chart-4": "oklch(0.645 0.246 16.439)",
-          "chart-5": "oklch(0.586 0.253 17.585)",
+          "input": "oklch(0.92 0.004 286.32)",
+          "ring": "oklch(0.705 0.015 286.067)",
+          "chart-1": "oklch(0.646 0.222 41.116)",
+          "chart-2": "oklch(0.6 0.118 184.704)",
+          "chart-3": "oklch(0.398 0.07 227.392)",
+          "chart-4": "oklch(0.828 0.189 84.429)",
+          "chart-5": "oklch(0.769 0.188 70.08)",
           "chart-6": "oklch(0.696 0.17 162.48)",
-          "radius": "0.625rem",
+          "radius": "0.5rem",
           "sidebar": "oklch(0.985 0 0)",
-          "sidebar-foreground": "oklch(0.37 0.013 285.805)",
-          "sidebar-primary": "oklch(0.606 0.25 292.717)",
+          "sidebar-foreground": "oklch(0.141 0.005 285.823)",
+          "sidebar-primary": "oklch(0.21 0.006 285.885)",
           "sidebar-primary-foreground": "oklch(0.985 0 0)",
           "sidebar-accent": "oklch(0.967 0.001 286.375)",
           "sidebar-accent-foreground": "oklch(0.21 0.006 285.885)",
           "sidebar-border": "oklch(0.92 0.004 286.32)",
-          "sidebar-ring": "oklch(0.871 0.006 286.286)"
+          "sidebar-ring": "oklch(0.705 0.015 286.067)"
         },
         "dark": {
-          "background": "oklch(0.227 0.006 285.93)",
+          "background": "oklch(0.141 0.005 285.823)",
           "foreground": "oklch(0.985 0 0)",
-          "card": "oklch(0.227 0.006 285.93)",
+          "card": "oklch(0.21 0.006 285.885)",
           "card-foreground": "oklch(0.985 0 0)",
-          "popover": "oklch(0.227 0.006 285.93)",
+          "popover": "oklch(0.21 0.006 285.885)",
           "popover-foreground": "oklch(0.985 0 0)",
-          "primary": "oklch(0.606 0.25 292.717)",
-          "primary-foreground": "oklch(0.979 0.021 166.113)",
+          "primary": "oklch(0.92 0.004 286.32)",
+          "primary-foreground": "oklch(0.21 0.006 285.885)",
           "secondary": "oklch(0.274 0.006 286.033)",
           "secondary-foreground": "oklch(0.985 0 0)",
-          "muted": "oklch(0.21 0.006 285.885)",
+          "muted": "oklch(0.274 0.006 286.033)",
           "muted-foreground": "oklch(0.705 0.015 286.067)",
-          "accent": "oklch(0.21 0.006 285.885)",
+          "accent": "oklch(0.274 0.006 286.033)",
           "accent-foreground": "oklch(0.985 0 0)",
-          "destructive": "oklch(0.637 0.237 25.331)",
-          "destructive-foreground": "oklch(0.637 0.237 25.331)",
-          "border": "oklch(0.323 0.0105 285.8)",
-          "input": "oklch(0.323 0.0105 285.8)",
-          "ring": "oklch(0.442 0.017 285.786)",
-          "chart-1": "oklch(0.606 0.25 292.717)",
-          "chart-2": "oklch(0.541 0.281 293.009)",
-          "chart-3": "oklch(0.274 0.006 286.033)",
-          "chart-4": "oklch(0.645 0.246 16.439)",
-          "chart-5": "oklch(0.586 0.253 17.585)",
+          "destructive": "oklch(0.704 0.191 22.216)",
+          "destructive-foreground": "oklch(0.704 0.191 22.216)",
+          "border": "oklch(1 0 0 / 10%)",
+          "input": "oklch(1 0 0 / 15%)",
+          "ring": "oklch(0.552 0.016 285.938)",
+          "chart-1": "oklch(0.488 0.243 264.376)",
+          "chart-2": "oklch(0.696 0.17 162.48)",
+          "chart-3": "oklch(0.769 0.188 70.08)",
+          "chart-4": "oklch(0.627 0.265 303.9)",
+          "chart-5": "oklch(0.645 0.246 16.439)",
           "chart-6": "oklch(0.696 0.17 162.48)",
-          "sidebar": "oklch(0.227 0.006 285.93)",
-          "sidebar-foreground": "oklch(0.967 0.001 286.375)",
-          "sidebar-primary": "oklch(0.606 0.25 292.717)",
-          "sidebar-primary-foreground": "oklch(1 0 0)",
+          "radius": "0.5rem",
+          "sidebar": "oklch(0.21 0.006 285.885)",
+          "sidebar-foreground": "oklch(0.985 0 0)",
+          "sidebar-primary": "oklch(0.488 0.243 264.376)",
+          "sidebar-primary-foreground": "oklch(0.985 0 0)",
           "sidebar-accent": "oklch(0.274 0.006 286.033)",
-          "sidebar-accent-foreground": "oklch(0.967 0.001 286.375)",
-          "sidebar-border": "oklch(0.323 0.0105 285.8)",
-          "sidebar-ring": "oklch(0.442 0.017 285.786)"
+          "sidebar-accent-foreground": "oklch(0.985 0 0)",
+          "sidebar-border": "oklch(1 0 0 / 10%)",
+          "sidebar-ring": "oklch(0.552 0.016 285.938)"
         }
       },
       "dependencies": [
-        "@radix-ui/react-dialog",
         "@radix-ui/react-dropdown-menu",
-        "@radix-ui/react-label",
-        "@radix-ui/react-popover",
-        "@radix-ui/react-select",
+        "@radix-ui/react-separator",
         "@radix-ui/react-slot",
         "@remixicon/react",
-        "cmdk",
-        "next-themes",
-        "recharts",
-        "use-scramble"
+        "@xyflow/react",
+        "next-themes"
       ],
       "files": [
         {
@@ -114,23 +104,27 @@
           "target": "app/dashboard/page.tsx"
         },
         {
-          "path": "components/candlestick-chart.tsx",
+          "path": "components/header.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/charts-extra.tsx",
+          "path": "components/participants.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/coin-selector.tsx",
+          "path": "components/schema-edge.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/period-selector.tsx",
+          "path": "components/schema-visualizer.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/sidebar.tsx",
+          "path": "components/table-node.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/template-switcher.tsx",
           "type": "registry:component"
         },
         {
@@ -138,23 +132,11 @@
           "type": "registry:component"
         },
         {
+          "path": "components/ui/breadcrumb.tsx",
+          "type": "registry:component"
+        },
+        {
           "path": "components/ui/button.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/ui/card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/ui/chart.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/ui/command.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/ui/dialog.tsx",
           "type": "registry:component"
         },
         {
@@ -162,20 +144,17 @@
           "type": "registry:component"
         },
         {
-          "path": "components/ui/label.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/ui/popover.tsx",
-          "type": "registry:component"
-        },
-        {
           "path": "components/ui/select.tsx",
           "type": "registry:component"
         },
         {
-          "path": "hooks/use-mobile.ts",
-          "type": "registry:hook"
+          "path": "components/ui/separator.tsx",
+          "type": "registry:component"
+        },        
+        {
+          "path": "lib/schema-data.ts",
+          "type": "registry:file",
+          "target": "lib/schema-data.ts"
         },
         {
           "path": "providers/theme-provider.tsx",
