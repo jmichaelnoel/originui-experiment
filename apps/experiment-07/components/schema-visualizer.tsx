@@ -53,10 +53,16 @@ function SchemaVisualizerInner() {
         maxZoom={1}
         defaultEdgeOptions={{
           type: "custom",
-          className: "*:stroke-foreground/25! *:stroke-[1.5px]!",
+          className: "opacity-25",
         }}
+        style={{
+          "--xy-background-pattern-dots-color-default": "var(--color-border)",
+          "--xy-edge-stroke-width-default": 1.5,
+          "--xy-edge-stroke-default": "var(--color-foreground)",
+          "--xy-edge-stroke-selected-default": "var(--color-foreground)",
+        } as React.CSSProperties}
       >
-        <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
+        <Background variant={BackgroundVariant.Dots} gap={20} size={2} />
         <Controls showInteractive={false} />
         <Panel position="bottom-right" className="flex gap-2">
           <Button
@@ -65,7 +71,7 @@ function SchemaVisualizerInner() {
             className="bg-white shadow-md"
             onClick={() => zoomIn()}
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="size-4" />
           </Button>
           <Button
             variant="outline"

@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.985 0 0); /* Zinc 50 */
+  --radius: 0.5rem;
+  --background: oklch(0.967 0.001 286.375); /* Zinc 100 */
   --foreground: oklch(0.141 0.005 285.823); /* Zinc 950 */
   --card: oklch(1 0 0); /* White */
   --card-foreground: oklch(0.141 0.005 285.823); /* Zinc 950 */

@@ -22,7 +22,7 @@ export const initialNodes: Node[] = [
   {
     id: "orders",
     type: "tableNode",
-    position: { x: 450, y: 187 },
+    position: { x: 450, y: 183 },
     data: {
       label: "orders",
       fields: [
@@ -69,7 +69,7 @@ export const initialNodes: Node[] = [
   {
     id: "merchants",
     type: "tableNode",
-    position: { x: 450, y: 497 },
+    position: { x: 450, y: 493 },
     data: {
       label: "merchants",
       fields: [

@@ -8,7 +8,7 @@ import ThemeToggle from "@/components/theme-toggle";
 export default function Header() {
   return (
     <header className="fixed top-2 md:top-5 w-full px-2 md:px-5 z-50">
-      <div className="border rounded-xl bg-card/80 backdrop-blur-md h-12 md:h-16 flex justify-between items-center gap-2 px-4 shadow-lg/2">
+      <div className="border border-border/80 rounded-xl bg-card/80 backdrop-blur-md h-12 md:h-16 flex justify-between items-center gap-2 px-4 shadow-lg/2">
         {/* Left area */}
         <div className="flex-1 flex items-center">
           <Link className="inline-flex" href="/">
