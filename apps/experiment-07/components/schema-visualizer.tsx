@@ -12,7 +12,6 @@ import {
   BackgroundVariant,
 } from "@xyflow/react"
 import '@xyflow/react/dist/base.css';
-import { Plus, Minus, Maximize2, Check } from 'lucide-react'
 import { RiAddLine, RiSubtractLine, RiFullscreenLine } from "@remixicon/react";
 import { Button } from "@/components/ui/button"
 import TableNode from "@/components/table-node"
