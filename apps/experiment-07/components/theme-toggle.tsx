@@ -44,10 +44,10 @@ export default function ThemeToggle() {
         htmlFor={id}
         aria-hidden="true"
       >
-        <RiSunLine className="dark:hidden" size={20} aria-hidden="true" />
+        <RiSunLine className="dark:hidden" size={22} aria-hidden="true" />
         <RiMoonClearLine
           className="hidden dark:block"
-          size={20}
+          size={22}
           aria-hidden="true"
         />
         <span className="sr-only">Switch to system/light/dark version</span>

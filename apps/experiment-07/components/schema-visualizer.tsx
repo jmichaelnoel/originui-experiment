@@ -4,7 +4,6 @@ import { useCallback, useRef } from "react"
 import {
   ReactFlow,
   ReactFlowProvider,
-  Controls,
   Background,
   useNodesState,
   useEdgesState,
@@ -14,6 +13,7 @@ import {
 } from "@xyflow/react"
 import '@xyflow/react/dist/base.css';
 import { Plus, Minus, Maximize2, Check } from 'lucide-react'
+import { RiAddLine, RiSubtractLine, RiFullscreenLine } from "@remixicon/react";
 import { Button } from "@/components/ui/button"
 import TableNode from "@/components/table-node"
 import SchemaEdge from "@/components/schema-edge"
@@ -40,65 +40,63 @@ function SchemaVisualizerInner() {
 
   return (
     <main className="flex-1 flex items-stretch">
-    <div className="w-full" ref={reactFlowWrapper}>
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        nodeTypes={nodeTypes}
-        edgeTypes={edgeTypes}
-        fitView
-        minZoom={0.5}
-        maxZoom={1}
-        defaultEdgeOptions={{
-          type: "custom",
-          className: "opacity-25",
-        }}
-        style={{
-          "--xy-background-pattern-dots-color-default": "var(--color-border)",
-          "--xy-edge-stroke-width-default": 1.5,
-          "--xy-edge-stroke-default": "var(--color-foreground)",
-          "--xy-edge-stroke-selected-default": "var(--color-foreground)",
-        } as React.CSSProperties}
-      >
-        <Background variant={BackgroundVariant.Dots} gap={20} size={2} />
-        <Controls showInteractive={false} />
-        <Panel position="bottom-right" className="flex gap-2">
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-white shadow-md"
-            onClick={() => zoomIn()}
-          >
-            <Plus className="size-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-white shadow-md"
-            onClick={() => zoomOut()}
-          >
-            <Minus className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-white shadow-md"
-            onClick={onFitView}
-          >
-            <Maximize2 className="h-4 w-4" />
-          </Button>
-          <Button
-            variant="outline"
-            size="icon"
-            className="bg-white shadow-md"
-          >
-            <Check className="h-4 w-4" />
-          </Button>
-        </Panel>
-      </ReactFlow>
-    </div>
+      <div className="w-full" ref={reactFlowWrapper}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          fitView
+          minZoom={0.5}
+          maxZoom={1}
+          defaultEdgeOptions={{
+            type: "custom",
+            className: "opacity-25",
+          }}
+          style={{
+            "--xy-background-pattern-dots-color-default": "var(--color-border)",
+            "--xy-edge-stroke-width-default": 1.5,
+            "--xy-edge-stroke-default": "var(--color-foreground)",
+            "--xy-edge-stroke-selected-default": "var(--color-foreground)",
+            "--xy-attribution-background-color-default": "transparent"
+          } as React.CSSProperties}
+          attributionPosition="bottom-left"
+        >
+          <Background variant={BackgroundVariant.Dots} gap={20} size={2} />
+
+          <Panel position="bottom-right" className="inline-flex -space-x-px rounded-md shadow-xs rtl:space-x-reverse">
+            <Button
+              variant="outline"
+              size="icon"
+              className="text-muted-foreground/80 hover:text-muted-foreground rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg size-10 focus-visible:z-10 bg-card"
+              onClick={() => zoomIn()}
+              aria-label="Zoom in"
+            >
+              <RiAddLine className="size-5" aria-hidden="true" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="text-muted-foreground/80 hover:text-muted-foreground rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg size-10 focus-visible:z-10 bg-card"
+              onClick={() => zoomOut()}
+              aria-label="Zoom out"
+            >
+              <RiSubtractLine className="size-5" aria-hidden="true" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="text-muted-foreground/80 hover:text-muted-foreground rounded-none shadow-none first:rounded-s-lg last:rounded-e-lg size-10 focus-visible:z-10 bg-card"
+              onClick={onFitView}
+              aria-label="Fit view"
+            >
+              <RiFullscreenLine className="size-5" aria-hidden="true" />
+            </Button>
+          </Panel>
+        </ReactFlow>
+      </div>
     </main>
   )
 }
