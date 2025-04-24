@@ -12,8 +12,16 @@ export default function Header() {
         {/* Left area */}
         <div className="flex-1 flex items-center">
           <Link className="inline-flex" href="/">
-            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="32" aria-label="Schema Visualizer">
-              <path fill="currentColor" d="M0 12v12.8h4.028a3.242 3.242 0 0 1 2.278.937A3.199 3.199 0 0 1 7.25 28v4h9.667L29 20V7.2h-4.028a3.242 3.242 0 0 1-2.278-.937A3.2 3.2 0 0 1 21.75 4V0h-9.667L0 12Zm13.694 12H8.056v-8.8l7.25-7.2h5.638v8.8l-7.25 7.2Z" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="29"
+              height="32"
+              aria-label="Schema Visualizer"
+            >
+              <path
+                fill="currentColor"
+                d="M0 12v12.8h4.028a3.242 3.242 0 0 1 2.278.937A3.199 3.199 0 0 1 7.25 28v4h9.667L29 20V7.2h-4.028a3.242 3.242 0 0 1-2.278-.937A3.2 3.2 0 0 1 21.75 4V0h-9.667L0 12Zm13.694 12H8.056v-8.8l7.25-7.2h5.638v8.8l-7.25 7.2Z"
+              />
             </svg>
           </Link>
         </div>

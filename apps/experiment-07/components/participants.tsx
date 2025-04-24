@@ -40,5 +40,5 @@ export default function Participants() {
         />
       </div>
     </div>
-  )
+  );
 }

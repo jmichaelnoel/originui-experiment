@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import { useCallback, useRef } from "react"
+import { useCallback, useRef } from "react";
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -10,32 +10,32 @@ import {
   Panel,
   useReactFlow,
   BackgroundVariant,
-} from "@xyflow/react"
-import '@xyflow/react/dist/base.css';
+} from "@xyflow/react";
+import "@xyflow/react/dist/base.css";
 import { RiAddLine, RiSubtractLine, RiFullscreenLine } from "@remixicon/react";
-import { Button } from "@/components/ui/button"
-import TableNode from "@/components/table-node"
-import SchemaEdge from "@/components/schema-edge"
-import { initialNodes, initialEdges } from "@/lib/schema-data"
+import { Button } from "@/components/ui/button";
+import TableNode from "@/components/table-node";
+import SchemaEdge from "@/components/schema-edge";
+import { initialNodes, initialEdges } from "@/lib/schema-data";
 
 // Register custom node types and edge types
 const nodeTypes = {
   tableNode: TableNode,
-}
+};
 
 const edgeTypes = {
   custom: SchemaEdge,
-}
+};
 
 function SchemaVisualizerInner() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
-  const reactFlowWrapper = useRef<HTMLDivElement>(null)
-  const { fitView, zoomIn, zoomOut } = useReactFlow()
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const reactFlowWrapper = useRef<HTMLDivElement>(null);
+  const { fitView, zoomIn, zoomOut } = useReactFlow();
 
   const onFitView = useCallback(() => {
-    fitView({ padding: 0.2 })
-  }, [fitView])
+    fitView({ padding: 0.2 });
+  }, [fitView]);
 
   return (
     <main className="flex-1 flex items-stretch">
@@ -54,18 +54,24 @@ function SchemaVisualizerInner() {
             type: "custom",
             className: "opacity-25",
           }}
-          style={{
-            "--xy-background-pattern-dots-color-default": "var(--color-border)",
-            "--xy-edge-stroke-width-default": 1.5,
-            "--xy-edge-stroke-default": "var(--color-foreground)",
-            "--xy-edge-stroke-selected-default": "var(--color-foreground)",
-            "--xy-attribution-background-color-default": "transparent"
-          } as React.CSSProperties}
+          style={
+            {
+              "--xy-background-pattern-dots-color-default":
+                "var(--color-border)",
+              "--xy-edge-stroke-width-default": 1.5,
+              "--xy-edge-stroke-default": "var(--color-foreground)",
+              "--xy-edge-stroke-selected-default": "var(--color-foreground)",
+              "--xy-attribution-background-color-default": "transparent",
+            } as React.CSSProperties
+          }
           attributionPosition="bottom-left"
         >
           <Background variant={BackgroundVariant.Dots} gap={20} size={2} />
 
-          <Panel position="bottom-right" className="inline-flex -space-x-px rounded-md shadow-xs rtl:space-x-reverse">
+          <Panel
+            position="bottom-right"
+            className="inline-flex -space-x-px rounded-md shadow-xs rtl:space-x-reverse"
+          >
             <Button
               variant="outline"
               size="icon"
@@ -97,7 +103,7 @@ function SchemaVisualizerInner() {
         </ReactFlow>
       </div>
     </main>
-  )
+  );
 }
 
 export default function SchemaVisualizer() {
@@ -105,5 +111,5 @@ export default function SchemaVisualizer() {
     <ReactFlowProvider>
       <SchemaVisualizerInner />
     </ReactFlowProvider>
-  )
+  );
 }

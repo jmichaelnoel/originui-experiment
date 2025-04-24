@@ -1,4 +1,4 @@
-import type { Node, Edge } from "@xyflow/react"
+import type { Node, Edge } from "@xyflow/react";
 
 // Define the initial nodes (tables)
 export const initialNodes: Node[] = [
@@ -95,7 +95,7 @@ export const initialNodes: Node[] = [
       ],
     },
   },
-]
+];
 
 // Define the edges (relationships) between tables with specific column connections
 export const initialEdges: Edge[] = [
@@ -105,7 +105,7 @@ export const initialEdges: Edge[] = [
     source: "users",
     target: "orders",
     sourceHandle: "id",
-    targetHandle: "user_id"
+    targetHandle: "user_id",
   },
   // Orders to Order Items (one-to-many): orders.id -> order_items.order_id
   {
@@ -113,7 +113,7 @@ export const initialEdges: Edge[] = [
     source: "orders",
     target: "order_items",
     sourceHandle: "id",
-    targetHandle: "order_id"
+    targetHandle: "order_id",
   },
   // Products to Order Items (one-to-many): products.id -> order_items.product_id
   {
@@ -121,7 +121,7 @@ export const initialEdges: Edge[] = [
     source: "products",
     target: "order_items",
     sourceHandle: "id",
-    targetHandle: "product_id"
+    targetHandle: "product_id",
   },
   // Merchants to Products (one-to-many): merchants.id -> products.merchant_id
   {
@@ -129,7 +129,7 @@ export const initialEdges: Edge[] = [
     source: "merchants",
     target: "products",
     sourceHandle: "id",
-    targetHandle: "merchant_id"
+    targetHandle: "merchant_id",
   },
   // Countries to Users (one-to-many): countries.code -> users.country_code
   {
@@ -137,7 +137,7 @@ export const initialEdges: Edge[] = [
     source: "countries",
     target: "users",
     sourceHandle: "code",
-    targetHandle: "country_code"
+    targetHandle: "country_code",
   },
   // Countries to Merchants (one-to-many): countries.code -> merchants.country_code
   {
@@ -145,6 +145,6 @@ export const initialEdges: Edge[] = [
     source: "countries",
     target: "merchants",
     sourceHandle: "code",
-    targetHandle: "country_code"
-  }
-]
+    targetHandle: "country_code",
+  },
+];

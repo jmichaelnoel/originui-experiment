@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { ChevronDownIcon } from "lucide-react"
+import { useState } from "react";
+import { ChevronDownIcon } from "lucide-react";
 
 import {
   Breadcrumb,
@@ -9,14 +9,14 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 const templates = [
   {
@@ -35,10 +35,10 @@ const templates = [
     name: "Form-Generator",
     href: "/templates/form-generator",
   },
-]
+];
 
 export default function TemplateSwitcher() {
-  const [activeTemplate, setActiveTemplate] = useState(templates[0] ?? null)
+  const [activeTemplate, setActiveTemplate] = useState(templates[0] ?? null);
 
   return (
     <Breadcrumb>
@@ -46,7 +46,10 @@ export default function TemplateSwitcher() {
         <BreadcrumbItem className="max-sm:hidden">
           <BreadcrumbLink href="#">Templates</BreadcrumbLink>
         </BreadcrumbItem>
-        <BreadcrumbSeparator className="text-border max-sm:hidden"> / </BreadcrumbSeparator>
+        <BreadcrumbSeparator className="text-border max-sm:hidden">
+          {" "}
+          /{" "}
+        </BreadcrumbSeparator>
         <BreadcrumbItem>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1 font-medium text-foreground">
@@ -71,5 +74,5 @@ export default function TemplateSwitcher() {
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
-  )
+  );
 }

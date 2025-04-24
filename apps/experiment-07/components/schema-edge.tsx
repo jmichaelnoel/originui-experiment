@@ -1,4 +1,9 @@
-import { BaseEdge, EdgeProps, getSmoothStepPath, Position } from '@xyflow/react';
+import {
+  BaseEdge,
+  EdgeProps,
+  getSmoothStepPath,
+  Position,
+} from "@xyflow/react";
 
 export default function SchemaEdge({
   sourceX,
@@ -17,10 +22,8 @@ export default function SchemaEdge({
     targetX,
     targetY,
     targetPosition: targetPosition || Position.Top,
-    borderRadius: 8 // Increased border radius for smoother corners
+    borderRadius: 8, // Increased border radius for smoother corners
   });
 
-  return (
-    <BaseEdge path={edgePath} style={style} markerEnd={markerEnd} />
-  );
-} 
+  return <BaseEdge path={edgePath} style={style} markerEnd={markerEnd} />;
+}
