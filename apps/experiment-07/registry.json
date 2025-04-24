@@ -92,6 +92,9 @@
         "@xyflow/react",
         "next-themes"
       ],
+      "devDependencies": [
+        "tw-animate-css"
+      ],
       "files": [
         {
           "path": "app/layout.tsx",
