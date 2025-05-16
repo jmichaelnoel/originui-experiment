@@ -21,22 +21,22 @@ const coins = [
   {
     value: "TRX",
     name: "Tronix",
-    icon: "https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-01_tidmpi.svg",
+    icon: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp5/coin-01_tidmpi.svg",
   },
   {
     value: "TOK",
     name: "Turbo Koin",
-    icon: "https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-02_a6ineb.svg",
+    icon: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp5/coin-02_a6ineb.svg",
   },
   {
     value: "SAP",
     name: "Swap",
-    icon: "https://res.cloudinary.com/dlzlfasou/image/upload/v1742391614/coin-03_w8kee9.svg",
+    icon: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp5/coin-03_w8kee9.svg",
   },
   {
     value: "SUV",
     name: "SuvFi",
-    icon: "https://res.cloudinary.com/dlzlfasou/image/upload/v1742391613/coin-04_hfq2hc.svg",
+    icon: "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp5/coin-04_hfq2hc.svg",
   },
 ];
 

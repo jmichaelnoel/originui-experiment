@@ -33,7 +33,7 @@ const data = {
     name: "Mark Bannert",
     email: "mark@bannert.com",
     avatar:
-      "https://res.cloudinary.com/dlzlfasou/image/upload/v1741345912/user_itiiaq.png",
+      "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp3/user_itiiaq.png",
   },
   navMain: [
     {

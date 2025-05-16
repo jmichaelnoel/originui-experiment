@@ -117,13 +117,13 @@ export function Converter() {
       id: "1",
       name: "Ark",
       image:
-        "https://res.cloudinary.com/dlzlfasou/image/upload/v1741861900/coin-01-sm-dark_hkrvvm.svg",
+        "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp4/coin-01-sm-dark_hkrvvm.svg",
     },
     {
       id: "2",
       name: "Tok",
       image:
-        "https://res.cloudinary.com/dlzlfasou/image/upload/v1741861900/coin-02-sm-dark_iqldgv.svg",
+        "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp4/coin-02-sm-dark_iqldgv.svg",
     },
   ];
 

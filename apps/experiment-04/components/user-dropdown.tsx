@@ -22,7 +22,7 @@ export default function UserDropdown() {
         >
           <Avatar>
             <AvatarImage
-              src="https://res.cloudinary.com/dlzlfasou/image/upload/v1741353515/user_i02xph.png"
+              src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp4/user_i02xph.png"
               width={32}
               height={32}
               alt="Profile image"

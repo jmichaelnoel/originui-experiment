@@ -51,7 +51,7 @@ interface Transaction {
   spent: string;
 }
 
-const basePath = "https://res.cloudinary.com/dlzlfasou/image/upload/";
+const basePath = "https://raw.githubusercontent.com/dlzlfasou/image/upload/";
 
 const items: Transaction[] = [
   {

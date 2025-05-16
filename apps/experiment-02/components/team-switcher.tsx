@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 
 import {
   DropdownMenu,
@@ -42,7 +41,7 @@ export function TeamSwitcher({
             >
               <div className="flex aspect-square size-9 items-center justify-center rounded-md overflow-hidden bg-sidebar-primary text-sidebar-primary-foreground relative after:rounded-[inherit] after:absolute after:inset-0 after:shadow-[0_1px_2px_0_rgb(0_0_0/.05),inset_0_1px_0_0_rgb(255_255_255/.12)] after:pointer-events-none">
                 {activeTeam && (
-                  <Image
+                  <img
                     src={activeTeam.logo}
                     width={36}
                     height={36}
@@ -78,12 +77,7 @@ export function TeamSwitcher({
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md overflow-hidden">
-                  <Image
-                    src={team.logo}
-                    width={36}
-                    height={36}
-                    alt={team.name}
-                  />
+                  <img src={team.logo} width={36} height={36} alt={team.name} />
                 </div>
                 {team.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>

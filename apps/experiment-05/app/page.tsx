@@ -6,7 +6,6 @@ export const metadata: Metadata = {
 
 import { Card, CardContent } from "@/components/ui/card";
 import { CandlestickChart } from "@/components/candlestick-chart";
-import Image from "next/image";
 import CoinSelector from "@/components/coin-selector";
 import PeriodSelector from "@/components/period-selector";
 import { Sidebar } from "@/components/sidebar";
@@ -31,16 +30,16 @@ export default function Page() {
                     {/* Coin symbols */}
                     <div className="mt-0.5 shrink-0">
                       <div className="inline-flex rounded-full border-2 border-card last:-ms-3.5 last:translate-y-3.5">
-                        <Image
-                          src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-01_tidmpi.svg"
+                        <img
+                          src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp5/coin-01_tidmpi.svg"
                           width={28}
                           height={28}
                           alt="TRX"
                         />
                       </div>
                       <div className="inline-flex rounded-full border-2 border-card last:-ms-3.5 last:translate-y-3.5">
-                        <Image
-                          src="https://res.cloudinary.com/dlzlfasou/image/upload/v1742390289/coin-02_a6ineb.svg"
+                        <img
+                          src="https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp5/coin-02_a6ineb.svg"
                           width={28}
                           height={28}
                           alt="TOK"

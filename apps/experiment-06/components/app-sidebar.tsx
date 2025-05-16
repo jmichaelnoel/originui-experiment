@@ -28,7 +28,7 @@ const data = {
     name: "Sofia Safier",
     email: "sofia@safier.com",
     avatar:
-      "https://res.cloudinary.com/dlzlfasou/image/upload/v1743935337/user-01_l4if9t.png",
+      "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp6/user-01_l4if9t.png",
   },
 };
 

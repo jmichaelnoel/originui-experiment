@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -147,7 +146,7 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
     accessorKey: "name",
     cell: ({ row }) => (
       <div className="flex items-center gap-3">
-        <Image
+        <img
           className="rounded-full"
           src={row.original.image}
           width={32}
@@ -231,7 +230,7 @@ const getColumns = ({ data, setData }: GetColumnsProps): ColumnDef<Item>[] => [
     accessorKey: "referral",
     cell: ({ row }) => (
       <div className="flex items-center gap-3">
-        <Image
+        <img
           className="rounded-full"
           src={row.original.referral.image}
           width={20}

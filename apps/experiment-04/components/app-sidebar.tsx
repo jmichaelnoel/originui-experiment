@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const basePath = "https://res.cloudinary.com/dlzlfasou/image/upload/";
+const basePath = "https://raw.githubusercontent.com/dlzlfasou/image/upload/";
 
 // This is sample data
 const navigationItems = [
