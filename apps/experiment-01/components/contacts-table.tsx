@@ -303,7 +303,7 @@ export default function ContactsTable() {
     async function fetchPosts() {
       try {
         const res = await fetch(
-          "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp1/users-02_mohkpe.json",
+          "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/users-02_mohkpe.json",
         );
         const data = await res.json();
         setData(data);

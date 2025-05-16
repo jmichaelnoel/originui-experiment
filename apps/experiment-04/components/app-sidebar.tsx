@@ -12,7 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-const basePath = "https://raw.githubusercontent.com/dlzlfasou/image/upload/";
+const basePath = "https://raw.githubusercontent.com/origin-space/origin-images/refs/heads/main/exp4/";
 
 // This is sample data
 const navigationItems = [
@@ -20,8 +20,8 @@ const navigationItems = [
     title: "ArkFi",
     url: "#",
     icon: [
-      "v1741795549/coin-01-light_mfrp33.svg",
-      "v1741795549/coin-01-dark_k0xthz.svg",
+      "coin-01-light_mfrp33.svg",
+      "coin-01-dark_k0xthz.svg",
     ],
     isActive: true,
   },
@@ -29,16 +29,16 @@ const navigationItems = [
     title: "Solaris",
     url: "#",
     icon: [
-      "v1741795550/coin-02-light_wbsrxl.svg",
-      "v1741795550/coin-02-dark_l7j3yv.svg",
+      "coin-02-light_wbsrxl.svg",
+      "coin-02-dark_l7j3yv.svg",
     ],
   },
   {
     title: "Nexus",
     url: "#",
     icon: [
-      "v1741795550/coin-03-light_dvkbrk.svg",
-      "v1741795549/coin-03-dark_htjbyp.svg",
+      "coin-03-light_dvkbrk.svg",
+      "coin-03-dark_htjbyp.svg",
     ],
   },
 ];
